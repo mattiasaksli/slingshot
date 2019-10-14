@@ -6,6 +6,7 @@ public class CollisionDetection : MonoBehaviour
 {
     private BoxCollider2D boxCollider2D;
     public static CollisionDetection coll;
+    private List<RaycastHit2D> hitBufferList = new List<RaycastHit2D> (10);
     
     // Start is called before the first frame update
     void Start()
@@ -16,16 +17,24 @@ public class CollisionDetection : MonoBehaviour
     // Update is called once per frame
     public void Move(KinematicBody body, Vector2 add)
     {
-        RaycastHit2D[] results = new RaycastHit2D[4];
+        RaycastHit2D[] results = new RaycastHit2D[10];
+        List<RaycastHit2D> resultsList = new List<RaycastHit2D> (10);
+        int n;
+        float padding = 0.002f;
 
         //Horizontal
         Vector2 xcomp = new Vector2(add.x, 0);
-        int n = body.boxCollider.Cast(xcomp, results);
+        n = body.boxCollider.Cast(xcomp, results);
+        resultsList.Clear();
+        for(var i = 0; i < n; i++)
+        {
+            resultsList.Add(results[i]);
+        }
         if (n > 0)
         {
-            for (var i = 0; i < n; i++)
+            for (var i = 0; i < resultsList.Count; i++)
             {
-                float d = Mathf.Max(results[i].distance - 0.005f);
+                float d = Mathf.Max(resultsList[i].distance - padding);
                 if (d < xcomp.magnitude)
                 {
                     xcomp = xcomp.normalized * d;
@@ -39,11 +48,16 @@ public class CollisionDetection : MonoBehaviour
         //Vertical
         Vector2 ycomp = new Vector2(0, add.y);
         n = body.boxCollider.Cast(ycomp, results);
-        if(n > 0)
+        resultsList.Clear();
+        for (var i = 0; i < n; i++)
         {
-            for (var i = 0; i < n; i++)
+            resultsList.Add(results[i]);
+        }
+        if (n > 0)
+        {
+            for (var i = 0; i < resultsList.Count; i++)
             {
-                float d = Mathf.Max(results[i].distance - 0.005f);
+                float d = Mathf.Max(resultsList[i].distance - padding);
                 if (d < ycomp.magnitude)
                 {
                     ycomp = ycomp.normalized * d;
