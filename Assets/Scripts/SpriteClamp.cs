@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpriteClamp : MonoBehaviour
 {
     private SpriteRenderer sprite;
-    public float pixelperUnit = 1;
+    private static float pixelperUnity = 12;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +17,9 @@ public class SpriteClamp : MonoBehaviour
     void Update()
     {
         Vector3 parentpos = transform.parent.transform.position;
-        parentpos.x = Mathf.Round(parentpos.x / pixelperUnit) * pixelperUnit;
-        parentpos.y = Mathf.Round(parentpos.y / pixelperUnit) * pixelperUnit;
-        transform.position = parentpos;
+        float aspect = (1 / pixelperUnity);
+        parentpos.x = Mathf.Round(parentpos.x / aspect) * aspect;
+        parentpos.y = Mathf.Round(parentpos.y / aspect) * aspect;
+        transform.position = (Vector3)parentpos;
     }
 }
