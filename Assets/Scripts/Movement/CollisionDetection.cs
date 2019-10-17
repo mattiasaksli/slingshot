@@ -7,6 +7,8 @@ public class CollisionDetection : MonoBehaviour
     public static CollisionDetection coll;
     private List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(10);
 
+    public float WalljumpPower = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class CollisionDetection : MonoBehaviour
         RaycastHit2D[] results = new RaycastHit2D[10];
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(Physics2D.GetLayerCollisionMask(body.gameObject.layer));
-        List<RaycastHit2D> resultsList = new List<RaycastHit2D> (10);
+        List<RaycastHit2D> resultsList = new List<RaycastHit2D>(10);
         int n;
         float padding = 0.002f;
 
@@ -41,6 +43,16 @@ public class CollisionDetection : MonoBehaviour
                     xcomp = xcomp.normalized * d;
                     body.TargetMovement.x = 0;
                     body.Movement.x = 0;
+
+                    if (!body.IsGrounded)
+                    {
+                        float walljumpHorizontal = resultsList[i].normal.x;
+                        if (Input.GetKeyDown(KeyCode.Space))
+                        {
+                            body.Movement.x = walljumpHorizontal * WalljumpPower;
+                            body.Movement.y = WalljumpPower;
+                        }
+                    }
                 }
             }
         }
@@ -60,7 +72,6 @@ public class CollisionDetection : MonoBehaviour
             for (var i = 0; i < resultsList.Count; i++)
             {
                 float d = Mathf.Max(resultsList[i].distance - padding);
-                body.IsGrounded = false || body.IsGrounded;
                 if (d <= ycomp.magnitude)
                 {
                     if (resultsList[i].normal == Vector2.up) { body.IsGrounded = true; }
