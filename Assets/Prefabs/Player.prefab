@@ -234,6 +234,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 4
   JumpPower: 10
-  ThrowPower: 30
+  ThrowPower: 1
   OrbPrefab: {fileID: 2302686782361379601, guid: 414912d6b12af6a418fec736c84d2bdf,
     type: 3}

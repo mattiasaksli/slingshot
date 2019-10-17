@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private KinematicBody orb = null;
     private KinematicBody body;
+    private bool createOrb = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +31,22 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            if(orb == null) {
-                orb = GameObject.Instantiate<KinematicBody>(OrbPrefab);
+            createOrb = true;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(createOrb)
+        {
+            if (orb != null)
+            {
+                GameObject.Destroy(orb.gameObject);
             }
+            orb = GameObject.Instantiate<KinematicBody>(OrbPrefab);
             orb.transform.position = transform.position;
             orb.Movement = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position).normalized * ThrowPower;
+            createOrb = false;
         }
     }
 }

@@ -13,7 +13,7 @@ public class Gravity : MonoBehaviour
         kinematicBody = gameObject.GetComponent<KinematicBody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         kinematicBody.Movement.y -= Power * Time.deltaTime;
         kinematicBody.TargetMovement.y = kinematicBody.Movement.y;
