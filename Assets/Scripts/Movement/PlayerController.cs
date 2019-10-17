@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     public float MovementSpeed = 4;
     public float JumpPower = 10;
+    public float ThrowPower = 20;
+    public KinematicBody OrbPrefab;
+
+    private KinematicBody orb = null;
     private KinematicBody body;
 
     // Start is called before the first frame update
@@ -19,10 +23,18 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         body.TargetMovement.x = Mathf.Round(Input.GetAxis("Horizontal")) * MovementSpeed;
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKey("space") && body.IsGrounded)
         {
             body.TargetMovement.y = JumpPower;
             body.Movement.y = JumpPower;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(orb == null) {
+                orb = GameObject.Instantiate<KinematicBody>(OrbPrefab);
+            }
+            orb.transform.position = transform.position;
+            orb.Movement = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position).normalized * ThrowPower;
         }
     }
 }

@@ -18,6 +18,8 @@ public class CollisionDetection : MonoBehaviour
     public void Move(KinematicBody body, Vector2 add)
     {
         RaycastHit2D[] results = new RaycastHit2D[10];
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(Physics2D.GetLayerCollisionMask(body.gameObject.layer));
         List<RaycastHit2D> resultsList = new List<RaycastHit2D> (10);
         int n;
         float padding = 0.002f;
@@ -53,13 +55,16 @@ public class CollisionDetection : MonoBehaviour
         {
             resultsList.Add(results[i]);
         }
+        body.IsGrounded = false;
         if (n > 0)
         {
             for (var i = 0; i < resultsList.Count; i++)
             {
                 float d = Mathf.Max(resultsList[i].distance - padding);
-                if (d < ycomp.magnitude)
+                body.IsGrounded = false || body.IsGrounded;
+                if (d <= ycomp.magnitude)
                 {
+                    if (resultsList[i].normal == Vector2.up) { body.IsGrounded = true; }
                     ycomp = ycomp.normalized * d;
                     body.TargetMovement.y = 0;
                     body.Movement.y = 0;

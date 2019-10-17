@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2313108493809257754}
   - component: {fileID: 4422165462057523462}
   - component: {fileID: 5523456618152349447}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 5179772920493900193}
   - component: {fileID: 5179772920493900192}
   - component: {fileID: 5179772920493900199}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetMovement: {x: 0, y: 0}
   Movement: {x: 0, y: 0}
-  Acceleration: 0.5
+  GroundAcceleration: 40
+  MidairAcceleration: 5
+  IsGrounded: 0
   boxCollider: {fileID: 0}
 --- !u!114 &5179772920493900220
 MonoBehaviour:
@@ -232,3 +234,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 4
   JumpPower: 10
+  ThrowPower: 30
+  OrbPrefab: {fileID: 2302686782361379601, guid: 414912d6b12af6a418fec736c84d2bdf,
+    type: 3}

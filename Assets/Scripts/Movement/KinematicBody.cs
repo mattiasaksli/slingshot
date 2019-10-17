@@ -6,7 +6,10 @@ public class KinematicBody : MonoBehaviour
 {
     public Vector2 TargetMovement = new Vector2(0,0);
     public Vector2 Movement = new Vector2(0, 0);
-    public float Acceleration;
+    private float Acceleration;
+    public float GroundAcceleration = 40;
+    public float MidairAcceleration = 0;
+    public bool IsGrounded = false;
 
     public BoxCollider2D boxCollider;
 
@@ -18,6 +21,15 @@ public class KinematicBody : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!IsGrounded && TargetMovement.x == 0)
+        {
+            Acceleration = MidairAcceleration;
+        }
+        else
+        {
+            Acceleration = GroundAcceleration;
+        }
+
         Vector2 dist = (TargetMovement - Movement);
         dist = dist.normalized * Mathf.Min(Acceleration*Time.deltaTime, dist.magnitude);
         Movement += dist;
