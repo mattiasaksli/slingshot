@@ -8,6 +8,8 @@ public class CollisionDetection : MonoBehaviour
     private List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(10);
 
     public float WalljumpPower = 10f;
+    public bool isWalljumping = false;
+    public bool walljumpingRight;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,15 @@ public class CollisionDetection : MonoBehaviour
                         {
                             body.Movement.x = walljumpHorizontal * WalljumpPower;
                             body.Movement.y = WalljumpPower;
+                            isWalljumping = true;
+                            if (walljumpHorizontal > 0)
+                            {
+                                walljumpingRight = true;
+                            }
+                            else
+                            {
+                                walljumpingRight = false;
+                            }
                         }
                     }
                 }

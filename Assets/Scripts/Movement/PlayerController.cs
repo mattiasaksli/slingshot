@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [SelectionBase]
 public class PlayerController : MonoBehaviour
@@ -14,20 +12,45 @@ public class PlayerController : MonoBehaviour
     private KinematicBody body;
     private bool createOrb = false;
 
+    public CollisionDetection CD;
+    public int FramesToBlockInput = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         body = gameObject.GetComponent<KinematicBody>();
+        CD = gameObject.GetComponent<CollisionDetection>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        body.TargetMovement.x = Mathf.Round(Input.GetAxis("Horizontal")) * MovementSpeed;
-        if (Input.GetKey("space") && body.IsGrounded)
+        if (CD.isWalljumping)
         {
-            body.TargetMovement.y = JumpPower;
-            body.Movement.y = JumpPower;
+            if (FramesToBlockInput == 5)
+            {
+                CD.isWalljumping = false;
+                FramesToBlockInput = 0;
+            }
+
+            if (CD.walljumpingRight)
+            {
+                body.TargetMovement.x = Mathf.Round(Mathf.Clamp(Input.GetAxis("Horizontal"), 0, MovementSpeed)) * MovementSpeed;
+            }
+            else
+            {
+                body.TargetMovement.x = Mathf.Round(Mathf.Clamp(Input.GetAxis("Horizontal"), -MovementSpeed, 0)) * MovementSpeed;
+            }
+            FramesToBlockInput++;
+        }
+        else
+        {
+            body.TargetMovement.x = Mathf.Round(Input.GetAxis("Horizontal")) * MovementSpeed;
+            if (Input.GetKey("space") && body.IsGrounded)
+            {
+                body.TargetMovement.y = JumpPower;
+                body.Movement.y = JumpPower;
+            }
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -37,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(createOrb)
+        if (createOrb)
         {
             if (orb != null)
             {
