@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
     private BoxCollider2D boxCollider2D;
     public static CollisionDetection coll;
-    private List<RaycastHit2D> hitBufferList = new List<RaycastHit2D> (10);
-    
+    private List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(10);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +27,7 @@ public class CollisionDetection : MonoBehaviour
         Vector2 xcomp = new Vector2(add.x, 0);
         n = body.boxCollider.Cast(xcomp, results);
         resultsList.Clear();
-        for(var i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
         {
             resultsList.Add(results[i]);
         }
