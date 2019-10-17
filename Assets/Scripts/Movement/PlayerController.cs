@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private KinematicBody orb = null;
     private KinematicBody body;
     private bool createOrb = false;
+    public bool IsJumping = false;
 
     public CollisionDetection CD;
     public int FramesToBlockInput = 0;
@@ -46,12 +47,24 @@ public class PlayerController : MonoBehaviour
         else
         {
             body.TargetMovement.x = Mathf.Round(Input.GetAxis("Horizontal")) * MovementSpeed;
-            if (Input.GetKey("space") && body.IsGrounded)
+            if (Input.GetKeyDown("space") && body.IsGrounded)
             {
                 body.TargetMovement.y = JumpPower;
                 body.Movement.y = JumpPower;
+                IsJumping = true;
+            }
+            if (body.Movement.y <= 0)
+            {
+                IsJumping = false;
+            }
+            if (Input.GetKeyUp("space") && IsJumping)
+            {
+                body.TargetMovement.y *= 0.6f;
+                body.Movement.y *= 0.6f;
+                IsJumping = false;
             }
         }
+
         if (Input.GetMouseButtonDown(0))
         {
             createOrb = true;
