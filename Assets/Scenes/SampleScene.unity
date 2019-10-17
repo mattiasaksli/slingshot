@@ -930,6 +930,11 @@ PrefabInstance:
       propertyPath: MovementSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: ThrowPower
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2313108493809257754, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
       propertyPath: m_RootOrder

@@ -60,7 +60,6 @@ public class CollisionDetection : MonoBehaviour
             for (var i = 0; i < resultsList.Count; i++)
             {
                 float d = Mathf.Max(resultsList[i].distance - padding);
-                body.IsGrounded = false || body.IsGrounded;
                 if (d <= ycomp.magnitude)
                 {
                     if (resultsList[i].normal == Vector2.up) { body.IsGrounded = true; }

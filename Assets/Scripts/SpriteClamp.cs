@@ -14,7 +14,7 @@ public class SpriteClamp : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 parentpos = transform.parent.transform.position;
         float aspect = (1 / pixelperUnity);
