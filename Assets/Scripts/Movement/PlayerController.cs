@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private KinematicBody body;
     private bool createOrb = false;
     public bool IsJumping = false;
+    private bool IsSlingshotting = false;
 
     public CollisionDetection CD;
     public int FramesToBlockInput = 0;
@@ -67,8 +68,44 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            createOrb = true;
+            if(orb == null)
+            {
+                createOrb = true;
+            } else
+            {
+                IsSlingshotting = true;
+                body.Movement = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized * 15;
+            }
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (orb != null)
+            {
+                RecallOrb();
+            }
+        }
+
+        if (IsSlingshotting)
+        {
+            if (body.Movement.magnitude < 3)
+            {
+                IsSlingshotting = false;
+            }
+            body.Movement = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized * 15;
+            body.TargetMovement = body.Movement;
+            if((orb.transform.position-transform.position).magnitude < 0.4)
+            {
+                IsSlingshotting = false;
+                RecallOrb();
+            }
+        }
+    }
+
+    private void RecallOrb()
+    {
+        GameObject.Destroy(orb.gameObject);
+        orb = null;
     }
 
     private void FixedUpdate()
