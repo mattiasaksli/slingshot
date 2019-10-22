@@ -103,7 +103,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5179772920493900195}
   - component: {fileID: 5179772920493900221}
-  - component: {fileID: 5179772920493900220}
   - component: {fileID: 5179772920493900198}
   - component: {fileID: 5179772920493900193}
   - component: {fileID: 5179772920493900192}
@@ -144,23 +143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetMovement: {x: 0, y: 0}
   Movement: {x: 0, y: 0}
-  GroundAcceleration: 40
-  MidairAcceleration: 5
-  IsGrounded: 0
-  boxCollider: {fileID: 0}
---- !u!114 &5179772920493900220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5179772920493900223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8ace1952bf7174e9198316cdbdc16f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Power: 0.2
+  Acceleration: 0
+  collider2d: {fileID: 0}
 --- !u!114 &5179772920493900198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d9da3175092404b8d5096d75ec6edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  padding: 0.002
 --- !u!61 &5179772920493900193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -233,7 +218,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 4
+  AccelerationGround: 40
+  AccelerationAir: 5
   JumpPower: 10
   ThrowPower: 1
+  GravityPower: 40
   OrbPrefab: {fileID: 2302686782361379601, guid: 414912d6b12af6a418fec736c84d2bdf,
     type: 3}
+  FramesToBlockInput: 0
+  IsGrounded: 0
+  IsJumping: 0
+  IsSlingshotting: 0

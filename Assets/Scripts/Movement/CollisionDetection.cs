@@ -3,52 +3,36 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    private BoxCollider2D boxCollider2D;
-    public static CollisionDetection coll;
-    private List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(10);
+    public float padding = 0.002f;
 
-    public float WalljumpPower = 10f;
-    public bool isWalljumping = false;
-    public bool walljumpingRight;
+    [HideInInspector]
+    public bool[] collisionDirections { get; private set; } = new bool[4];
+    private BoxCollider2D boxCollider2D;
+    private List<RaycastHit2D> hitBufferList;
+    private RaycastHit2D[] results;
+    private ContactFilter2D filter;
+    private KinematicBody body;
+    private List<RaycastHit2D> resultsList;
 
     // Start is called before the first frame update
     void Start()
     {
-        coll = this;
-    }
-    
-    public void MoveOutsideCollider(KinematicBody body)
-    {
-        RaycastHit2D[] results = new RaycastHit2D[10];
-        ContactFilter2D filter = new ContactFilter2D();
+        results = new RaycastHit2D[10];
+        body = gameObject.GetComponent<KinematicBody>();
+        filter = new ContactFilter2D();
         filter.SetLayerMask(Physics2D.GetLayerCollisionMask(body.gameObject.layer));
-        List<RaycastHit2D> resultsList = new List<RaycastHit2D>(10);
-        int n;
-        float padding = 0.002f;
-
-        //Horizontal
-        Vector2 xcomp = new Vector2(0, 0);
-        n = body.boxCollider.Cast(xcomp, results);
-        resultsList.Clear();
-        for (var i = 0; i < n; i++)
-        {
-            resultsList.Add(results[i]);
-        }
+        resultsList = new List<RaycastHit2D>(10);
     }
 
     // Update is called once per frame
-    public void Move(KinematicBody body, Vector2 add)
+    public void Move(Vector2 add)
     {
-        RaycastHit2D[] results = new RaycastHit2D[10];
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.SetLayerMask(Physics2D.GetLayerCollisionMask(body.gameObject.layer));
-        List<RaycastHit2D> resultsList = new List<RaycastHit2D>(10);
         int n;
-        float padding = 0.002f;
 
         //Horizontal
+        collisionDirections = new bool[4] { false, false, false, false };
         Vector2 xcomp = new Vector2(add.x, 0);
-        n = body.boxCollider.Cast(xcomp, results);
+        n = body.collider2d.Cast(xcomp, results);
         resultsList.Clear();
         for (var i = 0; i < n; i++)
         {
@@ -61,11 +45,18 @@ public class CollisionDetection : MonoBehaviour
                 float d = Mathf.Max(resultsList[i].distance - padding);
                 if (d < xcomp.magnitude)
                 {
+                    if (resultsList[i].normal == Vector2.left)
+                    {
+                        collisionDirections[1] = true;
+                    }
+                    else
+                    {
+                        collisionDirections[3] = true;
+                    }
                     xcomp = xcomp.normalized * d;
                     body.TargetMovement.x = 0;
                     body.Movement.x = 0;
-
-                    if (!body.IsGrounded)
+                    /*if (!body.IsGrounded)
                     {
                         float walljumpHorizontal = resultsList[i].normal.x;
                         if (Input.GetKeyDown(KeyCode.Space))
@@ -82,7 +73,7 @@ public class CollisionDetection : MonoBehaviour
                                 walljumpingRight = false;
                             }
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -90,13 +81,13 @@ public class CollisionDetection : MonoBehaviour
 
         //Vertical
         Vector2 ycomp = new Vector2(0, add.y);
-        n = body.boxCollider.Cast(ycomp, results);
+        n = body.collider2d.Cast(ycomp, results);
         resultsList.Clear();
         for (var i = 0; i < n; i++)
         {
             resultsList.Add(results[i]);
         }
-        body.IsGrounded = false;
+        //body.IsGrounded = false;
         if (n > 0)
         {
             for (var i = 0; i < resultsList.Count; i++)
@@ -104,7 +95,12 @@ public class CollisionDetection : MonoBehaviour
                 float d = Mathf.Max(resultsList[i].distance - padding);
                 if (d <= ycomp.magnitude)
                 {
-                    if (resultsList[i].normal == Vector2.up) { body.IsGrounded = true; }
+                    if (resultsList[i].normal == Vector2.up) {
+                        collisionDirections[0] = true;
+                    } else
+                    {
+                        collisionDirections[2] = true;
+                    }
                     ycomp = ycomp.normalized * d;
                     body.TargetMovement.y = 0;
                     body.Movement.y = 0;
