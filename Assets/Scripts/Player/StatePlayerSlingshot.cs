@@ -2,17 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatePlayerSlingshot : MonoBehaviour
+public class StatePlayerSlingshot : State
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Update(MonoBehaviour controller)
     {
-        
+        PlayerController player = (PlayerController)controller;
+        Vector2 towardsorb = new Vector2(player.orb.transform.position.x - player.transform.position.x, player.orb.transform.position.y - player.transform.position.y);
+        var collisions = player.body.detection.collisionDirections;
+        if (towardsorb.magnitude < (player.body.Movement * Time.deltaTime).magnitude || (collisions[0] && player.body.Movement.y <= 0) || (collisions[1] && player.body.Movement.x >= 0) || (collisions[2] && player.body.Movement.y >= 0) || (collisions[3] && player.body.Movement.x <= 0))
+        {
+            player.state = player.states[0];
+            player.body.Movement *= 0.5f;
+            player.RecallOrb();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void FixedUpdate(MonoBehaviour controller)
     {
-        
+        PlayerController player = (PlayerController)controller;
+        Vector2 towardsorb = new Vector2(player.orb.transform.position.x - player.transform.position.x, player.orb.transform.position.y - player.transform.position.y);
+        player.body.Acceleration = player.SlingShotAcceleration;
+        player.body.TargetMovement = towardsorb.normalized * 20;
+        player.body.Move(player.body.Movement * Time.deltaTime);
     }
 }

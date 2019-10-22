@@ -41,7 +41,7 @@ public class StatePlayerMove : State
     public void FixedUpdate(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
-        player.body.Movement.y -= player.GravityPower* Time.deltaTime;
+        player.body.Movement.y -= player.GravityPower * Time.deltaTime;
         player.body.TargetMovement.y = player.body.Movement.y;
         player.body.Move(player.body.Movement * Time.deltaTime);
 

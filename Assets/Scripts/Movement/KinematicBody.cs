@@ -15,7 +15,7 @@ public class KinematicBody : MonoBehaviour
     private void Start()
     {
         detection = gameObject.GetComponent<CollisionDetection>();
-        collider2d = gameObject.GetComponent<Collider2D>();
+        collider2d = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    public float padding = 0.002f;
+    public static float padding = 0.001f;
 
-    [HideInInspector]
-    public bool[] collisionDirections { get; private set; } = new bool[4];
+    
+    public bool[] collisionDirections = new bool[4];
     private BoxCollider2D boxCollider2D;
     private List<RaycastHit2D> hitBufferList;
     private RaycastHit2D[] results;
@@ -21,7 +21,7 @@ public class CollisionDetection : MonoBehaviour
         body = gameObject.GetComponent<KinematicBody>();
         filter = new ContactFilter2D();
         filter.SetLayerMask(Physics2D.GetLayerCollisionMask(body.gameObject.layer));
-        resultsList = new List<RaycastHit2D>(10);
+        hitBufferList = new List<RaycastHit2D>(10);
     }
 
     // Update is called once per frame
@@ -29,23 +29,25 @@ public class CollisionDetection : MonoBehaviour
     {
         int n;
 
-        //Horizontal
         collisionDirections = new bool[4] { false, false, false, false };
-        Vector2 xcomp = new Vector2(add.x, 0);
-        n = body.collider2d.Cast(xcomp, results);
-        resultsList.Clear();
+
+        //Horizontal
+        /*Vector2 xcomp = new Vector2(add.x, 0);
+        n = body.collider2d.Cast(xcomp, filter, results, xcomp.magnitude);
+        hitBufferList.Clear();
         for (var i = 0; i < n; i++)
         {
-            resultsList.Add(results[i]);
+            hitBufferList.Add(results[i]);
         }
         if (n > 0)
         {
-            for (var i = 0; i < resultsList.Count; i++)
+            for (var i = 0; i < n; i++)
             {
-                float d = Mathf.Max(resultsList[i].distance - padding);
+                float d = Mathf.Max(0, hitBufferList[i].distance - padding);
+                if (gameObject.GetComponent<OrbController>() != null) { Debug.Log("X: " + d); }
                 if (d < xcomp.magnitude)
                 {
-                    if (resultsList[i].normal == Vector2.left)
+                    if (hitBufferList[i].normal == Vector2.left)
                     {
                         collisionDirections[1] = true;
                     }
@@ -56,48 +58,32 @@ public class CollisionDetection : MonoBehaviour
                     xcomp = xcomp.normalized * d;
                     body.TargetMovement.x = 0;
                     body.Movement.x = 0;
-                    /*if (!body.IsGrounded)
-                    {
-                        float walljumpHorizontal = resultsList[i].normal.x;
-                        if (Input.GetKeyDown(KeyCode.Space))
-                        {
-                            body.Movement.x = walljumpHorizontal * WalljumpPower;
-                            body.Movement.y = WalljumpPower;
-                            isWalljumping = true;
-                            if (walljumpHorizontal > 0)
-                            {
-                                walljumpingRight = true;
-                            }
-                            else
-                            {
-                                walljumpingRight = false;
-                            }
-                        }
-                    }*/
                 }
             }
         }
-        body.transform.position += (Vector3)xcomp;
+        body.collider2d.transform.position += (Vector3)xcomp;
 
         //Vertical
         Vector2 ycomp = new Vector2(0, add.y);
-        n = body.collider2d.Cast(ycomp, results);
-        resultsList.Clear();
+        n = body.collider2d.Cast(ycomp, filter, results, ycomp.magnitude);
+        hitBufferList.Clear();
         for (var i = 0; i < n; i++)
         {
-            resultsList.Add(results[i]);
+            hitBufferList.Add(results[i]);
         }
-        //body.IsGrounded = false;
         if (n > 0)
         {
-            for (var i = 0; i < resultsList.Count; i++)
+            for (var i = 0; i < n; i++)
             {
-                float d = Mathf.Max(resultsList[i].distance - padding);
-                if (d <= ycomp.magnitude)
+                float d = Mathf.Max(0, hitBufferList[i].distance - padding);
+                if (gameObject.GetComponent<OrbController>() != null) { Debug.Log("Y: " + d); }
+                if (d < ycomp.magnitude)
                 {
-                    if (resultsList[i].normal == Vector2.up) {
+                    if (hitBufferList[i].normal == Vector2.up)
+                    {
                         collisionDirections[0] = true;
-                    } else
+                    }
+                    else
                     {
                         collisionDirections[2] = true;
                     }
@@ -107,6 +93,90 @@ public class CollisionDetection : MonoBehaviour
                 }
             }
         }
-        body.transform.position += (Vector3)ycomp;
+        body.collider2d.transform.position += (Vector3)ycomp;*/
+        add.x = Mathf.Abs(add.x) > padding ? add.x : 0;
+        add.y = Mathf.Abs(add.y) > padding ? add.y : 0;
+        {
+            Vector2 ycomp = new Vector2(add.x, add.y);
+            n = body.collider2d.Cast(ycomp, filter, results, ycomp.magnitude);
+            hitBufferList.Clear();
+            for (var i = 0; i < n; i++)
+            {
+                hitBufferList.Add(results[i]);
+            }
+            Debug.DrawRay(transform.position, ycomp, Color.red);
+            if (n > 0)
+            {
+                for (var i = 0; i < n; i++)
+                {
+                    float d = hitBufferList[i].distance;
+                    Vector2 temp = (ycomp.normalized * d);
+                    temp.x -= Mathf.Min(padding,Mathf.Abs(temp.x)) * Mathf.Sign(temp.x);
+                    temp.y -= Mathf.Min(padding, Mathf.Abs(temp.y)) * Mathf.Sign(temp.y);
+                    d = Mathf.Max(0,temp.magnitude);
+                    if (d < ycomp.magnitude)
+                    {
+                        int xmodif = 1;
+                        int ymodif = 1;
+                        if (hitBufferList[i].normal == Vector2.up && add.y < 0)
+                        {
+                            collisionDirections[0] = true;
+                            body.TargetMovement.y = 0;
+                            body.Movement.y = 0;
+                            if (d == 0) { ymodif = 0; }
+
+                        }
+                        if (hitBufferList[i].normal == Vector2.down && add.y > 0)
+                        {
+                            collisionDirections[2] = true;
+                            body.TargetMovement.y = 0;
+                            body.Movement.y = 0;
+                            if (d == 0) { ymodif = 0; }
+                        }
+                        if (hitBufferList[i].normal == Vector2.left && add.x > 0)
+                        {
+                            collisionDirections[1] = true;
+                            body.TargetMovement.x = 0;
+                            body.Movement.x = 0;
+                            if (d == 0) { xmodif = 0; }
+                        }
+                        if (hitBufferList[i].normal == Vector2.right && add.x < 0)
+                        {
+                            collisionDirections[3] = true;
+                            body.TargetMovement.x = 0;
+                            body.Movement.x = 0;
+                            if (d == 0) { xmodif = 0; }
+                        }
+                        if (d > 0) { ycomp = ycomp.normalized * d; }
+                        else
+                        {
+                            ycomp.x *= xmodif;
+                            ycomp.y *= ymodif;
+                        }
+                    }
+                }
+            }
+            body.collider2d.transform.position += (Vector3)ycomp;
+            Debug.Log(ycomp);
+        }
+
+        /*if (!body.IsGrounded)
+        {
+            float walljumpHorizontal = resultsList[i].normal.x;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                body.Movement.x = walljumpHorizontal * WalljumpPower;
+                body.Movement.y = WalljumpPower;
+                isWalljumping = true;
+                if (walljumpHorizontal > 0)
+                {
+                    walljumpingRight = true;
+                }
+                else
+                {
+                    walljumpingRight = false;
+                }
+            }
+        }*/
     }
 }

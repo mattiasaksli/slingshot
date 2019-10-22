@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2313108493809257754}
   - component: {fileID: 4422165462057523462}
-  - component: {fileID: 5523456618152349447}
+  - component: {fileID: 8786401999708148324}
   m_Layer: 9
   m_Name: test
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5523456618152349447
+--- !u!114 &8786401999708148324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d9da3175092404b8d5096d75ec6edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  padding: 0.002
+  collisionDirections: 00000000
 --- !u!61 &5179772920493900193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225,7 +225,10 @@ MonoBehaviour:
   GravityPower: 40
   OrbPrefab: {fileID: 2302686782361379601, guid: 414912d6b12af6a418fec736c84d2bdf,
     type: 3}
+  SlingShotStartSpeed: 10
+  SlingShotAcceleration: 60
   FramesToBlockInput: 0
   IsGrounded: 0
   IsJumping: 0
   IsSlingshotting: 0
+  orb: {fileID: 0}

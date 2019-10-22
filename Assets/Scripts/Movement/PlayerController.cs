@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public float GravityPower = 40;
     public KinematicBody OrbPrefab;
 
+    public float SlingShotStartSpeed = 10;
+    public float SlingShotAcceleration = 60;
+
     public int FramesToBlockInput = 0;
 
     public State state;
@@ -25,12 +28,12 @@ public class PlayerController : MonoBehaviour
 
 
     private bool createOrb = false;
-    private KinematicBody orb = null;
+    public KinematicBody orb = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        states = new List<State>() { new StatePlayerMove()};
+        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot()};
         state = states[0];
         body = gameObject.GetComponent<KinematicBody>();
     }
@@ -155,8 +158,22 @@ public class PlayerController : MonoBehaviour
         orb = null;
     }
 
+    public void Slingshot()
+    {
+        state = states[1];
+        body.Movement = SlingShotStartSpeed * new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;
+    }
+
     public void OrbBehaviour()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (orb != null)
+            {
+                RecallOrb();
+            }
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             if (orb == null)
@@ -165,16 +182,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                IsSlingshotting = true;
-                body.Movement = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y);
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (orb != null)
-            {
-                RecallOrb();
+                Slingshot();
             }
         }
 
