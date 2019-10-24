@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public CollisionDetection CD;
     public int FramesToBlockInput = 0;
+    public bool isInputBlocked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,77 +28,81 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CD.isWalljumping)
+        if (!isInputBlocked)
         {
-            if (FramesToBlockInput == 5)
+            if (CD.isWalljumping)
             {
-                CD.isWalljumping = false;
-                FramesToBlockInput = 0;
-            }
+                if (FramesToBlockInput == 5)
+                {
+                    CD.isWalljumping = false;
+                    FramesToBlockInput = 0;
+                }
 
-            if (CD.walljumpingRight)
-            {
-                body.TargetMovement.x = Mathf.Round(Mathf.Clamp(Input.GetAxis("Horizontal"), 0, MovementSpeed)) * MovementSpeed;
+                if (CD.walljumpingRight)
+                {
+                    body.TargetMovement.x = Mathf.Round(Mathf.Clamp(Input.GetAxis("Horizontal"), 0, MovementSpeed)) * MovementSpeed;
+                }
+                else
+                {
+                    body.TargetMovement.x = Mathf.Round(Mathf.Clamp(Input.GetAxis("Horizontal"), -MovementSpeed, 0)) * MovementSpeed;
+                }
+                FramesToBlockInput++;
             }
             else
             {
-                body.TargetMovement.x = Mathf.Round(Mathf.Clamp(Input.GetAxis("Horizontal"), -MovementSpeed, 0)) * MovementSpeed;
+                body.TargetMovement.x = Mathf.Round(Input.GetAxis("Horizontal")) * MovementSpeed;
+                if (Input.GetKeyDown("space") && body.IsGrounded)
+                {
+                    body.TargetMovement.y = JumpPower;
+                    body.Movement.y = JumpPower;
+                    IsJumping = true;
+                }
+                if (body.Movement.y <= 0)
+                {
+                    IsJumping = false;
+                }
+                if (Input.GetKeyUp("space") && IsJumping)
+                {
+                    body.TargetMovement.y *= 0.6f;
+                    body.Movement.y *= 0.6f;
+                    IsJumping = false;
+                }
             }
-            FramesToBlockInput++;
-        }
-        else
-        {
-            body.TargetMovement.x = Mathf.Round(Input.GetAxis("Horizontal")) * MovementSpeed;
-            if (Input.GetKeyDown("space") && body.IsGrounded)
-            {
-                body.TargetMovement.y = JumpPower;
-                body.Movement.y = JumpPower;
-                IsJumping = true;
-            }
-            if (body.Movement.y <= 0)
-            {
-                IsJumping = false;
-            }
-            if (Input.GetKeyUp("space") && IsJumping)
-            {
-                body.TargetMovement.y *= 0.6f;
-                body.Movement.y *= 0.6f;
-                IsJumping = false;
-            }
-        }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            if(orb == null)
+            if (Input.GetMouseButtonDown(0))
             {
-                createOrb = true;
-            } else
+                if (orb == null)
+                {
+                    createOrb = true;
+                }
+                else
+                {
+                    IsSlingshotting = true;
+                    body.Movement = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized * 15;
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
             {
-                IsSlingshotting = true;
+                if (orb != null)
+                {
+                    RecallOrb();
+                }
+            }
+
+            if (IsSlingshotting)
+            {
+                if (body.Movement.magnitude < 3)
+                {
+                    IsSlingshotting = false;
+                }
                 body.Movement = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized * 15;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (orb != null)
-            {
-                RecallOrb();
-            }
-        }
-
-        if (IsSlingshotting)
-        {
-            if (body.Movement.magnitude < 3)
-            {
-                IsSlingshotting = false;
-            }
-            body.Movement = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized * 15;
-            body.TargetMovement = body.Movement;
-            if((orb.transform.position-transform.position).magnitude < 0.4)
-            {
-                IsSlingshotting = false;
-                RecallOrb();
+                body.TargetMovement = body.Movement;
+                if ((orb.transform.position - transform.position).magnitude < 0.4)
+                {
+                    IsSlingshotting = false;
+                    RecallOrb();
+                }
             }
         }
     }
