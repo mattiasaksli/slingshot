@@ -621,12 +621,12 @@ PrefabInstance:
     - target: {fileID: 516700978974102734, guid: d8701ab398227184f9b33e9f7ff77fb5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -3.247
       objectReference: {fileID: 0}
     - target: {fileID: 516700978974102734, guid: d8701ab398227184f9b33e9f7ff77fb5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 2.618
       objectReference: {fileID: 0}
     - target: {fileID: 516700978974102734, guid: d8701ab398227184f9b33e9f7ff77fb5,
         type: 3}
@@ -848,12 +848,12 @@ PrefabInstance:
     - target: {fileID: 5179772920493900195, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.37
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 5179772920493900195, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.38
+      value: 5.03
       objectReference: {fileID: 0}
     - target: {fileID: 5179772920493900195, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
@@ -933,12 +933,58 @@ PrefabInstance:
     - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
       propertyPath: ThrowPower
-      value: 8
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: AccelerationAir
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: AccelerationGround
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: JumpPower
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: SlingShotAcceleration
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: SlingShotStartSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: WalljumpHorizontalPower
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: WalljumpVerticalPower
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: WalljumpHoldTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: WalljumpMinHoldTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2313108493809257754, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5179772920493900220, guid: 6d359111f1b8d6942a672d2dc478b653, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6d359111f1b8d6942a672d2dc478b653, type: 3}

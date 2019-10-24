@@ -14,11 +14,33 @@ public class StatePlayerMove : State
             player.body.TargetMovement.y = player.JumpPower;
             player.body.Movement.y = player.JumpPower;
             player.IsJumping = true;
+            int wall = player.body.detection.Cast(new Vector2(0.05f, 0f));
+            if (wall > 1 && player.body.detection.results[0].normal == Vector2.left) { RightHug(); }
+            wall = player.body.detection.Cast(new Vector2(-0.05f, 0f));
+            if (wall > 1 && player.body.detection.results[1].normal == Vector2.right) { LeftHug(); }
         }
+
+        player.WalljumpHoldCounter = Mathf.Max(0,player.WalljumpHoldCounter - Time.deltaTime);
 
         if (player.body.Movement.y <= 0)
         {
             player.IsJumping = false;
+        }
+        if (Mathf.Abs(player.body.Movement.x) <= 0.1)
+        {
+            player.IsWallJumping = false;
+        }
+
+        if (!player.IsGrounded)
+        {
+            if(player.body.detection.collisionDirections[1])
+            {
+                RightHug();
+            }
+            if(player.body.detection.collisionDirections[3])
+            {
+                LeftHug();
+            }
         }
 
         player.body.Acceleration = player.AccelerationGround;
@@ -26,15 +48,51 @@ public class StatePlayerMove : State
         {
             player.body.Acceleration = player.IsGrounded ? player.AccelerationGround : player.AccelerationAir;
         }
-
-        if (Input.GetKeyUp("space") && player.IsJumping)
+        if(!player.IsGrounded && Mathf.Sign(player.body.TargetMovement.x) == Mathf.Sign(player.body.Movement.x) && Mathf.Abs(player.body.TargetMovement.x) < Mathf.Abs(player.body.Movement.x) || player.WalljumpHoldCounter > 0)
         {
-            player.body.TargetMovement.y *= 0.6f;
-            player.body.Movement.y *= 0.6f;
-            player.IsJumping = false;
+            player.body.Acceleration = player.AccelerationAir;
+        }
+
+        if (!Input.GetKey("space") && player.IsJumping)
+        {
+            if (player.IsJumping)
+            {
+                player.body.TargetMovement.y *= 0.6f;
+                player.body.Movement.y *= 0.6f;
+                player.IsJumping = false;
+            }
+            if (player.IsWallJumping && player.WalljumpHoldCounter > player.WalljumpMinHoldTime)
+            {
+                player.body.Movement.x *= 0.6f;
+                player.IsWallJumping = false;
+                player.WalljumpHoldCounter = 0;
+            }
+        }
+
+        if(player.WalljumpHoldCounter == 0 && player.IsWallJumping)
+        {
+            player.body.Movement.x *= 0.6f;
+            player.IsWallJumping = false;
         }
 
         player.OrbBehaviour();
+
+        void RightHug()
+        {
+            player.state = player.states[2];
+            player.body.Movement.y = Mathf.Max(0, player.body.Movement.y);
+            player.IsHuggingRight = true;
+            player.WalljumpHoldCounter = 0;
+            player.IsGrounded = false;
+        }
+        void LeftHug()
+        {
+            player.state = player.states[2];
+            player.body.Movement.y = Mathf.Max(0, player.body.Movement.y);
+            player.IsHuggingRight = false;
+            player.WalljumpHoldCounter = 0;
+            player.IsGrounded = false;
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +104,11 @@ public class StatePlayerMove : State
         player.body.Move(player.body.Movement * Time.deltaTime);
 
         player.IsGrounded = player.body.detection.collisionDirections[0] ? true : false;
+        if(player.IsGrounded)
+        {
+            player.IsOrbAvailable = true;
+        }
+
 
         player.CreateOrb();
     }

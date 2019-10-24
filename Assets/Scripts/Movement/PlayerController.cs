@@ -5,35 +5,45 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float MovementSpeed = 4;
+    public float JumpPower = 10;
     public float AccelerationGround = 40;
     public float AccelerationAir = 20;
-
-    public float JumpPower = 10;
-    public float ThrowPower = 20;
     public float GravityPower = 40;
+    [Space(10)]
+    public float WalljumpHorizontalPower = 8;
+    public float WalljumpVerticalPower = 5;
+    public float WalljumpHoldTime = 0.5f;
+    public float WalljumpHoldCounter = 0;
+    public float WalljumpMinHoldTime = 0.01f;
+    public float WalljumpUnHugTime = 0.1f;
+    [Space(10)]
+    public float ThrowPower = 20;
     public KinematicBody OrbPrefab;
-
+    [Space(10)]
     public float SlingShotStartSpeed = 10;
     public float SlingShotAcceleration = 60;
-
-    public int FramesToBlockInput = 0;
+    public float SlingShotMaxSpeed = 50;
+    [Space(10)]
+    public bool IsGrounded = false;
+    public bool IsJumping = false;
+    public bool IsSlingshotting = false;
+    public bool IsHuggingRight = false;
+    public bool IsWallJumping = false;
+    [Space(10)]
 
     public State state;
     public List<State> states;
     public KinematicBody body { get; private set; }
 
-    public bool IsGrounded = false;
-    public bool IsJumping = false;
-    public bool IsSlingshotting = false;
-
 
     private bool createOrb = false;
+    public bool IsOrbAvailable = true;
     public KinematicBody orb = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot()};
+        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug()};
         state = states[0];
         body = gameObject.GetComponent<KinematicBody>();
     }
@@ -42,100 +52,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(state);
         state.Update(this);
-        /*if (CD.isWalljumping)
-        {
-            if (FramesToBlockInput == 5)
-            {
-                CD.isWalljumping = false;
-                FramesToBlockInput = 0;
-            }
-
-            if (CD.walljumpingRight)
-            {
-                body.TargetMovement.x = Mathf.Round(Mathf.Clamp(Input.GetAxis("Horizontal"), 0, MovementSpeed)) * MovementSpeed;
-            }
-            else
-            {
-                body.TargetMovement.x = Mathf.Round(Mathf.Clamp(Input.GetAxis("Horizontal"), -MovementSpeed, 0)) * MovementSpeed;
-            }
-            FramesToBlockInput++;
-        }
-        else
-        {
-            body.TargetMovement.x = Mathf.Round(Input.GetAxis("Horizontal")) * MovementSpeed;
-            if (Input.GetKeyDown("space") && body.IsGrounded)
-            {
-                body.TargetMovement.y = JumpPower;
-                body.Movement.y = JumpPower;
-                IsJumping = true;
-            }
-            if (body.Movement.y <= 0)
-            {
-                IsJumping = false;
-            }
-            if (Input.GetKeyUp("space") && IsJumping)
-            {
-                body.TargetMovement.y *= 0.6f;
-                body.Movement.y *= 0.6f;
-                IsJumping = false;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if(orb == null)
-            {
-                createOrb = true;
-            } else
-            {
-                IsSlingshotting = true;
-                body.Movement = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized * 15;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (orb != null)
-            {
-                RecallOrb();
-            }
-        }
-
-        if (IsSlingshotting)
-        {
-            if (body.Movement.magnitude < 3)
-            {
-                IsSlingshotting = false;
-            }
-            body.Movement = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized * 15;
-            body.TargetMovement = body.Movement;
-            if((orb.transform.position-transform.position).magnitude < 0.4)
-            {
-                IsSlingshotting = false;
-                RecallOrb();
-            }
-        }*/
     }
 
     private void FixedUpdate()
     {
         state.FixedUpdate(this);
-        /*body.Move(body.Movement*Time.deltaTime);
-
-        IsGrounded = body.detection.collisionDirections[0] ? true : false;
-
-        if (createOrb)
-        {
-            if (orb != null)
-            {
-                GameObject.Destroy(orb.gameObject);
-            }
-            orb = GameObject.Instantiate<KinematicBody>(OrbPrefab);
-            orb.transform.position = transform.position;
-            orb.Movement = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position).normalized * ThrowPower;
-            createOrb = false;
-        }*/
     }
 
     public void CreateOrb()
@@ -155,6 +78,7 @@ public class PlayerController : MonoBehaviour
     public void RecallOrb()
     {
         GameObject.Destroy(orb.gameObject);
+        IsOrbAvailable = false;
         orb = null;
     }
 
@@ -178,7 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             if (orb == null)
             {
-                createOrb = true;
+                if(IsOrbAvailable) { createOrb = true; }
             }
             else
             {

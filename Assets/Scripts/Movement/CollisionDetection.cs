@@ -9,7 +9,7 @@ public class CollisionDetection : MonoBehaviour
     public bool[] collisionDirections = new bool[4];
     private BoxCollider2D boxCollider2D;
     private List<RaycastHit2D> hitBufferList;
-    private RaycastHit2D[] results;
+    public RaycastHit2D[] results;
     private ContactFilter2D filter;
     private KinematicBody body;
     private List<RaycastHit2D> resultsList;
@@ -22,6 +22,11 @@ public class CollisionDetection : MonoBehaviour
         filter = new ContactFilter2D();
         filter.SetLayerMask(Physics2D.GetLayerCollisionMask(body.gameObject.layer));
         hitBufferList = new List<RaycastHit2D>(10);
+    }
+
+    public int Cast(Vector2 ray)
+    {
+        return body.collider2d.Cast(ray, filter, results, ray.magnitude);
     }
 
     // Update is called once per frame
@@ -104,7 +109,6 @@ public class CollisionDetection : MonoBehaviour
             {
                 hitBufferList.Add(results[i]);
             }
-            Debug.DrawRay(transform.position, ycomp, Color.red);
             if (n > 0)
             {
                 for (var i = 0; i < n; i++)
@@ -157,7 +161,6 @@ public class CollisionDetection : MonoBehaviour
                 }
             }
             body.collider2d.transform.position += (Vector3)ycomp;
-            Debug.Log(ycomp);
         }
 
         /*if (!body.IsGrounded)
