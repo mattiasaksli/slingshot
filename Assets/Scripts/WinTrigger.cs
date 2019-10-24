@@ -10,7 +10,7 @@ public class WinTrigger : MonoBehaviour
             UI.Instance.Win = true;
             UI.Instance.ShowEndGamePanel();
             Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            Player.isInputBlocked = true;
+            Player.IsInputLocked = true;
         }
     }
 }

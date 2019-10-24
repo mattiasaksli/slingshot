@@ -102,7 +102,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8043975821375524576}
-  - component: {fileID: 5942379208959806088}
   - component: {fileID: 2911043629432627688}
   - component: {fileID: 2302686782361379601}
   - component: {fileID: 3678197033136345758}
@@ -130,19 +129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5942379208959806088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8578387907975380876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8ace1952bf7174e9198316cdbdc16f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Power: 5
 --- !u!50 &2911043629432627688
 Rigidbody2D:
   serializedVersion: 4
@@ -178,10 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetMovement: {x: 0, y: 0}
   Movement: {x: 0, y: 0}
-  GroundAcceleration: 20
-  MidairAcceleration: 1
-  IsGrounded: 0
-  boxCollider: {fileID: 0}
+  Acceleration: 0
+  collider2d: {fileID: 0}
 --- !u!114 &3678197033136345758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d9da3175092404b8d5096d75ec6edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  padding: 0.002
 --- !u!61 &5976969579933806209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -232,3 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e64c8f82f0c1641b0a0db4c8d72a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
+  AccelerationGround: 40
+  AccelerationAir: 50
+  GravityPower: 40
+  IsFloating: 1
