@@ -13,4 +13,5 @@ public class WinTrigger : MonoBehaviour
             Player.IsInputLocked = true;
         }
     }
+
 }
