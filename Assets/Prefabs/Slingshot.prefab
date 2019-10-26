@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7901547778418768131}
   - component: {fileID: 9144710274768445061}
   - component: {fileID: 747247079627808890}
+  - component: {fileID: 6339442291196120032}
   m_Layer: 8
   m_Name: SlingshotSprite
   m_TagString: Untagged
@@ -70,7 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0e715402f6d192d429be16330daa9e15, type: 3}
+  m_Sprite: {fileID: 9072859220229341931, guid: d4e50c49b43c4484aaec0ba7f265c8da,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,6 +95,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26399ac93cf6b234e91a9187b99151df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6339442291196120032
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775555763683472352}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 70f5d2dd5e135e448a13a2f41ba6d923, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8578387907975380876
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d9da3175092404b8d5096d75ec6edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  padding: 0.002
+  collisionDirections: 00000000
 --- !u!61 &5976969579933806209
 BoxCollider2D:
   m_ObjectHideFlags: 0
