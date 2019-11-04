@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    public static float padding = 0.001f;
+    public static float padding = 0.01f;
 
     
     public bool[] collisionDirections = new bool[4];
-    private BoxCollider2D boxCollider2D;
+    private Collider2D boxCollider2D;
     private List<RaycastHit2D> hitBufferList;
     public RaycastHit2D[] results;
     private ContactFilter2D filter;
@@ -37,7 +37,7 @@ public class CollisionDetection : MonoBehaviour
         collisionDirections = new bool[4] { false, false, false, false };
 
         //Horizontal
-        /*Vector2 xcomp = new Vector2(add.x, 0);
+        Vector2 xcomp = new Vector2(add.x, 0);
         n = body.collider2d.Cast(xcomp, filter, results, xcomp.magnitude);
         hitBufferList.Clear();
         for (var i = 0; i < n; i++)
@@ -98,8 +98,8 @@ public class CollisionDetection : MonoBehaviour
                 }
             }
         }
-        body.collider2d.transform.position += (Vector3)ycomp;*/
-        add.x = Mathf.Abs(add.x) > padding ? add.x : 0;
+        body.collider2d.transform.position += (Vector3)ycomp;
+        /*add.x = Mathf.Abs(add.x) > padding ? add.x : 0;
         add.y = Mathf.Abs(add.y) > padding ? add.y : 0;
         {
             Vector2 ycomp = new Vector2(add.x, add.y);
@@ -109,6 +109,7 @@ public class CollisionDetection : MonoBehaviour
             {
                 hitBufferList.Add(results[i]);
             }
+            Debug.Log(n);
             if (n > 0)
             {
                 for (var i = 0; i < n; i++)
@@ -161,7 +162,7 @@ public class CollisionDetection : MonoBehaviour
                 }
             }
             body.collider2d.transform.position += (Vector3)ycomp;
-        }
+        }*/
 
         /*if (!body.IsGrounded)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpriteClamp : MonoBehaviour
 {
     private SpriteRenderer sprite;
-    private static float pixelperUnity = 12;
+    private static float pixelperUnity = 32;
 
     // Start is called before the first frame update
     void Start()
