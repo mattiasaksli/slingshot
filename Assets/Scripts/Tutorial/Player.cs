@@ -16,8 +16,19 @@ public class Player : MonoBehaviour
         controller = GetComponent<Controller2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+
+        if(controller.collisions.above || controller.collisions.below)
+        {
+            velocity.y = 0;
+        }
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            velocity.y = 10;
+        }
+
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         velocity.x = input.x * moveSpeed;

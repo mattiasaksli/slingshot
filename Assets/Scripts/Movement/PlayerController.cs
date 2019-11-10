@@ -114,8 +114,8 @@ public class PlayerController : MonoBehaviour
             }
             if (IsSlingshotting)
             {
-                var collisions = body.detection.collisionDirections;
-                if ((collisions[0] && body.Movement.y <= 0) || (collisions[1] && body.Movement.x >= 0) || (collisions[2] && body.Movement.y >= 0) || (collisions[3] && body.Movement.x <= 0))
+                var collisions = body.detection.collisions;
+                if (collisions.above || collisions.below || collisions.right || collisions.left)
                 {
                     IsSlingshotting = false;
                 }

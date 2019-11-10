@@ -8,8 +8,8 @@ public class StatePlayerSlingshot : State
     {
         PlayerController player = (PlayerController)controller;
         Vector2 towardsorb = new Vector2(player.orb.transform.position.x - player.transform.position.x, player.orb.transform.position.y - player.transform.position.y);
-        var collisions = player.body.detection.collisionDirections;
-        bool collisionHappened = (collisions[0] && player.body.Movement.y <= 0) || (collisions[1] && player.body.Movement.x >= 0) || (collisions[2] && player.body.Movement.y >= 0) || (collisions[3] && player.body.Movement.x <= 0);
+        var collisions = player.body.detection.collisions;
+        bool collisionHappened = (collisions.above || collisions.below || collisions.left ||collisions.right);
         if (towardsorb.magnitude < (player.body.Movement * Time.deltaTime).magnitude || collisionHappened )
         {
             player.state = player.states[0];

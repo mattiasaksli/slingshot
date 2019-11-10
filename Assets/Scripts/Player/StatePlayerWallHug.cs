@@ -53,7 +53,7 @@ public class StatePlayerWallHug : State
             player.state = player.states[0];
             player.WalljumpHoldCounter = 0;
         }
-        player.IsGrounded = player.body.detection.collisionDirections[0] ? true : false;
+        player.IsGrounded = player.body.detection.collisions.below ? true : false;
 
         player.CreateOrb();
     }

@@ -3,184 +3,146 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    public static float padding = 0.01f;
+    public LayerMask collisionMask;
 
-    
-    public bool[] collisionDirections = new bool[4];
-    private Collider2D boxCollider2D;
-    private List<RaycastHit2D> hitBufferList;
-    public RaycastHit2D[] results;
-    private ContactFilter2D filter;
-    private KinematicBody body;
-    private List<RaycastHit2D> resultsList;
+    const float skinWidth = .015f;
+    public int horizontalRayCount = 4;
+    public int verticalRayCount = 4;
 
-    // Start is called before the first frame update
-    void Start()
+    float horizontalRaySpacing;
+    float verticalRaySpacing;
+
+    BoxCollider2D collider;
+    RaycastOrigins raycastOrigins;
+    public CollisionInfo collisions;
+
+    private void Start()
     {
-        results = new RaycastHit2D[10];
-        body = gameObject.GetComponent<KinematicBody>();
-        filter = new ContactFilter2D();
-        filter.SetLayerMask(Physics2D.GetLayerCollisionMask(body.gameObject.layer));
-        hitBufferList = new List<RaycastHit2D>(10);
+        collider = GetComponent<BoxCollider2D>();
+        CalculateRaySpacing();
     }
 
-    public int Cast(Vector2 ray)
+    public void Move(Vector3 velocity)
     {
-        return body.collider2d.Cast(ray, filter, results, ray.magnitude);
+        UpdateRaycastOrigins();
+        collisions.Reset();
+
+        if (velocity.x != 0)
+        {
+            HorizontalCollisions(ref velocity);
+        }
+        if (velocity.y != 0)
+        {
+            VerticalCollisions(ref velocity);
+        }
+
+        transform.Translate(velocity);
+        Physics.autoSyncTransforms = true;
     }
 
-    // Update is called once per frame
-    public void Move(Vector2 add)
+    public int Cast(Vector3 velocity)
     {
-        int n;
+        Vector3 originalVelocity = velocity;
 
-        collisionDirections = new bool[4] { false, false, false, false };
+        UpdateRaycastOrigins();
+        collisions.Reset();
 
-        //Horizontal
-        Vector2 xcomp = new Vector2(add.x, 0);
-        n = body.collider2d.Cast(xcomp, filter, results, xcomp.magnitude);
-        hitBufferList.Clear();
-        for (var i = 0; i < n; i++)
+        if (velocity.x != 0)
         {
-            hitBufferList.Add(results[i]);
+            HorizontalCollisions(ref velocity);
         }
-        if (n > 0)
+        if (velocity.y != 0)
         {
-            for (var i = 0; i < n; i++)
+            VerticalCollisions(ref velocity);
+        }
+
+        return originalVelocity.Equals(velocity) ? 0 : 1;
+    }
+
+    void HorizontalCollisions(ref Vector3 velocity)
+    {
+        float directionX = Mathf.Sign(velocity.x);
+        float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+
+        for (int i = 0; i < horizontalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+
+            if (hit)
             {
-                float d = Mathf.Max(0, hitBufferList[i].distance - padding);
-                if (gameObject.GetComponent<OrbController>() != null) { Debug.Log("X: " + d); }
-                if (d < xcomp.magnitude)
-                {
-                    if (hitBufferList[i].normal == Vector2.left)
-                    {
-                        collisionDirections[1] = true;
-                    }
-                    else
-                    {
-                        collisionDirections[3] = true;
-                    }
-                    xcomp = xcomp.normalized * d;
-                    body.TargetMovement.x = 0;
-                    body.Movement.x = 0;
-                }
-            }
-        }
-        body.collider2d.transform.position += (Vector3)xcomp;
+                velocity.x = (hit.distance - skinWidth) * directionX;
+                rayLength = hit.distance;
 
-        //Vertical
-        Vector2 ycomp = new Vector2(0, add.y);
-        n = body.collider2d.Cast(ycomp, filter, results, ycomp.magnitude);
-        hitBufferList.Clear();
-        for (var i = 0; i < n; i++)
-        {
-            hitBufferList.Add(results[i]);
-        }
-        if (n > 0)
-        {
-            for (var i = 0; i < n; i++)
-            {
-                float d = Mathf.Max(0, hitBufferList[i].distance - padding);
-                if (gameObject.GetComponent<OrbController>() != null) { Debug.Log("Y: " + d); }
-                if (d < ycomp.magnitude)
-                {
-                    if (hitBufferList[i].normal == Vector2.up)
-                    {
-                        collisionDirections[0] = true;
-                    }
-                    else
-                    {
-                        collisionDirections[2] = true;
-                    }
-                    ycomp = ycomp.normalized * d;
-                    body.TargetMovement.y = 0;
-                    body.Movement.y = 0;
-                }
+                collisions.left = directionX == -1;
+                collisions.right = directionX == 1;
             }
         }
-        body.collider2d.transform.position += (Vector3)ycomp;
-        /*add.x = Mathf.Abs(add.x) > padding ? add.x : 0;
-        add.y = Mathf.Abs(add.y) > padding ? add.y : 0;
-        {
-            Vector2 ycomp = new Vector2(add.x, add.y);
-            n = body.collider2d.Cast(ycomp, filter, results, ycomp.magnitude);
-            hitBufferList.Clear();
-            for (var i = 0; i < n; i++)
-            {
-                hitBufferList.Add(results[i]);
-            }
-            Debug.Log(n);
-            if (n > 0)
-            {
-                for (var i = 0; i < n; i++)
-                {
-                    float d = hitBufferList[i].distance;
-                    Vector2 temp = (ycomp.normalized * d);
-                    temp.x -= Mathf.Min(padding,Mathf.Abs(temp.x)) * Mathf.Sign(temp.x);
-                    temp.y -= Mathf.Min(padding, Mathf.Abs(temp.y)) * Mathf.Sign(temp.y);
-                    d = Mathf.Max(0,temp.magnitude);
-                    if (d < ycomp.magnitude)
-                    {
-                        int xmodif = 1;
-                        int ymodif = 1;
-                        if (hitBufferList[i].normal == Vector2.up && add.y < 0)
-                        {
-                            collisionDirections[0] = true;
-                            body.TargetMovement.y = 0;
-                            body.Movement.y = 0;
-                            if (d == 0) { ymodif = 0; }
+    }
 
-                        }
-                        if (hitBufferList[i].normal == Vector2.down && add.y > 0)
-                        {
-                            collisionDirections[2] = true;
-                            body.TargetMovement.y = 0;
-                            body.Movement.y = 0;
-                            if (d == 0) { ymodif = 0; }
-                        }
-                        if (hitBufferList[i].normal == Vector2.left && add.x > 0)
-                        {
-                            collisionDirections[1] = true;
-                            body.TargetMovement.x = 0;
-                            body.Movement.x = 0;
-                            if (d == 0) { xmodif = 0; }
-                        }
-                        if (hitBufferList[i].normal == Vector2.right && add.x < 0)
-                        {
-                            collisionDirections[3] = true;
-                            body.TargetMovement.x = 0;
-                            body.Movement.x = 0;
-                            if (d == 0) { xmodif = 0; }
-                        }
-                        if (d > 0) { ycomp = ycomp.normalized * d; }
-                        else
-                        {
-                            ycomp.x *= xmodif;
-                            ycomp.y *= ymodif;
-                        }
-                    }
-                }
-            }
-            body.collider2d.transform.position += (Vector3)ycomp;
-        }*/
-
-        /*if (!body.IsGrounded)
+    void VerticalCollisions(ref Vector3 velocity)
+    {
+        float directionY = Mathf.Sign(velocity.y);
+        float rayLength = Mathf.Abs(velocity.y) + skinWidth;
+        for (int i = 0; i < verticalRayCount; i++)
         {
-            float walljumpHorizontal = resultsList[i].normal.x;
-            if (Input.GetKeyDown(KeyCode.Space))
+            Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+            rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+
+            if (hit)
             {
-                body.Movement.x = walljumpHorizontal * WalljumpPower;
-                body.Movement.y = WalljumpPower;
-                isWalljumping = true;
-                if (walljumpHorizontal > 0)
-                {
-                    walljumpingRight = true;
-                }
-                else
-                {
-                    walljumpingRight = false;
-                }
+                velocity.y = (hit.distance - skinWidth) * directionY;
+                rayLength = hit.distance;
+
+                collisions.below = directionY == -1;
+                collisions.above = directionY == 1;
             }
-        }*/
+        }
+    }
+
+    void UpdateRaycastOrigins()
+    {
+        Bounds bounds = collider.bounds;
+        bounds.Expand(skinWidth * -2);
+
+        raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
+        raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
+        raycastOrigins.topLeft = new Vector2(bounds.min.x, bounds.max.y);
+        raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
+    }
+
+    void CalculateRaySpacing()
+    {
+        Bounds bounds = collider.bounds;
+        bounds.Expand(skinWidth * -2);
+
+        horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
+        verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
+
+        horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
+        verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
+    }
+    struct RaycastOrigins
+    {
+        public Vector2 topLeft, topRight;
+        public Vector2 bottomLeft, bottomRight;
+    }
+
+    public struct CollisionInfo
+    {
+        public bool above, below;
+        public bool left, right;
+
+        public void Reset()
+        {
+            above = below = false;
+            left = right = false;
+        }
     }
 }
