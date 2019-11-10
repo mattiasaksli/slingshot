@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug()};
+        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug() };
         state = states[0];
         body = gameObject.GetComponent<KinematicBody>();
     }
@@ -52,15 +52,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!IsInputLocked) { 
-            Debug.Log(state);
+        if (!IsInputLocked)
+        {
+            //Debug.Log(state);
             state.Update(this);
         }
     }
 
     private void FixedUpdate()
     {
-        if(!IsInputLocked) {
+        if (!IsInputLocked)
+        {
             state.FixedUpdate(this);
         }
     }
@@ -128,5 +130,17 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void disablePlayer()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        IsInputLocked = true;
+    }
+
+    public void enablePlayer()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        IsInputLocked = false;
     }
 }
