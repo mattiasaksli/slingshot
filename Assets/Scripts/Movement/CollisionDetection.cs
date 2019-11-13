@@ -42,7 +42,7 @@ public class CollisionDetection : MonoBehaviour
 
     public int Cast(Vector3 velocity)
     {
-        Vector3 originalVelocity = velocity;
+        Vector3 originalVelocity = new Vector3(velocity.x,velocity.y,velocity.z);
 
         UpdateRaycastOrigins();
         collisions.Reset();

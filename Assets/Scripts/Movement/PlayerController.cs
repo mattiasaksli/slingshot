@@ -4,6 +4,7 @@ using UnityEngine;
 [SelectionBase]
 public class PlayerController : MonoBehaviour
 {
+    public State state;
     public float MovementSpeed = 4;
     public float JumpPower = 10;
     public float AccelerationGround = 40;
@@ -31,8 +32,6 @@ public class PlayerController : MonoBehaviour
     public bool IsWallJumping = false;
     public bool IsInputLocked = false;
     [Space(10)]
-
-    public State state;
     public List<State> states;
     public KinematicBody body { get; private set; }
 

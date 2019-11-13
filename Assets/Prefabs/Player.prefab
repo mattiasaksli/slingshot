@@ -242,22 +242,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97cd2f907cc0e944a3ac3be796f3292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 4
-  JumpPower: 10
-  AccelerationGround: 40
+  MovementSpeed: 5
+  JumpPower: 12
+  AccelerationGround: 50
   AccelerationAir: 5
   GravityPower: 40
-  WalljumpHorizontalPower: 8
-  WalljumpVerticalPower: 5
-  WalljumpHoldTime: 0.5
+  WalljumpHorizontalPower: 9
+  WalljumpVerticalPower: 12
+  WalljumpHoldTime: 0.2
   WalljumpHoldCounter: 0
-  WalljumpMinHoldTime: 0.01
+  WalljumpMinHoldTime: 0.1
   WalljumpUnHugTime: 0.1
-  ThrowPower: 1
+  ThrowPower: 16
   OrbPrefab: {fileID: 2302686782361379601, guid: 414912d6b12af6a418fec736c84d2bdf,
     type: 3}
-  SlingShotStartSpeed: 10
-  SlingShotAcceleration: 60
+  SlingShotStartSpeed: 0
+  SlingShotAcceleration: 50
   SlingShotMaxSpeed: 50
   IsGrounded: 0
   IsJumping: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StatePlayerWallHug : State
 {
+
+
     public void Update(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
@@ -24,7 +26,9 @@ public class StatePlayerWallHug : State
             player.IsJumping = true;
             player.IsWallJumping = true;
             player.WalljumpHoldCounter = player.WalljumpHoldTime;
+            player.body.detection.collisions.Reset();
             player.state = player.states[0];
+            return;
         }
         if (!Input.GetKey("space") && player.IsJumping)
         {
@@ -42,19 +46,41 @@ public class StatePlayerWallHug : State
     public void FixedUpdate(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
-        player.body.Movement.y -= player.GravityPower * Time.deltaTime * (player.body.Movement.y < 0 ? 0.5f : 1f);
-        player.body.TargetMovement.y = player.body.Movement.y;
-        player.body.Move(player.body.Movement * Time.deltaTime);
-        float walldist = 0.05f;
-        Vector2 wallcheck = new Vector2(walldist, 0);
-        int n = player.body.detection.Cast(player.IsHuggingRight ? wallcheck : -wallcheck);
-        if (n == 0 || player.IsGrounded || player.WalljumpHoldCounter > player.WalljumpUnHugTime)
+        if (player.state == player.states[2])
         {
-            player.state = player.states[0];
-            player.WalljumpHoldCounter = 0;
-        }
-        player.IsGrounded = player.body.detection.collisions.below ? true : false;
+            player.body.Movement.y -= player.GravityPower * Time.deltaTime * (player.body.Movement.y < 0 ? 0.5f : 1f);
+            player.body.TargetMovement.y = player.body.Movement.y;
+            player.body.Move(player.body.Movement * Time.deltaTime);
+            player.IsGrounded = player.body.detection.collisions.below ? true : false;
+            float walldist = 0.05f;
+            Vector2 wallcheck = new Vector2(walldist, 0);
+            int n = player.body.detection.Cast(player.IsHuggingRight ? wallcheck : -wallcheck);
+            Debug.Log(n);
 
-        player.CreateOrb();
+            if (player.body.detection.collisions.below || player.body.detection.collisions.above)
+            {
+                player.body.Movement.y = 0;
+                player.body.TargetMovement.y = player.body.Movement.y;
+            }
+
+            if (player.body.detection.collisions.right || player.body.detection.collisions.left)
+            {
+                player.body.Movement.x = 0;
+                player.body.TargetMovement.x = player.body.Movement.x;
+            }
+
+            if (n == 0 || player.IsGrounded || player.WalljumpHoldCounter > player.WalljumpUnHugTime)
+            {
+                if (player.state == player.states[2])
+                {
+                    player.state = player.states[0];
+                    player.WalljumpHoldCounter = 0;
+                    player.body.detection.collisions.Reset();
+                    return;
+                }
+            }
+
+            player.CreateOrb();
+        }
     }
 }

@@ -14,10 +14,12 @@ public class StatePlayerMove : State
             player.body.TargetMovement.y = player.JumpPower;
             player.body.Movement.y = player.JumpPower;
             player.IsJumping = true;
-            int wall = player.body.detection.Cast(new Vector2(0.05f, 0f));
-            if (wall > 1 && player.body.detection.collisions.right) { RightHug(); }
-            wall = player.body.detection.Cast(new Vector2(-0.05f, 0f));
-            if (wall > 1 && player.body.detection.collisions.left) { LeftHug(); }
+            float walldist = 0.05f;
+            Vector2 wallcheck = new Vector2(walldist, 0);
+            int wall = player.body.detection.Cast(wallcheck);
+            if (player.body.detection.collisions.right) { RightHug(); }
+            wall = player.body.detection.Cast(-wallcheck);
+            if (player.body.detection.collisions.left) { LeftHug(); }
         }
 
         player.WalljumpHoldCounter = Mathf.Max(0,player.WalljumpHoldCounter - Time.deltaTime);
@@ -112,7 +114,7 @@ public class StatePlayerMove : State
         if (player.body.detection.collisions.right || player.body.detection.collisions.left)
         {
             player.body.Movement.x = 0;
-            player.body.TargetMovement.x = player.body.Movement.y;
+            player.body.TargetMovement.x = player.body.Movement.x;
         }
 
         player.IsGrounded = player.body.detection.collisions.below ? true : false;

@@ -1011,7 +1011,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.457997
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1180,70 +1180,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900198, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 5179772920493900221, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
       propertyPath: Acceleration
       value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900220, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: Power
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: MovementSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: ThrowPower
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: AccelerationAir
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: AccelerationGround
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: JumpPower
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: SlingShotAcceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: SlingShotStartSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: WalljumpHorizontalPower
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: WalljumpVerticalPower
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: WalljumpHoldTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5179772920493900199, guid: 6d359111f1b8d6942a672d2dc478b653,
-        type: 3}
-      propertyPath: WalljumpMinHoldTime
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2313108493809257754, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
@@ -1264,6 +1209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179772920493900220, guid: 6d359111f1b8d6942a672d2dc478b653,
+        type: 3}
+      propertyPath: Power
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5179772920493900220, guid: 6d359111f1b8d6942a672d2dc478b653, type: 3}
@@ -1566,7 +1516,7 @@ GameObject:
   - component: {fileID: 2114759662}
   - component: {fileID: 2114759661}
   - component: {fileID: 2114759660}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LevelTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
