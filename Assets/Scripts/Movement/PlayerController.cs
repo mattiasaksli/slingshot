@@ -4,6 +4,7 @@ using UnityEngine;
 [SelectionBase]
 public class PlayerController : MonoBehaviour
 {
+    public State state;
     public float MovementSpeed = 4;
     public float JumpPower = 10;
     public float AccelerationGround = 40;
@@ -31,8 +32,6 @@ public class PlayerController : MonoBehaviour
     public bool IsWallJumping = false;
     public bool IsInputLocked = false;
     [Space(10)]
-
-    public State state;
     public List<State> states;
     public KinematicBody body { get; private set; }
 
@@ -43,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug()};
+        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug() };
         state = states[0];
         body = gameObject.GetComponent<KinematicBody>();
     }
@@ -52,15 +51,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!IsInputLocked) { 
-            Debug.Log(state);
+        if (!IsInputLocked)
+        {
+            //Debug.Log(state);
             state.Update(this);
         }
     }
 
     private void FixedUpdate()
     {
-        if(!IsInputLocked) {
+        if (!IsInputLocked)
+        {
             state.FixedUpdate(this);
         }
     }
@@ -114,8 +115,8 @@ public class PlayerController : MonoBehaviour
             }
             if (IsSlingshotting)
             {
-                var collisions = body.detection.collisionDirections;
-                if ((collisions[0] && body.Movement.y <= 0) || (collisions[1] && body.Movement.x >= 0) || (collisions[2] && body.Movement.y >= 0) || (collisions[3] && body.Movement.x <= 0))
+                var collisions = body.detection.collisions;
+                if (collisions.above || collisions.below || collisions.right || collisions.left)
                 {
                     IsSlingshotting = false;
                 }
@@ -128,5 +129,17 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void disablePlayer()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        IsInputLocked = true;
+    }
+
+    public void enablePlayer()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        IsInputLocked = false;
     }
 }
