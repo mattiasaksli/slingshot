@@ -23,8 +23,18 @@ public class LevelController : MonoBehaviour
         LevelEvents.OnRoomChange -= OnRoomChange;
     }
 
-    void OnRoomChange(RoomBoundsManager roomCollider)
+    void OnRoomChange(RoomBoundsManager Room)
     {
-        Debug.Log("Room changed to: " + roomCollider.ToString());
+        Debug.Log("Room changed to: " + Room.ToString());
+        SpawnPoint = Room.GetClosestSpawnPoint();
+    }
+
+    private void Update()
+    {
+        if (SpawnPoint)
+        {
+            Debug.DrawLine(SpawnPoint.transform.position, SpawnPoint.transform.position + new Vector3(0, 1, 0));
+            Debug.Log(SpawnPoint);
+        }
     }
 }
