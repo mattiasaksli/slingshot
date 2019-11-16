@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoomFollower : MonoBehaviour
 {
     private Transform player;
-    private BoxCollider2D room;
+    private GameObject room;
     private Vector3 TargetPosition;
 
     private Vector2 CameraSize;
@@ -20,12 +20,12 @@ public class RoomFollower : MonoBehaviour
     void Update()
     {
         UpdateCameraSize();
-        room = GameObject.Find("RoomBounds").GetComponent<BoxCollider2D>();
+        room = GameObject.Find("RoomBounds");
         player = GameObject.Find("Player").transform;
         float lerpAmount = 0.2f;
         if(player && room)
         {
-            Bounds bounds = room.bounds;
+            Bounds bounds = room.GetComponent<BoxCollider2D>().bounds;
             TargetPosition.x = Mathf.Clamp(player.position.x, bounds.min.x + CameraSize.x, bounds.max.x - CameraSize.x);
             TargetPosition.y = Mathf.Clamp(player.position.y, bounds.min.y + CameraSize.y, bounds.max.y - CameraSize.y);
             TargetPosition.z = transform.position.z;
