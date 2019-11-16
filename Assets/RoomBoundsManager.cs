@@ -25,7 +25,11 @@ public class RoomBoundsManager : MonoBehaviour
             RoomCollider.gameObject.SetActive(false);
         } else
         {
-            RoomCollider.gameObject.SetActive(true);
+            if (!RoomCollider.gameObject.activeSelf)
+            {
+                RoomCollider.gameObject.SetActive(true);
+                LevelEvents.ChangeRoom(this);
+            }
         }
     }
 }
