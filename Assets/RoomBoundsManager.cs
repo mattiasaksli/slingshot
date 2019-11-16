@@ -14,6 +14,7 @@ public class RoomBoundsManager : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         collider = gameObject.GetComponentInChildren<BoxCollider2D>();
+        RoomCollider.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,5 +32,26 @@ public class RoomBoundsManager : MonoBehaviour
                 LevelEvents.ChangeRoom(this);
             }
         }
+    }
+
+    public SpawnPoint GetClosestSpawnPoint()
+    {
+        SpawnPoint[] spawnPoints = RoomCollider.gameObject.GetComponentsInChildren<SpawnPoint>();
+        SpawnPoint closest = null;
+        if (spawnPoints.Length > 0)
+        {
+            closest = spawnPoints[0];
+            float c = Vector3.Distance(closest.transform.position, player.position);
+            foreach (SpawnPoint spawn in spawnPoints)
+            {
+                float s = Vector3.Distance(spawn.transform.position, player.position);
+                if (s < c)
+                {
+                    closest = spawn;
+                    c = s;
+                }
+            }
+        }
+        return closest;
     }
 }
