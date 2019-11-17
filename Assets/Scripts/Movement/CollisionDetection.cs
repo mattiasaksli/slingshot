@@ -74,11 +74,14 @@ public class CollisionDetection : MonoBehaviour
 
             if (hit)
             {
-                velocity.x = (hit.distance - skinWidth) * directionX;
-                rayLength = hit.distance;
+                if (!hit.transform.GetComponent<OneWayPlatform>())
+                {
+                    velocity.x = (hit.distance - skinWidth) * directionX;
+                    rayLength = hit.distance;
 
-                collisions.left = directionX == -1;
-                collisions.right = directionX == 1;
+                    collisions.left = directionX == -1;
+                    collisions.right = directionX == 1;
+                }
             }
         }
     }
@@ -97,11 +100,14 @@ public class CollisionDetection : MonoBehaviour
 
             if (hit)
             {
-                velocity.y = (hit.distance - skinWidth) * directionY;
-                rayLength = hit.distance;
+                if (!hit.transform.GetComponent<OneWayPlatform>() || directionY != 1)
+                {
+                    velocity.y = (hit.distance - skinWidth) * directionY;
+                    rayLength = hit.distance;
 
-                collisions.below = directionY == -1;
-                collisions.above = directionY == 1;
+                    collisions.below = directionY == -1;
+                    collisions.above = directionY == 1;
+                }
             }
         }
     }
