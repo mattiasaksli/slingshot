@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
     public void Slingshot()
     {
         state = states[1];
+        body.detection.collisions.Reset();
         body.Movement = SlingShotStartSpeed * new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;
     }
 

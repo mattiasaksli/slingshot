@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BorderLeftDown
   - BorderRightUp
+  - OneWay
   layers:
   - Default
   - TransparentFX
