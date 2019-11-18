@@ -11,7 +11,7 @@ public class StatePlayerDead : State
         if (Time.time > player.DeathTime)
         {
             player.Sprite.enabled = false;
-            Debug.Log("DEATH");
+            LevelEvents.RespawnPlayer();
         } 
     }
     public void FixedUpdate(MonoBehaviour controller)
