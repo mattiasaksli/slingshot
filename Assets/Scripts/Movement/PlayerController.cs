@@ -38,13 +38,15 @@ public class PlayerController : MonoBehaviour
     private bool createOrb = false;
     public bool IsOrbAvailable = true;
     public KinematicBody orb = null;
+    public SpriteRenderer Sprite;
 
     // Start is called before the first frame update
     void Start()
     {
-        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug() };
+        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead() };
         state = states[0];
         body = gameObject.GetComponent<KinematicBody>();
+        Sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
 
@@ -53,8 +55,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!IsInputLocked)
         {
-            //Debug.Log(state);
             state.Update(this);
+        }
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Defeat();
         }
     }
 
@@ -142,5 +147,12 @@ public class PlayerController : MonoBehaviour
     {
         gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
         IsInputLocked = false;
+    }
+
+    public void Defeat()
+    {
+        state = states[3];
+        body.Movement.y = 10;
+        body.TargetMovement.y = body.Movement.y;
     }
 }
