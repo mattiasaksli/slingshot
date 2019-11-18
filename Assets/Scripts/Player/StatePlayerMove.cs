@@ -117,7 +117,7 @@ public class StatePlayerMove : State
             player.body.TargetMovement.x = player.body.Movement.x;
         }
 
-        player.IsGrounded = player.body.detection.collisions.below ? true : false;
+        player.IsGrounded = player.body.detection.collisions.below;
         if(player.IsGrounded)
         {
             player.IsOrbAvailable = true;
