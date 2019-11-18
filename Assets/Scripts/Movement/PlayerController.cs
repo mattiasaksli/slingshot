@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool IsHuggingRight = false;
     public bool IsWallJumping = false;
     public bool IsInputLocked = false;
+    public bool IsFacingRight = true;
     [Space(10)]
     public List<State> states;
     public KinematicBody body { get; private set; }
@@ -62,6 +63,11 @@ public class PlayerController : MonoBehaviour
         {
             Defeat();
         }
+        if(Input.GetAxisRaw("Horizontal") != 0)
+        {
+            IsFacingRight = body.TargetMovement.x > 0;
+        }
+        Sprite.transform.localScale = new Vector3(IsFacingRight ? 1 : -1, 1, 1);
     }
 
     private void FixedUpdate()

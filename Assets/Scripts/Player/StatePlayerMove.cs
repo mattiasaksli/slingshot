@@ -8,7 +8,7 @@ public class StatePlayerMove : State
     public void Update(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
-        player.body.TargetMovement.x = Mathf.Round(Input.GetAxis("Horizontal")) * player.MovementSpeed;
+        player.body.TargetMovement.x = Mathf.Round(Input.GetAxisRaw("Horizontal")) * player.MovementSpeed;
         if (Input.GetKeyDown("space") && player.IsGrounded)
         {
             player.body.TargetMovement.y = player.JumpPower;
