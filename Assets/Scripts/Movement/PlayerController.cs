@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     public List<State> states;
     public KinematicBody body { get; private set; }
+    public float DeathTime;
 
     private bool createOrb = false;
     public bool IsOrbAvailable = true;
@@ -152,7 +153,9 @@ public class PlayerController : MonoBehaviour
     public void Defeat()
     {
         state = states[3];
+        DeathTime = Time.time + 0.7f;
         body.Movement.y = 10;
         body.TargetMovement.y = body.Movement.y;
+
     }
 }

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class StatePlayerDead : State
 {
+
     public void Update(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
+        if (Time.time > player.DeathTime)
+        {
+            player.Sprite.enabled = false;
+            Debug.Log("DEATH");
+        } 
     }
     public void FixedUpdate(MonoBehaviour controller)
     {

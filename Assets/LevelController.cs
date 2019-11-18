@@ -25,7 +25,6 @@ public class LevelController : MonoBehaviour
 
     void OnRoomChange(RoomBoundsManager Room)
     {
-        Debug.Log("Room changed to: " + Room.ToString());
         SpawnPoint = Room.GetClosestSpawnPoint();
     }
 
