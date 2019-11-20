@@ -15,6 +15,7 @@ public class StatePlayerSlingshot : State
             player.state = player.states[0];
             player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
             player.RecallOrb();
+            player.AudioSlingShot?.Play();
         }
     }
     public void FixedUpdate(MonoBehaviour controller)
