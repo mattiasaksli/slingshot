@@ -54,4 +54,13 @@ public class RoomBoundsManager : MonoBehaviour
         }
         return closest;
     }
+
+    private void OnDrawGizmos()
+    {
+        Bounds bounds = gameObject.GetComponent<BoxCollider2D>().bounds;
+        Gizmos.DrawLine(new Vector3(bounds.min.x, bounds.min.y, 0), new Vector3(bounds.max.x, bounds.min.y, 0));
+        Gizmos.DrawLine(new Vector3(bounds.max.x, bounds.min.y, 0), new Vector3(bounds.max.x, bounds.max.y, 0));
+        Gizmos.DrawLine(new Vector3(bounds.max.x, bounds.max.y, 0), new Vector3(bounds.min.x, bounds.max.y, 0));
+        Gizmos.DrawLine(new Vector3(bounds.min.x, bounds.max.y, 0), new Vector3(bounds.min.x, bounds.min.y, 0));
+    }
 }
