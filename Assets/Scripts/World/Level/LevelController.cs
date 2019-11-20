@@ -5,12 +5,14 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     public static LevelController Instance;
-    SpawnPoint SpawnPoint;
-    
+    private static PlayerController player;
+    public SpawnPoint SpawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     private void Awake()
@@ -27,18 +29,23 @@ public class LevelController : MonoBehaviour
 
     void OnRoomChange(RoomBoundsManager Room)
     {
-        SpawnPoint = Room.GetClosestSpawnPoint();
+        if (player.state != player.states[3])
+        {
+            SpawnPoint = Room.GetClosestSpawnPoint();
+        }
     }
 
     void OnPlayerRespawn()
     {
         PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
-        player.state = player.states[0];
         player.transform.position = SpawnPoint.transform.position;
         player.Sprite.enabled = true;
         player.Sprite.transform.localRotation = Quaternion.Euler(0,0,0);
         player.body.Movement = new Vector2(0, 0);
         player.body.TargetMovement = new Vector2(0, 0);
+        player.state = player.states[0];
+        player.RecallOrb();
+        player.IsOrbAvailable = true;
     }
 
     private void Update()

@@ -21,15 +21,23 @@ public class RoomBoundsManager : MonoBehaviour
     void Update()
     {
         Bounds bounds = collider.bounds;
-        if(player.position.x < bounds.min.x || player.position.y < bounds.min.y || player.position.x > bounds.max.x || player.position.y > bounds.max.y)
+        PlayerController controller = player.GetComponent<PlayerController>();
+        if (controller.state != controller.states[3])
         {
-            RoomCollider.gameObject.SetActive(false);
-        } else
-        {
-            if (!RoomCollider.gameObject.activeSelf)
+            if (player.position.x < bounds.min.x || player.position.y < bounds.min.y || player.position.x > bounds.max.x || player.position.y > bounds.max.y)
             {
-                RoomCollider.gameObject.SetActive(true);
-                LevelEvents.ChangeRoom(this);
+                if (RoomCollider.gameObject.activeSelf)
+                {
+                    RoomCollider.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                if (!RoomCollider.gameObject.activeSelf)
+                {
+                    RoomCollider.gameObject.SetActive(true);
+                    LevelEvents.ChangeRoom(this);
+                }
             }
         }
     }

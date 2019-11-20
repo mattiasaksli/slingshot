@@ -17,7 +17,7 @@ public class RoomFollower : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         UpdateCameraSize();
         room = GameObject.Find("RoomBounds");
@@ -29,6 +29,11 @@ public class RoomFollower : MonoBehaviour
             TargetPosition.x = Mathf.Clamp(player.position.x, bounds.min.x + CameraSize.x, bounds.max.x - CameraSize.x);
             TargetPosition.y = Mathf.Clamp(player.position.y, bounds.min.y + CameraSize.y, bounds.max.y - CameraSize.y);
             TargetPosition.z = transform.position.z;
+        }
+        if(!room)
+        {
+            player.GetComponent<PlayerController>().Defeat();
+            LevelController.Instance.SpawnPoint.GetComponentInParent<RoomBoundsManager>().RoomCollider.gameObject.SetActive(true);
         }
 
         transform.position = Vector3.Lerp(transform.position, TargetPosition, lerpAmount);
