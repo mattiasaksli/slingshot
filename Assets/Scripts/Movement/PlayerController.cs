@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     }
     public void RecallOrb()
     {
-        if (orb.gameObject)
+        if (orb)
         {
             GameObject.Destroy(orb.gameObject);
             IsOrbAvailable = false;
