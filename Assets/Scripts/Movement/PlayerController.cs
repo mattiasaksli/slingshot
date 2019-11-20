@@ -158,10 +158,12 @@ public class PlayerController : MonoBehaviour
 
     public void Defeat()
     {
-        state = states[3];
-        DeathTime = Time.time + 0.7f;
-        body.Movement.y = 10;
-        body.TargetMovement.y = body.Movement.y;
-
+        if (state != states[3])
+        {
+            state = states[3];
+            DeathTime = Time.time + 0.7f;
+            body.Movement.y = 10;
+            body.TargetMovement.y = body.Movement.y;
+        }
     }
 }
