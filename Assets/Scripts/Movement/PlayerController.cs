@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private bool createOrb = false;
     private bool isInputLocked = false;
 
+    public AudioClipGroup AudioSlingShot;
+
     // Start is called before the first frame update
     void Start()
     {

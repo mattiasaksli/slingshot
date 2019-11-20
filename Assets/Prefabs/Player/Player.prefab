@@ -243,12 +243,12 @@ MonoBehaviour:
   IsSlingshotting: 0
   IsHuggingRight: 0
   IsWallJumping: 0
-  IsInputLocked: 0
   IsFacingRight: 1
   DeathTime: 0
   IsOrbAvailable: 1
   orb: {fileID: 0}
   Sprite: {fileID: 0}
+  AudioSlingShot: {fileID: 11400000, guid: f9e6378d5a232d7439df3dbe71dc3952, type: 2}
 --- !u!50 &59967187
 Rigidbody2D:
   serializedVersion: 4
