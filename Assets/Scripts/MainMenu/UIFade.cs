@@ -29,8 +29,10 @@ public class UIFade : MonoBehaviour
             {
                 // set color with i as alpha
                 screen.color = new Color(1, 1, 1, i);
-                yield return null;
+                yield return new WaitForSeconds(Time.deltaTime);
             }
+            callback?.Invoke();
+            yield return null;
         }
         // fade from transparent to opaque
         else
