@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         {
             IsFacingRight = body.TargetMovement.x > 0;
         }
-        Sprite.transform.localScale = new Vector3(IsFacingRight ? 1 : -1, 1, 1);
+        transform.localScale = new Vector3(IsFacingRight ? 1 : -1, 1, 1);
     }
 
     private void FixedUpdate()

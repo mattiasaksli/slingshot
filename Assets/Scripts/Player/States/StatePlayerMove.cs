@@ -14,6 +14,7 @@ public class StatePlayerMove : State
             player.body.TargetMovement.y = player.JumpPower;
             player.body.Movement.y = player.JumpPower;
             player.IsJumping = true;
+            player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.5f, 3.2f,0,-1);
             float walldist = 0.05f;
             Vector2 wallcheck = new Vector2(walldist, 0);
             int wall = player.body.detection.Cast(wallcheck);
@@ -38,10 +39,12 @@ public class StatePlayerMove : State
             if(player.body.detection.collisions.right)
             {
                 RightHug();
+                player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
             }
             if(player.body.detection.collisions.left)
             {
                 LeftHug();
+                player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, 1, 0);
             }
         }
 
@@ -86,6 +89,10 @@ public class StatePlayerMove : State
             player.IsHuggingRight = true;
             player.WalljumpHoldCounter = 0;
             player.IsGrounded = false;
+            if (player.body.Movement.x > 0)
+            {
+                //player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
+            }
         }
         void LeftHug()
         {
@@ -94,6 +101,10 @@ public class StatePlayerMove : State
             player.IsHuggingRight = false;
             player.WalljumpHoldCounter = 0;
             player.IsGrounded = false;
+            if (player.body.Movement.x < 0)
+            {
+                //player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, 1, 0);
+            }
         }
     }
 
@@ -116,8 +127,12 @@ public class StatePlayerMove : State
             player.body.Movement.x = 0;
             player.body.TargetMovement.x = player.body.Movement.x;
         }
-
+        bool g = player.IsGrounded;
         player.IsGrounded = player.body.detection.collisions.below;
+        if(player.IsGrounded && !g)
+        {
+            player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f,0,-1);
+        }
         if(player.IsGrounded)
         {
             player.IsOrbAvailable = true;
