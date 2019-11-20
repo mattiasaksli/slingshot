@@ -13,7 +13,7 @@ public class StatePlayerSlingshot : State
         if (towardsorb.magnitude < (player.body.Movement * Time.deltaTime).magnitude || collisionHappened )
         {
             player.state = player.states[0];
-            player.body.Movement = player.body.Movement.normalized * player.SlingShotMaxSpeed * 0.3f ;
+            player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
             player.RecallOrb();
         }
     }
