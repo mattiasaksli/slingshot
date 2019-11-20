@@ -30,17 +30,18 @@ public class PlayerController : MonoBehaviour
     public bool IsSlingshotting = false;
     public bool IsHuggingRight = false;
     public bool IsWallJumping = false;
-    public bool IsInputLocked = false;
     public bool IsFacingRight = true;
     [Space(10)]
     public List<State> states;
     public KinematicBody body { get; private set; }
     public float DeathTime;
 
-    private bool createOrb = false;
     public bool IsOrbAvailable = true;
     public KinematicBody orb = null;
     public SpriteRenderer Sprite;
+
+    private bool createOrb = false;
+    private bool isInputLocked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -55,15 +56,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsInputLocked)
+        if (!isInputLocked)
         {
             state.Update(this);
         }
-        if(Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Defeat();
         }
-        if(Input.GetAxisRaw("Horizontal") != 0)
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
             IsFacingRight = body.TargetMovement.x > 0;
         }
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!IsInputLocked)
+        if (!isInputLocked)
         {
             state.FixedUpdate(this);
         }
@@ -150,13 +151,13 @@ public class PlayerController : MonoBehaviour
     public void disablePlayer()
     {
         gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        IsInputLocked = true;
+        isInputLocked = true;
     }
 
     public void enablePlayer()
     {
         gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
-        IsInputLocked = false;
+        isInputLocked = false;
     }
 
     public void Defeat()
@@ -169,4 +170,6 @@ public class PlayerController : MonoBehaviour
             body.TargetMovement.y = body.Movement.y;
         }
     }
+
+    public bool IsInputLocked { get => isInputLocked; set => isInputLocked = value; }
 }
