@@ -114,6 +114,7 @@ public class StatePlayerMove : State
         PlayerController player = (PlayerController)controller;
         player.body.Movement.y -= player.GravityPower * Time.deltaTime;
         player.body.TargetMovement.y = player.body.Movement.y;
+        bool aboveC = player.body.detection.collisions.above;
         player.body.Move(player.body.Movement * Time.deltaTime);
 
         if(player.body.detection.collisions.below || player.body.detection.collisions.above)
@@ -133,6 +134,11 @@ public class StatePlayerMove : State
         {
             player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f,0,-1);
         }
+        if(!aboveC && player.body.detection.collisions.above)
+        {
+            player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f, 0, 1);
+        }
+
         if(player.IsGrounded)
         {
             player.IsOrbAvailable = true;
