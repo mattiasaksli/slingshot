@@ -94,9 +94,12 @@ public class PlayerController : MonoBehaviour
     }
     public void RecallOrb()
     {
-        GameObject.Destroy(orb.gameObject);
-        IsOrbAvailable = false;
-        orb = null;
+        if (orb.gameObject)
+        {
+            GameObject.Destroy(orb.gameObject);
+            IsOrbAvailable = false;
+            orb = null;
+        }
     }
 
     public void Slingshot()
