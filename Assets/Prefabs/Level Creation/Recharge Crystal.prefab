@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 489439065193767364}
   - component: {fileID: 7181383631632444812}
   - component: {fileID: 6543732748748776523}
+  - component: {fileID: 3373394035368971716}
   m_Layer: 0
   m_Name: Recharge Crystal
   m_TagString: Untagged
@@ -140,3 +141,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3373394035368971716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489439065193767365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1444dd70c8cc46f408ef3dfa49d6f908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
