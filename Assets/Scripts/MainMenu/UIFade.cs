@@ -46,6 +46,7 @@ public class UIFade : MonoBehaviour
             }
             callback?.Invoke();
             yield return null;
+            Destroy(gameObject);
         }
     }
 }

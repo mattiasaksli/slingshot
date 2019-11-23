@@ -69,7 +69,8 @@ public class PlayerController : MonoBehaviour
         {
             Defeat();
         }
-        transform.localScale = new Vector3(IsFacingRight ? 1 : -1, 1, 1);
+        if (!IsFacingRight) Sprite.flipX = true;
+        else Sprite.flipX = false;
     }
 
     private void FixedUpdate()
