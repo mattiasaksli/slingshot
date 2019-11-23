@@ -30,7 +30,9 @@ public class RechargeOrb : MonoBehaviour
         animator.SetBool("Available", available);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if(player && available)
