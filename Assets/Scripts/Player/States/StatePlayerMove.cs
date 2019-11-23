@@ -45,7 +45,7 @@ public class StatePlayerMove : State
             if(player.body.detection.collisions.left)
             {
                 LeftHug();
-                player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, 1, 0);
+                player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
             }
         }
 
@@ -92,7 +92,7 @@ public class StatePlayerMove : State
             player.IsGrounded = false;
             if (player.body.Movement.x > 0)
             {
-                //player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
+                //player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, 1, 0);
             }
         }
         void LeftHug()

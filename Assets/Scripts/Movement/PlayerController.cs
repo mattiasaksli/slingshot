@@ -68,15 +68,15 @@ public class PlayerController : MonoBehaviour
         {
             Defeat();
         }
-        if (Input.GetAxisRaw("Horizontal") != 0)
-        {
-            IsFacingRight = body.TargetMovement.x > 0;
-        }
         transform.localScale = new Vector3(IsFacingRight ? 1 : -1, 1, 1);
     }
 
     private void FixedUpdate()
     {
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            IsFacingRight = body.TargetMovement.x > 0;
+        }
         if (!isInputLocked)
         {
             state.FixedUpdate(this);

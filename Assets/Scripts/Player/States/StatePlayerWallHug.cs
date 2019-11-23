@@ -70,6 +70,9 @@ public class StatePlayerWallHug : State
         {
             player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f, 0, 1);
         }
+
+        player.IsFacingRight = !player.IsHuggingRight;
+
         float walldist = 0.05f;
         Vector2 wallcheck = new Vector2(walldist, 0);
         int n = player.body.detection.Cast(player.IsHuggingRight ? wallcheck : -wallcheck);
