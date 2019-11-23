@@ -18,7 +18,9 @@ MonoBehaviour:
   - Example
   - General
   - Main Menu
+  - Game View
   Categories:
   - {fileID: 11400000, guid: b01e98f4801f7124ba39e1dac4debf90, type: 2}
   - {fileID: 11400000, guid: df3baa067552a81478f136d9ba299303, type: 2}
   - {fileID: 11400000, guid: 3653aece3d165de40a117c896d2fb0c2, type: 2}
+  - {fileID: 11400000, guid: f65b0ab66b293d0449a812e7d0d6e4b8, type: 2}

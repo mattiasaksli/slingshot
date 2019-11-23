@@ -1,23 +1,26 @@
-﻿using System;
+﻿using Doozy.Engine;
+using Doozy.Engine.SceneManagement;
+using Doozy.Engine.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelDoor : MonoBehaviour
 {
-    public String LevelToLoad;
+    public string LevelToLoad;
 
     private bool inputUnlocked = false;
     private SpriteRenderer keySprite;
-    private PlayerController Player;
-    private UIFade Fade;
+    private UIView fadeView;
+    private SceneLoader sceneLoader;
 
     void Start()
     {
         GameObject PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        Player = PlayerObject.GetComponent<PlayerController>();
         keySprite = PlayerObject.GetComponentsInChildren<SpriteRenderer>()[1];
+
+        sceneLoader = GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>();
         keySprite.enabled = false;
-        Fade = FindObjectOfType<UIFade>();
+
+        GameEventMessage.SendEvent("LockInput");
     }
 
 
@@ -27,10 +30,12 @@ public class LevelDoor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Player.IsInputLocked = true;
+                sceneLoader.SceneName = LevelToLoad;
+                sceneLoader.LoadSceneAsync();
+
+                GameEventMessage.SendEvent("LockInput");
+                fadeView.Hide();
                 keySprite.enabled = false;
-                SceneManager.LoadScene(LevelToLoad);
-                //Fade.FadeIn(false);
             }
         }
     }
@@ -39,6 +44,7 @@ public class LevelDoor : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            fadeView = GameObject.FindGameObjectWithTag("FadeView").GetComponent<UIView>();
             inputUnlocked = true;
             keySprite.enabled = true;
         }
@@ -52,4 +58,6 @@ public class LevelDoor : MonoBehaviour
             keySprite.enabled = false;
         }
     }
+
+
 }

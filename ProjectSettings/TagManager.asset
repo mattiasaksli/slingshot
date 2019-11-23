@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BorderLeftDown
-  - BorderRightUp
   - OneWay
+  - FadeView
+  - SceneLoader
   layers:
   - Default
   - TransparentFX

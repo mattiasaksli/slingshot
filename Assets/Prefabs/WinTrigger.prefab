@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7956889059673990381}
   - component: {fileID: 7956889059673990382}
   - component: {fileID: 7956889059673990383}
-  - component: {fileID: 1471895611166544669}
+  - component: {fileID: 6744760747404789532}
   m_Layer: 0
   m_Name: WinTrigger
   m_TagString: Untagged
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &7956889059673990383
@@ -108,7 +108,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1471895611166544669
+--- !u!114 &6744760747404789532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7956889059673990288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7243f0f33cecd458a6858affb13330, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d7f15768d9c53b49aa7bfacabc96d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
