@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        if (body.TargetMovement.x != 0)
         {
             IsFacingRight = body.TargetMovement.x > 0;
         }
