@@ -153,3 +153,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1444dd70c8cc46f408ef3dfa49d6f908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CooldownDuration: 5
+  AudioGet: {fileID: 11400000, guid: abaa38ee3534b454d9360a64adf39c19, type: 2}

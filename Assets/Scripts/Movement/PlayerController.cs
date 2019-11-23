@@ -42,8 +42,10 @@ public class PlayerController : MonoBehaviour
 
     private bool createOrb = false;
     private bool isInputLocked = false;
-
+    [Space(10)]
     public AudioClipGroup AudioSlingShot;
+    public AudioClipGroup AudioLand;
+    public AudioClipGroup AudioJump;
 
     // Start is called before the first frame update
     void Start()

@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b736186b9e5eef48b41ea7d9d7ac166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StickHorizontal: 0
+  StickVertical: 0
 --- !u!1 &5179772920493900223
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +264,8 @@ MonoBehaviour:
   orb: {fileID: 0}
   Sprite: {fileID: 0}
   AudioSlingShot: {fileID: 11400000, guid: f9e6378d5a232d7439df3dbe71dc3952, type: 2}
+  AudioLand: {fileID: 11400000, guid: 950913935cfafbc4c9bb5eaed02c8209, type: 2}
+  AudioJump: {fileID: 11400000, guid: 9d38f791568515a4db0f13454e0fc5e9, type: 2}
 --- !u!50 &59967187
 Rigidbody2D:
   serializedVersion: 4

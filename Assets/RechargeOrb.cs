@@ -5,6 +5,7 @@ using UnityEngine;
 public class RechargeOrb : MonoBehaviour
 {
     public float CooldownDuration = 5f;
+    public AudioClipGroup AudioGet;
     private float cooldown;
     private bool available;
     private Animator animator;
@@ -39,6 +40,7 @@ public class RechargeOrb : MonoBehaviour
                 player.IsOrbAvailable = true;
                 available = false;
                 cooldown = CooldownDuration;
+                AudioGet?.Play();
             }
         }
     }
