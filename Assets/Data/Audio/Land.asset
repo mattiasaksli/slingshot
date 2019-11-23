@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
   m_Name: Land
   m_EditorClassIdentifier: 
-  VolumeMin: 1
-  VolumeMax: 1
-  PitchMin: 1
-  PitchMax: 1
-  Cooldown: 0.1
-  AudioClips: []
+  VolumeMin: 0.02
+  VolumeMax: 0.02
+  PitchMin: 0.941
+  PitchMax: 1.039
+  Cooldown: 0
+  AudioClips:
+  - {fileID: 8300000, guid: a33335da5c123ea4eaaab6bc09996255, type: 3}
+  - {fileID: 8300000, guid: 2d8e1c0756df4d9468bd23e3c32f13f9, type: 3}

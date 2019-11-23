@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
   m_Name: Jump
   m_EditorClassIdentifier: 
-  VolumeMin: 1
-  VolumeMax: 1
-  PitchMin: 1
-  PitchMax: 1
-  Cooldown: 0.1
-  AudioClips: []
+  VolumeMin: 0.1
+  VolumeMax: 0.1
+  PitchMin: 0.95
+  PitchMax: 1.05
+  Cooldown: 0
+  AudioClips:
+  - {fileID: 8300000, guid: 96d7379f6872914478f2531f8d8bc7d7, type: 3}
+  - {fileID: 8300000, guid: faf994b355c7ca64c850c37faa7ee093, type: 3}
