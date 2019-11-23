@@ -29,8 +29,8 @@ public class LevelDoor : MonoBehaviour
             {
                 Player.IsInputLocked = true;
                 keySprite.enabled = false;
-                Fade.AddCallback(() => SceneManager.LoadScene(LevelToLoad));
-                Fade.FadeIn(false);
+                SceneManager.LoadScene(LevelToLoad);
+                //Fade.FadeIn(false);
             }
         }
     }
