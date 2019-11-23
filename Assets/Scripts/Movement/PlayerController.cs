@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     public AudioClipGroup AudioSlingShot;
     public AudioClipGroup AudioLand;
     public AudioClipGroup AudioJump;
+    public AudioClipGroup AudioDefeat;
 
     // Start is called before the first frame update
     void Start()
@@ -172,6 +173,7 @@ public class PlayerController : MonoBehaviour
             DeathTime = Time.time + 0.7f;
             body.Movement.y = 10;
             body.TargetMovement.y = body.Movement.y;
+            AudioDefeat?.Play();
         }
     }
 

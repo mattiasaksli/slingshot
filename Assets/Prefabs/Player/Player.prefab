@@ -266,6 +266,7 @@ MonoBehaviour:
   AudioSlingShot: {fileID: 11400000, guid: f9e6378d5a232d7439df3dbe71dc3952, type: 2}
   AudioLand: {fileID: 11400000, guid: 950913935cfafbc4c9bb5eaed02c8209, type: 2}
   AudioJump: {fileID: 11400000, guid: 9d38f791568515a4db0f13454e0fc5e9, type: 2}
+  AudioDefeat: {fileID: 11400000, guid: c8d07a3e5c890f146879d97452f64327, type: 2}
 --- !u!50 &59967187
 Rigidbody2D:
   serializedVersion: 4
