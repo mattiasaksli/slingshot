@@ -17,6 +17,7 @@ public class OrbFollower : MonoBehaviour
     {
         player = gameObject.GetComponent<PlayerController>();
         sprite = Orb.gameObject.GetComponent<SpriteRenderer>();
+        Orb.transform.parent = null;
     }
 
     // Update is called once per frame
