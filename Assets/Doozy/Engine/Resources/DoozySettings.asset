@@ -15,8 +15,8 @@ MonoBehaviour:
   SelectedLanguage: 1
   AutoDisableUIInteractions: 1
   DebugBackButton: 0
-  DebugGameEventListener: 1
-  DebugGameEventManager: 1
+  DebugGameEventListener: 0
+  DebugGameEventManager: 0
   DebugGestureListener: 0
   DebugGraphController: 0
   DebugKeyToAction: 0

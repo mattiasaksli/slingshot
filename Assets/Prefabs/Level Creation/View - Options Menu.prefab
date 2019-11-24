@@ -424,9 +424,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4865726592015013254}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 1
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1634,9 +1634,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4865726592504209122}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 1
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4163,6 +4163,7 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
+  TextMeshProLabel: {fileID: 0}
 --- !u!1 &4865726591549438798
 GameObject:
   m_ObjectHideFlags: 0
@@ -4247,9 +4248,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4865726591439339724}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 1
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5898,7 +5899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -176.99997}
+  m_AnchoredPosition: {x: 0, y: -176.99997}
   m_SizeDelta: {x: -690.2, y: -772.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4865726591870627797
@@ -7253,6 +7254,7 @@ MonoBehaviour:
       PublicKeyToken=null
   TargetLabel: 1
   TextLabel: {fileID: 4865726592867625265}
+  TextMeshProLabel: {fileID: 0}
   ToggleProgressor: {fileID: 0}
 --- !u!1 &4865726591925657904
 GameObject:
@@ -8938,9 +8940,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4865726591368735700}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 1
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

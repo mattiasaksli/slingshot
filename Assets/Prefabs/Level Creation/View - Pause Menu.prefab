@@ -2435,6 +2435,7 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 1
   TextLabel: {fileID: 2495235248822211990}
+  TextMeshProLabel: {fileID: 0}
 --- !u!1 &2495235248822211984
 GameObject:
   m_ObjectHideFlags: 0
@@ -5619,6 +5620,7 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 1
   TextLabel: {fileID: 2495235249092638027}
+  TextMeshProLabel: {fileID: 0}
 --- !u!225 &2495235249502495224
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8066,6 +8068,7 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 1
   TextLabel: {fileID: 2495235250391396729}
+  TextMeshProLabel: {fileID: 0}
 --- !u!1 &2495235250391396731
 GameObject:
   m_ObjectHideFlags: 0

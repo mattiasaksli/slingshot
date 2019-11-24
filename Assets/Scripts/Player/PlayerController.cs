@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer Sprite;
 
     private bool createOrb = false;
-    public bool isInputLocked = true;
+    private bool isInputLocked = true;
     [Space(10)]
     public AudioClipGroup AudioSlingShot;
     public AudioClipGroup AudioLand;

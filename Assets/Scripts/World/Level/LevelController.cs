@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Doozy.Engine.UI;
-using TMPro;
+﻿using Doozy.Engine.UI;
 using System;
+using TMPro;
+using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
@@ -52,7 +50,7 @@ public class LevelController : MonoBehaviour
         PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
         player.transform.position = SpawnPoint.transform.position;
         player.Sprite.enabled = true;
-        player.Sprite.transform.localRotation = Quaternion.Euler(0,0,0);
+        player.Sprite.transform.localRotation = Quaternion.Euler(0, 0, 0);
         player.body.Movement = new Vector2(0, 0);
         player.body.TargetMovement = new Vector2(0, 0);
         player.state = player.states[0];
@@ -68,7 +66,7 @@ public class LevelController : MonoBehaviour
         {
             Debug.DrawLine(SpawnPoint.transform.position, SpawnPoint.transform.position + new Vector3(0, 1, 0));
         }
-        if(Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             LevelCompleted();
         }
@@ -81,10 +79,5 @@ public class LevelController : MonoBehaviour
         player.disablePlayer();
         DeathText.text = "Deaths: " + Deaths;
         TimeText.text = "Time: " + TimeSpan.FromSeconds((int)CompletionTime).ToString(@"mm\:ss");
-    }
-
-    public void Fade()
-    {
-        GameObject.FindGameObjectWithTag("FadeView").GetComponent<UIView>().Hide();
     }
 }
