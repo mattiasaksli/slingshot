@@ -8,6 +8,7 @@ public class WinTrigger : MonoBehaviour
         if (collision.tag == "Player")
         {
             GameEventMessage.SendEvent("GoToMainMenu");
+            LevelController.Instance.LevelCompleted();
         }
     }
 }

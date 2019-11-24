@@ -20,6 +20,7 @@ MonoBehaviour:
   - Main Menu
   - Options Menu
   - Pause Menu
+  - Level End
   Categories:
   - {fileID: 11400000, guid: 40f9e81ff80114a47a3721228ba749ed, type: 2}
   - {fileID: 11400000, guid: 5fb866e6e9878fd419c458caff36adab, type: 2}
