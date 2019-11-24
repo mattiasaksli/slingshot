@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RoomFollower : MonoBehaviour
 {
+    public float TargetZoom;
+    private float zoom;
+
     private Transform player;
     private GameObject room;
     private Vector3 TargetPosition;
@@ -14,15 +17,20 @@ public class RoomFollower : MonoBehaviour
     private void Start()
     {
         camera = gameObject.GetComponent<Camera>();
+        TargetZoom = 1;
+        zoom = 1;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        float lerpAmount = 0.2f;
+        TargetZoom = Mathf.Max(1, TargetZoom);
+        zoom = Mathf.Lerp(zoom, TargetZoom, lerpAmount);
+        camera.orthographicSize = 9 * 1/zoom;
         UpdateCameraSize();
         room = GameObject.Find("RoomBounds");
         player = GameObject.Find("Player").transform;
-        float lerpAmount = 0.2f;
         if(player && room)
         {
             Bounds bounds = room.GetComponent<BoxCollider2D>().bounds;

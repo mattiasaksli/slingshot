@@ -16,7 +16,8 @@ public class WinTrigger : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            GameObject.FindGameObjectWithTag("FadeView").GetComponent<UIView>().Hide();
+            //GameObject.FindGameObjectWithTag("FadeView").GetComponent<UIView>().Hide();
+            LevelController.Instance.LevelCompleted();
         }
     }
 }

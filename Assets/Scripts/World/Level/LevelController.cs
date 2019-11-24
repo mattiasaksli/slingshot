@@ -1,18 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Doozy.Engine.UI;
+using TMPro;
+using System;
 
 public class LevelController : MonoBehaviour
 {
     public static LevelController Instance;
     private static PlayerController player;
     public SpawnPoint SpawnPoint;
+    public UIView LevelEnd;
+    public int Deaths;
+    public float CompletionTime;
+
+    public TextMeshProUGUI DeathText;
+    public TextMeshProUGUI TimeText;
+
+    private RoomFollower roomFollower;
 
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        roomFollower = gameObject.GetComponent<RoomFollower>();
     }
 
     private void Awake()
@@ -46,13 +58,33 @@ public class LevelController : MonoBehaviour
         player.state = player.states[0];
         player.RecallOrb();
         player.IsOrbAvailable = true;
+        Deaths++;
     }
 
     private void Update()
     {
+        CompletionTime += Time.deltaTime;
         if (SpawnPoint)
         {
             Debug.DrawLine(SpawnPoint.transform.position, SpawnPoint.transform.position + new Vector3(0, 1, 0));
         }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            LevelCompleted();
+        }
+    }
+
+    public void LevelCompleted()
+    {
+        LevelEnd.Show();
+        roomFollower.TargetZoom = 2;
+        player.disablePlayer();
+        DeathText.text = "Deaths: " + Deaths;
+        TimeText.text = "Time: " + TimeSpan.FromSeconds((int)CompletionTime).ToString(@"mm\:ss");
+    }
+
+    public void Fade()
+    {
+        GameObject.FindGameObjectWithTag("FadeView").GetComponent<UIView>().Hide();
     }
 }
