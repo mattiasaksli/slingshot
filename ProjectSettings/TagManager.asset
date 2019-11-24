@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - OneWay
-  - FadeView
   - SceneLoader
+  - LevelFadeView
+  - MenuFadeView
   layers:
   - Default
   - TransparentFX

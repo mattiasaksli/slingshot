@@ -15,7 +15,6 @@ MonoBehaviour:
   CategoryName: Main Menu
   DatabaseType: 2
   Names:
-  - Quit
   - Options Menu
   - Main Menu
   - Menu Fade View

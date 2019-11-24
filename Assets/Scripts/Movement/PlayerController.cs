@@ -41,14 +41,13 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer Sprite;
 
     private bool createOrb = false;
-    private bool isInputLocked = true;
+    public bool isInputLocked = true;
     [Space(10)]
     public AudioClipGroup AudioSlingShot;
     public AudioClipGroup AudioLand;
     public AudioClipGroup AudioJump;
     public AudioClipGroup AudioDefeat;
 
-    // Start is called before the first frame update
     void Start()
     {
         states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead() };
@@ -58,7 +57,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         if (!isInputLocked)

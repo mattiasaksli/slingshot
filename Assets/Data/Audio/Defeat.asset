@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
   m_Name: Defeat
   m_EditorClassIdentifier: 
-  VolumeMin: 0.1
-  VolumeMax: 0.1
+  VolumeMin: 1
+  VolumeMax: 1
   PitchMin: 1.418
   PitchMax: 1.458
   Cooldown: 0

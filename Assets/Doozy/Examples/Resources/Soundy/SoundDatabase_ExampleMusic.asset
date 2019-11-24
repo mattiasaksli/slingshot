@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SoundDatabase_ExampleMusic
   m_EditorClassIdentifier: 
   DatabaseName: Example Music
-  OutputAudioMixerGroup: {fileID: 243120066433540876, guid: bc155dfdccec1be4780029a8bd542de5,
+  OutputAudioMixerGroup: {fileID: -1511072166245600461, guid: 0a786b2de0b324b48964c2e4ffde5fa9,
     type: 2}
   SoundNames:
   - No Sound

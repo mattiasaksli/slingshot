@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
   m_Name: Land
   m_EditorClassIdentifier: 
-  VolumeMin: 0.02
-  VolumeMax: 0.02
+  VolumeMin: 1
+  VolumeMax: 1
   PitchMin: 0.941
   PitchMax: 1.039
   Cooldown: 0
