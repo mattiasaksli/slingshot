@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3385,7 +3385,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 972120403}
 --- !u!114 &287058528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7699,7 +7698,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 613609485}
 --- !u!114 &663906555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10224,7 +10222,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 859727740}
 --- !u!114 &859008216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12830,7 +12827,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 596032073}
 --- !u!114 &879601838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15303,7 +15299,7 @@ PrefabInstance:
     - target: {fileID: 2206464007621886390, guid: cc3d5dea9013f0c4495c0cae6095c0ee,
         type: 3}
       propertyPath: LevelToLoad
-      value: CameraTest
+      value: Level1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3d5dea9013f0c4495c0cae6095c0ee, type: 3}
