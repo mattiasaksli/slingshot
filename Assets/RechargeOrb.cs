@@ -10,8 +10,16 @@ public class RechargeOrb : MonoBehaviour
     private bool available;
     private Animator animator;
 
-    
     // Start is called before the first frame update
+    private void Awake()
+    {
+        LevelEvents.OnPlayerRespawn += OnPlayerRespawn;
+    }
+
+    private void OnDestroy()
+    {
+        LevelEvents.OnPlayerRespawn -= OnPlayerRespawn;
+    }
     void Start()
     {
         cooldown = 0;
@@ -45,5 +53,11 @@ public class RechargeOrb : MonoBehaviour
                 AudioGet?.Play();
             }
         }
+    }
+
+    void OnPlayerRespawn()
+    {
+        cooldown = 0;
+        available = true;
     }
 }

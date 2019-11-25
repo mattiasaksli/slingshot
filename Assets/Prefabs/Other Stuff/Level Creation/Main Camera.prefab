@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c552de947ec0e9840b23a8417ee9ba86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetZoom: 0
 --- !u!114 &5321000934778758787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnPoint: {fileID: 0}
+  Deaths: 0
+  CompletionTime: 0
+  DeathText: {fileID: 0}
+  TimeText: {fileID: 0}
 --- !u!114 &5321000934778758786
 MonoBehaviour:
   m_ObjectHideFlags: 0

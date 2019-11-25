@@ -1,4 +1,4 @@
-﻿using Doozy.Engine.UI;
+﻿using Doozy.Engine;
 using System;
 using TMPro;
 using UnityEngine;
@@ -8,7 +8,6 @@ public class LevelController : MonoBehaviour
     public static LevelController Instance;
     private static PlayerController player;
     public SpawnPoint SpawnPoint;
-    public UIView LevelEnd;
     public int Deaths;
     public float CompletionTime;
 
@@ -17,10 +16,11 @@ public class LevelController : MonoBehaviour
 
     private RoomFollower roomFollower;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         Instance = this;
+        this.enabled = true;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         roomFollower = gameObject.GetComponent<RoomFollower>();
     }
@@ -39,6 +39,7 @@ public class LevelController : MonoBehaviour
 
     void OnRoomChange(RoomBoundsManager Room)
     {
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
         if (player.state != player.states[3])
         {
             SpawnPoint = Room.GetClosestSpawnPoint();
@@ -47,7 +48,7 @@ public class LevelController : MonoBehaviour
 
     void OnPlayerRespawn()
     {
-        PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
         player.transform.position = SpawnPoint.transform.position;
         player.Sprite.enabled = true;
         player.Sprite.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -68,13 +69,12 @@ public class LevelController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            LevelCompleted();
+            GameEventMessage.SendEvent("GoToMainMenu");
         }
     }
 
     public void LevelCompleted()
     {
-        LevelEnd.Show();
         roomFollower.TargetZoom = 2;
         player.disablePlayer();
         DeathText.text = "Deaths: " + Deaths;

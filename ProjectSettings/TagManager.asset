@@ -8,6 +8,9 @@ TagManager:
   - SceneLoader
   - LevelFadeView
   - MenuFadeView
+  - LevelEndView
+  - Time
+  - Death
   layers:
   - Default
   - TransparentFX
