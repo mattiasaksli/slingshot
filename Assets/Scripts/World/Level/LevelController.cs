@@ -67,10 +67,10 @@ public class LevelController : MonoBehaviour
         {
             Debug.DrawLine(SpawnPoint.transform.position, SpawnPoint.transform.position + new Vector3(0, 1, 0));
         }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            GameEventMessage.SendEvent("GoToMainMenu");
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    GameEventMessage.SendEvent("GoToMainMenu");
+        //}
     }
 
     public void LevelCompleted()

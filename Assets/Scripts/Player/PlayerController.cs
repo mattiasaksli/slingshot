@@ -63,10 +63,6 @@ public class PlayerController : MonoBehaviour
         {
             state.Update(this);
         }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Defeat();
-        }
         if (!IsFacingRight) Sprite.flipX = true;
         else Sprite.flipX = false;
     }
