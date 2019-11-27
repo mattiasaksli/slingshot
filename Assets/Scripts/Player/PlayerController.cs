@@ -4,45 +4,53 @@ using UnityEngine;
 [SelectionBase]
 public class PlayerController : MonoBehaviour
 {
-    public State state;
+    [Header("Player base attributes")]
+    [Space]
     public float MovementSpeed = 4;
     public float JumpPower = 10;
     public float AccelerationGround = 40;
     public float AccelerationAir = 20;
     public float GravityPower = 40;
+    public float DeathTime;
+    public State state;
+    public List<State> states;
+
     [Space(10)]
+    [Header("Player walljump attributes")]
     public float WalljumpHorizontalPower = 8;
     public float WalljumpVerticalPower = 5;
     public float WalljumpHoldTime = 0.5f;
     public float WalljumpHoldCounter = 0;
     public float WalljumpMinHoldTime = 0.01f;
     public float WalljumpUnHugTime = 0.1f;
+
     [Space(10)]
-    public float ThrowPower = 20;
+    [Header("Slingshot attributes")]
     public KinematicBody OrbPrefab;
-    [Space(10)]
+    public float ThrowPower = 20;
     public float SlingShotStartSpeed = 10;
     public float SlingShotAcceleration = 60;
     public float SlingShotMaxSpeed = 50;
+
     [Space(10)]
+    [Header("Player current status")]
     public bool IsGrounded = false;
     public bool IsJumping = false;
     public bool IsSlingshotting = false;
     public bool IsHuggingRight = false;
     public bool IsWallJumping = false;
     public bool IsFacingRight = true;
-    [Space(10)]
-    public List<State> states;
-    public KinematicBody body { get; private set; }
-    public float DeathTime;
-
     public bool IsOrbAvailable = true;
+    [SerializeField]
+    private bool isInputLocked = true;
+    private bool createOrb = false;
+
+    public KinematicBody body { get; private set; }
     public KinematicBody orb = null;
     public SpriteRenderer Sprite;
 
-    private bool createOrb = false;
-    private bool isInputLocked = true;
     [Space(10)]
+    [Header("Player audio SFX")]
     public AudioClipGroup AudioSlingShot;
     public AudioClipGroup AudioLand;
     public AudioClipGroup AudioJump;
