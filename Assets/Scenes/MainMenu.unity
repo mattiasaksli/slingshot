@@ -24244,6 +24244,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5321000934778758785, guid: df446d76d2cd45b48ab71bb9c4a80f27,
+        type: 3}
+      propertyPath: m_CropFrameX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321000934778758785, guid: df446d76d2cd45b48ab71bb9c4a80f27,
+        type: 3}
+      propertyPath: m_CropFrameY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321000934778758785, guid: df446d76d2cd45b48ab71bb9c4a80f27,
+        type: 3}
+      propertyPath: m_StretchFill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321000934778758785, guid: df446d76d2cd45b48ab71bb9c4a80f27,
+        type: 3}
+      propertyPath: m_UpscaleRT
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321000934778758785, guid: df446d76d2cd45b48ab71bb9c4a80f27,
+        type: 3}
+      propertyPath: m_RefResolutionY
+      value: 288
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321000934778758785, guid: df446d76d2cd45b48ab71bb9c4a80f27,
+        type: 3}
+      propertyPath: m_RefResolutionX
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df446d76d2cd45b48ab71bb9c4a80f27, type: 3}
 --- !u!1 &2103036524
