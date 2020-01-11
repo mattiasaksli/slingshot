@@ -12,6 +12,8 @@ public class RaycastController : MonoBehaviour
     public float horizontalRaySpacing;
     [HideInInspector]
     public float verticalRaySpacing;
+    [HideInInspector]
+    public float inwardRaySpacing;
 
     public BoxCollider2D collider;
     public RaycastOrigins raycastOrigins;
@@ -43,6 +45,7 @@ public class RaycastController : MonoBehaviour
 
         horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
         verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
+        inwardRaySpacing = (bounds.size.y - skinWidth * 2) / (horizontalRayCount - 1);
     }
     public struct RaycastOrigins
     {

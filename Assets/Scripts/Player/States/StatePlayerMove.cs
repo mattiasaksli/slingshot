@@ -134,7 +134,6 @@ public class StatePlayerMove : State
         player.IsGrounded = player.body.detection.collisions.below;
         if(player.IsGrounded && !g && referenceY < -1.7)
         {
-            Debug.Log(referenceY);
             player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f,0,-1);
             player.AudioLand?.Play();
         }

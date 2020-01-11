@@ -45,9 +45,14 @@ public class PlayerController : MonoBehaviour
     private bool isInputLocked = true;
     private bool createOrb = false;
 
+    [HideInInspector]
     public KinematicBody body { get; private set; }
+    [HideInInspector]
     public KinematicBody orb = null;
+    [HideInInspector]
     public SpriteRenderer Sprite;
+    [HideInInspector]
+    private float DeathCooldown;
 
     [Space(10)]
     [Header("Player audio SFX")]
@@ -62,7 +67,23 @@ public class PlayerController : MonoBehaviour
         state = states[0];
         body = gameObject.GetComponent<KinematicBody>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
-        //Time.timeScale = 0.5f;
+        DeathCooldown = Time.time;
+    }
+
+    public void Respawn()
+    {
+        transform.position = LevelController.Instance.SpawnPoint.transform.position;
+        Physics.SyncTransforms();
+        Sprite.enabled = true;
+        Sprite.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        body.Movement = new Vector2(0, 0);
+        body.TargetMovement = new Vector2(0, 0);
+        body.detection.InsideCollisions = new List<Transform>();
+        state = states[0];
+        RecallOrb();
+        IsOrbAvailable = true;
+        DeathCooldown = Time.time + 0.1f;
+        Debug.Log("Respawned");
     }
 
 
@@ -85,6 +106,19 @@ public class PlayerController : MonoBehaviour
         if (!isInputLocked)
         {
             state.FixedUpdate(this);
+        }
+        if (body.detection.InsideCollisions.Count > 0 && state != states[3] && Time.time > DeathCooldown)
+        {
+            Debug.Log(body.detection.InsideCollisions.Count);
+            foreach (Transform t in body.detection.InsideCollisions)
+            {
+                if (t != null && t.GetComponent<OneWayPlatform>() == null)
+                {
+                    Defeat();
+                    break;
+                }
+            }
+            body.detection.InsideCollisions = new List<Transform>();
         }
     }
 
@@ -173,6 +207,7 @@ public class PlayerController : MonoBehaviour
     {
         if (state != states[3])
         {
+            Debug.Log("Defeated");
             state = states[3];
             DeathTime = Time.time + 0.7f;
             body.Movement.y = 10;

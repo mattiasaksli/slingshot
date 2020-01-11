@@ -8,7 +8,7 @@ public class StatePlayerDead : State
     public void Update(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
-        if (Time.time > player.DeathTime)
+        if (Time.time > player.DeathTime && player.Sprite.enabled)
         {
             player.Sprite.enabled = false;
             LevelEvents.RespawnPlayer();

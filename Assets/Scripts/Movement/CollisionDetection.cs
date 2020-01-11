@@ -5,8 +5,10 @@ using UnityEngine;
 public class CollisionDetection : RaycastController
 {
     public LayerMask collisionMask;
+    public LayerMask suffocationMask;
 
     public CollisionInfo collisions;
+    public List<Transform> InsideCollisions;
 
     public override void Start()
     {
@@ -28,11 +30,33 @@ public class CollisionDetection : RaycastController
         }
 
         transform.Translate(velocity);
+        InsideCollisions = CheckInside();
         
         if (standingOnPlatform)
         {
             collisions.below = true;
         }
+    }
+
+    public List<Transform> CheckInside()
+    {
+        float rayLength = collider.bounds.size.x - skinWidth * 2;
+        List<Transform> _InsideCollisions = new List<Transform>();
+
+        for (int i = 0; i < horizontalRayCount; i++)
+        {
+            Vector2 rayOrigin = raycastOrigins.topLeft + Vector2.down * (inwardRaySpacing * i);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right, rayLength, collisionMask);
+
+            if(hit) {
+                if (!_InsideCollisions.Contains(hit.transform))
+                {
+                    _InsideCollisions.Add(hit.transform);
+                }
+            }
+            
+        }
+        return _InsideCollisions;
     }
 
     public int Cast(Vector3 velocity)

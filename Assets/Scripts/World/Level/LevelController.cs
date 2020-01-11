@@ -49,14 +49,7 @@ public class LevelController : MonoBehaviour
     void OnPlayerRespawn()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-        player.transform.position = SpawnPoint.transform.position;
-        player.Sprite.enabled = true;
-        player.Sprite.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        player.body.Movement = new Vector2(0, 0);
-        player.body.TargetMovement = new Vector2(0, 0);
-        player.state = player.states[0];
-        player.RecallOrb();
-        player.IsOrbAvailable = true;
+        player.Respawn();
         Deaths++;
     }
 
