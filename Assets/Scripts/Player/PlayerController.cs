@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         state = states[0];
         body = gameObject.GetComponent<KinematicBody>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
+        //Time.timeScale = 0.5f;
     }
 
 

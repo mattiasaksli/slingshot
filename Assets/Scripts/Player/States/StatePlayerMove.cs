@@ -116,6 +116,7 @@ public class StatePlayerMove : State
         player.body.Movement.y -= player.GravityPower * Time.deltaTime;
         player.body.TargetMovement.y = player.body.Movement.y;
         bool aboveC = player.body.detection.collisions.above;
+        var referenceY = player.body.Movement.y; //Used to determine whether to play the landing animation or not
         player.body.Move(player.body.Movement * Time.deltaTime);
 
         if(player.body.detection.collisions.below || player.body.detection.collisions.above)
@@ -131,8 +132,9 @@ public class StatePlayerMove : State
         }
         bool g = player.IsGrounded;
         player.IsGrounded = player.body.detection.collisions.below;
-        if(player.IsGrounded && !g)
+        if(player.IsGrounded && !g && referenceY < -1.7)
         {
+            Debug.Log(referenceY);
             player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f,0,-1);
             player.AudioLand?.Play();
         }

@@ -100,7 +100,7 @@ public class PlatformController : RaycastController
         // Passenger on top of a horizontally or downward moving platform
         if(directionY == -1 || velocity.y == 0 && velocity.x != 0)
         {
-            float rayLength = 2* skinWidth;
+            float rayLength = 2 * skinWidth;
             for (int i = 0; i < verticalRayCount; i++)
             {
                 Vector2 rayOrigin = raycastOrigins.topLeft + Vector2.right * (verticalRaySpacing * i);
