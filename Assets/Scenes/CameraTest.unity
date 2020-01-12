@@ -2608,7 +2608,7 @@ MonoBehaviour:
     m_Bits: 512
   localWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 5, z: 0}
+  - {x: 0, y: 16, z: 0}
   globalWaypoints: []
   speed: 12
 --- !u!61 &481959387
@@ -2691,7 +2691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481959385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -2.27, z: -1.81}
+  m_LocalPosition: {x: -2.17, y: -5.09, z: -1.81}
   m_LocalScale: {x: 2.975, y: 0.56213, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -26024,6 +26024,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00, type: 3}
+--- !u!1 &1251913208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4870553042075553237, guid: 8842ac479b0a28c4eaf4faad011dbf19,
+    type: 3}
+  m_PrefabInstance: {fileID: 1260305056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1251913214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251913208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9fe18aa0a4eb3742839934171f09b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetMovement: {x: 0, y: 0}
+  Movement: {x: 0, y: 0}
+  TargetStoredMovement: {x: 0, y: 0}
+  StoredMovement: {x: 0, y: 0}
+  Acceleration: 0
+  collider2d: {fileID: 0}
 --- !u!1001 &1260305056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26586,7 +26610,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -177
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4870553042075553239, guid: 8842ac479b0a28c4eaf4faad011dbf19, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8842ac479b0a28c4eaf4faad011dbf19, type: 3}
 --- !u!4 &1522713829 stripped
 Transform:

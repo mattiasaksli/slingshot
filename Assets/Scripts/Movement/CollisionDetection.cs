@@ -12,6 +12,7 @@ public class CollisionDetection : RaycastController
     public CollisionInfo collisions;
     public List<Transform> InsideCollisions;
 
+
     public override void Start()
     {
         base.Start();

@@ -8,7 +8,7 @@ public class PlatformController : RaycastController
     public LayerMask passengerMask;
 
     List<PassengerMovement> passengerMovement;
-    Dictionary<Transform, CollisionDetection> passengerDictionary = new Dictionary<Transform, CollisionDetection>();
+    Dictionary<Transform, KinematicBody> passengerDictionary = new Dictionary<Transform, KinematicBody>();
 
     public Vector3[] localWaypoints;
     public Vector3[] globalWaypoints;
@@ -57,23 +57,24 @@ public class PlatformController : RaycastController
         Vector3 velocity = CalculatePlatformMovement();
 
         CalculatePassengerMovement(velocity);
-        MovePassengers(true);
+        MovePassengers(true,velocity);
         transform.Translate(velocity);
         Physics2D.SyncTransforms();
-        MovePassengers(false);
+        MovePassengers(false,velocity);
     }
 
-    void MovePassengers(bool beforeMovePlatform)
+    void MovePassengers(bool beforeMovePlatform, Vector3 velocity)
     {
         foreach (PassengerMovement passenger in passengerMovement)
         {
             if (!passengerDictionary.ContainsKey(passenger.transform))
             {
-                passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<CollisionDetection>());
+                passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<KinematicBody>());
             }
             if (passenger.moveBeforePlatform == beforeMovePlatform)
             {
-                passengerDictionary[passenger.transform].Move(passenger.velocity,passenger.standingOnPlatform);
+                passengerDictionary[passenger.transform].detection.Move(passenger.velocity,passenger.standingOnPlatform);
+                passengerDictionary[passenger.transform].TargetStoredMovement = speed*velocity.normalized;
             }
         }
     }
