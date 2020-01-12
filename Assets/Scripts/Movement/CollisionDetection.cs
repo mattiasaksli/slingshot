@@ -42,6 +42,7 @@ public class CollisionDetection : RaycastController
     {
         float rayLength = collider.bounds.size.x - skinWidth * 2;
         List<Transform> _InsideCollisions = new List<Transform>();
+        Physics2D.SyncTransforms();
 
         for (int i = 0; i < horizontalRayCount; i++)
         {

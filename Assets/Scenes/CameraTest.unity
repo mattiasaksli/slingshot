@@ -2606,7 +2606,11 @@ MonoBehaviour:
   passengerMask:
     serializedVersion: 2
     m_Bits: 512
-  move: {x: 0, y: -2, z: 0}
+  localWaypoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 5, z: 0}
+  globalWaypoints: []
+  speed: 12
 --- !u!61 &481959387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2687,7 +2691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481959385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.51, y: -1.62, z: -1.81}
+  m_LocalPosition: {x: -1, y: -2.27, z: -1.81}
   m_LocalScale: {x: 2.975, y: 0.56213, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -26555,12 +26559,12 @@ PrefabInstance:
     - target: {fileID: 4870553042075553225, guid: 8842ac479b0a28c4eaf4faad011dbf19,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.78
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 4870553042075553225, guid: 8842ac479b0a28c4eaf4faad011dbf19,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.35
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4870553042075553228, guid: 8842ac479b0a28c4eaf4faad011dbf19,
         type: 3}
@@ -26580,7 +26584,7 @@ PrefabInstance:
     - target: {fileID: 8035065838360402870, guid: 8842ac479b0a28c4eaf4faad011dbf19,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -177.00003
+      value: -177
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8842ac479b0a28c4eaf4faad011dbf19, type: 3}

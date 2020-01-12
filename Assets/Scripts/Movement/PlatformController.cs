@@ -5,26 +5,60 @@ using UnityEngine;
 public class PlatformController : RaycastController
 {
     public LayerMask passengerMask;
-    public Vector3 move;
 
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, CollisionDetection> passengerDictionary = new Dictionary<Transform, CollisionDetection>();
 
+    public Vector3[] localWaypoints;
+    public Vector3[] globalWaypoints;
+
+    public float speed;
+    int fromWaypointIndex;
+    float percentBetweenWaypoints;
 
     public override void Start()
     {
         base.Start();
+
+        globalWaypoints = new Vector3[localWaypoints.Length];
+        for(int i = 0; i < globalWaypoints.Length; i++)
+        {
+            globalWaypoints[i] = localWaypoints[i] + transform.position;
+        }
     }
 
-    private void Update()
+    Vector3 CalculatePlatformMovement()
+    {
+        int toWaypointIndex = fromWaypointIndex + 1;
+        float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
+        percentBetweenWaypoints += Time.fixedDeltaTime * speed/distanceBetweenWaypoints;
+
+        Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], percentBetweenWaypoints);
+
+        if (percentBetweenWaypoints >= 1)
+        {
+            percentBetweenWaypoints = 0;
+            fromWaypointIndex++;
+            if (fromWaypointIndex >= globalWaypoints.Length-1)
+            {
+                fromWaypointIndex = 0;
+                System.Array.Reverse(globalWaypoints);
+            }
+        }
+
+        return newPos - transform.position;
+    }
+
+    private void FixedUpdate()
     {
         UpdateRaycastOrigins();
 
-        Vector3 velocity = move * Time.deltaTime;
+        Vector3 velocity = CalculatePlatformMovement();
 
         CalculatePassengerMovement(velocity);
         MovePassengers(true);
         transform.Translate(velocity);
+        Physics2D.SyncTransforms();
         MovePassengers(false);
     }
 
@@ -106,6 +140,8 @@ public class PlatformController : RaycastController
                 Vector2 rayOrigin = raycastOrigins.topLeft + Vector2.right * (verticalRaySpacing * i);
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, passengerMask);
 
+                Debug.DrawRay(rayOrigin, Vector2.up  * rayLength, Color.blue);
+
                 if (hit)
                 {
                     if (!movedPassengers.Contains(hit.transform))
@@ -114,6 +150,7 @@ public class PlatformController : RaycastController
                         float pushX = velocity.x;
                         float pushY = velocity.y;
 
+                        //hit.transform.Translate(new Vector3(pushX, pushY));
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), true, false));
                     }
                 }
@@ -135,6 +172,22 @@ public class PlatformController : RaycastController
             standingOnPlatform = _standingOnPlatform;
             moveBeforePlatform = _moveBeforePlatform;
 
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (localWaypoints != null)
+        {
+            Gizmos.color = Color.red;
+            float size = .3f;
+
+            for(int i = 0; i < localWaypoints.Length; i++)
+            {
+                Vector3 globalWaypointPos = (Application.isPlaying) ? globalWaypoints[i] : localWaypoints[i] + transform.position;
+                Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
+                Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
+            }
         }
     }
 }
