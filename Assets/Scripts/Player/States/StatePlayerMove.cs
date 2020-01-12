@@ -22,6 +22,7 @@ public class StatePlayerMove : State
             wall = player.body.detection.Cast(-wallcheck);
             if (player.body.detection.collisions.left) { LeftHug(); }
             player.AudioJump?.Play();
+            player.body.Move(Vector2.up * 0.1f);
         }
 
         player.WalljumpHoldCounter = Mathf.Max(0,player.WalljumpHoldCounter - Time.deltaTime);
@@ -132,7 +133,7 @@ public class StatePlayerMove : State
         }
         bool g = player.IsGrounded;
         player.IsGrounded = player.body.detection.collisions.below;
-        if(player.IsGrounded && !g && referenceY < -1.7)
+        if(player.IsGrounded && !g/* && referenceY < -1.7*/)
         {
             player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f,0,-1);
             player.AudioLand?.Play();

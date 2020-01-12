@@ -17,7 +17,7 @@ public class PlayerBody : KinematicBody
     {
         base.FixedUpdate();
         StoredMovement = Vector2.Lerp(StoredMovement, TargetStoredMovement, 1f);
-        if(!controller.IsGrounded && controller.state != controller.states[2])
+        if (!detection.collisions.below && controller.state != controller.states[2] && StoredMovement != Vector2.zero && Movement.y != -0.1f)
         {
             Debug.Log("Stored Energy Released");
             Movement += StoredMovement;
