@@ -24,5 +24,7 @@ public class PlayerBody : KinematicBody
             StoredMovement = Vector2.zero;
             TargetStoredMovement = Vector2.zero;
         }
+        StoredMovement = Vector2.zero;
+        TargetStoredMovement = Vector2.zero;
     }
 }

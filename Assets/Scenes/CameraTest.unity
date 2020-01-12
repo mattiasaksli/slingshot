@@ -2608,7 +2608,7 @@ MonoBehaviour:
     m_Bits: 512
   localWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 16, z: 0}
+  - {x: 6, y: 0, z: 0}
   globalWaypoints: []
   speed: 12
 --- !u!61 &481959387
@@ -2691,8 +2691,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481959385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.17, y: -5.09, z: -1.81}
-  m_LocalScale: {x: 2.975, y: 0.56213, z: 1}
+  m_LocalPosition: {x: 28, y: -5.5, z: -2}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
