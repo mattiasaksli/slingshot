@@ -3285,6 +3285,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -4.67
       objectReference: {fileID: 0}
+    - target: {fileID: 8035065838360402870, guid: 8842ac479b0a28c4eaf4faad011dbf19,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -177.00002
+      objectReference: {fileID: 0}
     - target: {fileID: 4870553042075553227, guid: 8842ac479b0a28c4eaf4faad011dbf19,
         type: 3}
       propertyPath: m_Offset.y

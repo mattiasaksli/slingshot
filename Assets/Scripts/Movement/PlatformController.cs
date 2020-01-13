@@ -75,7 +75,7 @@ public class PlatformController : RaycastController
             {
                 passengerDictionary[passenger.transform].detection.Move(passenger.velocity,passenger.standingOnPlatform);
                 passengerDictionary[passenger.transform].TargetStoredMovement = speed*velocity.normalized;
-                passengerDictionary[passenger.transform].Movement.y = -0.1f;
+                //passengerDictionary[passenger.transform].Movement.y = -0.1f;
             }
         }
     }

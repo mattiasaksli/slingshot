@@ -9,6 +9,8 @@ public class KinematicBody : MonoBehaviour
 
     public Vector2 TargetStoredMovement = new Vector2(0, 0);
     public Vector2 StoredMovement = new Vector2(0, 0);
+    private float storedRetention = 0.1f;
+    private float retentionTime = 0;
 
     public float Acceleration;
 
@@ -27,6 +29,19 @@ public class KinematicBody : MonoBehaviour
     public virtual void FixedUpdate()
     {
         Movement = AccelerateVector(Movement, TargetMovement, Acceleration);
+        if(TargetStoredMovement == Vector2.zero)
+        {
+            if(Time.time > retentionTime)
+            {
+                Debug.Log(StoredMovement);
+                StoredMovement = Vector2.zero;
+            }
+        } else
+        {
+            retentionTime = Time.time + storedRetention;
+            StoredMovement = TargetStoredMovement;
+        }
+        TargetStoredMovement = Vector2.zero;
     }
 
     public Vector2 AccelerateVector(Vector2 _Start, Vector2 _Target, float _Acceleration)
