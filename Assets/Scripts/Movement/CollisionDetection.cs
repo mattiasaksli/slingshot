@@ -22,7 +22,7 @@ public class CollisionDetection : RaycastController
 
     public void Move(Vector3 velocity, bool standingOnPlatform = false, bool leftCollision = false, bool rightCollision = false, bool belowCollision = false)
     {
-        MovedByPlatform = false;
+        //MovedByPlatform = false;
         UpdateRaycastOrigins();
         collisions.Reset();
 

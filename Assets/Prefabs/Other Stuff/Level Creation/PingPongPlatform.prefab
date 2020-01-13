@@ -128,11 +128,11 @@ MonoBehaviour:
   collider: {fileID: 0}
   passengerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   Movement: {x: 0, y: 0, z: 0}
   localWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 9, z: 0}
   globalWaypoints: []
   MaxSpeed: 8
   Speed: 0

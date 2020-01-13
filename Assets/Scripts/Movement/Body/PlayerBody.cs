@@ -10,7 +10,6 @@ public class PlayerBody : KinematicBody
     {
         base.Start();
         controller = GetComponent<PlayerController>();
-        //Physics2D.autoSyncTransforms = true;
     }
 
     public override bool CanHugWalls()
@@ -22,17 +21,13 @@ public class PlayerBody : KinematicBody
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        if (!detection.collisions.below && controller.state != controller.states[2] && StoredMovement != Vector2.zero && Time.time > storedMovementRestTimer && !detection.MovedByPlatform)
+        if (StoredMovement != Vector2.zero && Time.time > storedMovementRestTimer)
         {
-            ReleaseStoredEnergy();
+            if (!detection.collisions.below && controller.state != controller.states[2] && TargetStoredMovement != Vector2.zero)
+            {
+                ReleaseStoredEnergy();
+                Debug.Log("Released");
+            }
         }
-    }
-
-    public void ReleaseStoredEnergy()
-    {
-        Movement += StoredMovement;
-        StoredMovement = Vector2.zero;
-        TargetStoredMovement = Vector2.zero;
-        detection.MovedByPlatform = false;
     }
 }

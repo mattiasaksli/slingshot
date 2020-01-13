@@ -41,7 +41,6 @@ public class KinematicBody : MonoBehaviour
         if (TargetStoredMovement == Vector2.zero)
         {
             storedMovementRestTimer = Time.time + StoredMovementRest;
-            Debug.Log("Stored Movement Rest");
         }
     }
 
@@ -53,7 +52,6 @@ public class KinematicBody : MonoBehaviour
         {
             if(Time.time > retentionTime)
             {
-                Debug.Log(StoredMovement);
                 StoredMovement = Vector2.zero;
             }
             TargetStoredMovement = Vector2.zero;
@@ -75,5 +73,14 @@ public class KinematicBody : MonoBehaviour
     public void Move(Vector2 Movement)
     {
         detection.Move(Movement);
+    }
+
+    public void ReleaseStoredEnergy()
+    {
+        Movement += StoredMovement;
+        StoredMovement = Vector2.zero;
+        TargetStoredMovement = Vector2.zero;
+        detection.MovedByPlatform = false;
+        Debug.Log(this + ": Released");
     }
 }

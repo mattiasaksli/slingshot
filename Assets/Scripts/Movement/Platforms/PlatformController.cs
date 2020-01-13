@@ -31,16 +31,16 @@ public class PlatformController : RaycastController
     protected virtual void FixedUpdate()
     {
         UpdateRaycastOrigins();
-
+        ResetMovedByPlatform();
     }
 
     public void Move(Vector3 velocity)
     {
         CalculatePassengerMovement(velocity);
-        MovePassengers(true, velocity);
+        MovePassengers(true);
         transform.Translate(velocity);
         Physics2D.SyncTransforms();
-        MovePassengers(false, velocity);
+        MovePassengers(false);
     }
 
     public virtual Vector3 GetStoredMovement()
@@ -48,7 +48,7 @@ public class PlatformController : RaycastController
         return Movement / Time.deltaTime;
     }
 
-    void MovePassengers(bool beforeMovePlatform, Vector3 velocity)
+    void MovePassengers(bool beforeMovePlatform)
     {
         foreach (PassengerMovement passenger in passengerMovement)
         {
@@ -62,6 +62,7 @@ public class PlatformController : RaycastController
                 passengerDictionary[passenger.transform].detection.Move(passenger.velocity,passenger.standingOnPlatform,passenger.leftCollision,passenger.rightCollision,passenger.belowCollision);
                 passengerDictionary[passenger.transform].TargetStoredMovement = GetStoredMovement();
                 passengerDictionary[passenger.transform].detection.MovedByPlatform = true;
+                Debug.Log(passengerDictionary[passenger.transform] + ": " + passengerDictionary[passenger.transform].detection.MovedByPlatform);
                 pastPassengerMovement.Add(passenger);
             }
         }
@@ -73,6 +74,7 @@ public class PlatformController : RaycastController
         {
             foreach (PassengerMovement passenger in pastPassengerMovement)
             {
+                Debug.Log(passengerDictionary[passenger.transform] + " before reset: " + passengerDictionary[passenger.transform].detection.MovedByPlatform);
                 passengerDictionary[passenger.transform].detection.MovedByPlatform = false;
             }
             pastPassengerMovement = new List<PassengerMovement>();

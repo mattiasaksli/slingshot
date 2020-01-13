@@ -368,6 +368,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   InsideCollisions: []
+  MovedByPlatform: 0
 --- !u!61 &5179772920493900193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -418,7 +419,7 @@ MonoBehaviour:
   WalljumpHoldCounter: 0
   WalljumpMinHoldTime: 0.1
   WalljumpUnHugTime: 0.1
-  OrbPrefab: {fileID: 2302686782361379601, guid: 414912d6b12af6a418fec736c84d2bdf,
+  OrbPrefab: {fileID: 1110169750061414498, guid: 414912d6b12af6a418fec736c84d2bdf,
     type: 3}
   ThrowPower: 17
   SlingShotStartSpeed: 0
@@ -491,5 +492,7 @@ MonoBehaviour:
   Movement: {x: 0, y: 0}
   TargetStoredMovement: {x: 0, y: 0}
   StoredMovement: {x: 0, y: 0}
+  StoredMovementRest: 0.2
+  storedMovementRestTimer: 0
   Acceleration: 0
   collider2d: {fileID: 0}
