@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
     public bool IsWallJumping = false;
     public bool IsFacingRight = true;
     public bool IsOrbAvailable = true;
+    public bool IsInputLocked = true;
     [SerializeField]
-    private bool isInputLocked = true;
     private bool createOrb = false;
 
     [HideInInspector]
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isInputLocked)
+        if (!IsInputLocked)
         {
             state.Update(this);
         }
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             IsFacingRight = body.TargetMovement.x > 0;
         }
-        if (!isInputLocked)
+        if (!IsInputLocked)
         {
             state.FixedUpdate(this);
         }
@@ -194,13 +194,13 @@ public class PlayerController : MonoBehaviour
     public void disablePlayer()
     {
         gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        isInputLocked = true;
+        IsInputLocked = true;
     }
 
     public void enablePlayer()
     {
         gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
-        isInputLocked = false;
+        IsInputLocked = false;
     }
 
     public void Defeat()
@@ -218,11 +218,11 @@ public class PlayerController : MonoBehaviour
 
     public void LockInput()
     {
-        isInputLocked = true;
+        IsInputLocked = true;
     }
 
     public void UnlockInput()
     {
-        isInputLocked = false;
+        IsInputLocked = false;
     }
 }

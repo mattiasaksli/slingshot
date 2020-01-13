@@ -23,7 +23,7 @@ public class LevelDoor : MonoBehaviour
     {
         if (inputUnlocked)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().IsInputLocked)
             {
                 sceneLoader.SceneName = LevelToLoad;
                 sceneLoader.LoadSceneAsync();
