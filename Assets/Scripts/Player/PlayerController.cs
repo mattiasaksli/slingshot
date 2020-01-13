@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
         RecallOrb();
         IsOrbAvailable = true;
         DeathCooldown = Time.time + 0.1f;
-        Debug.Log("Respawned");
     }
 
 
@@ -109,7 +108,6 @@ public class PlayerController : MonoBehaviour
         }
         if (body.detection.InsideCollisions.Count > 0 && state != states[3] && Time.time > DeathCooldown)
         {
-            Debug.Log(body.detection.InsideCollisions.Count);
             foreach (Transform t in body.detection.InsideCollisions)
             {
                 if (t != null && t.GetComponent<OneWayPlatform>() == null)
@@ -207,7 +205,6 @@ public class PlayerController : MonoBehaviour
     {
         if (state != states[3])
         {
-            Debug.Log("Defeated");
             state = states[3];
             DeathTime = Time.time + 0.7f;
             body.Movement.y = 10;

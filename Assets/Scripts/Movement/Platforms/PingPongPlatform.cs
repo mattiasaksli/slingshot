@@ -11,9 +11,23 @@ public class PingPongPlatform : PlatformController
     private float restTimer;
     int fromWaypointIndex;
     float percentBetweenWaypoints;
+    private bool rightway = true;
     public override void Start()
     {
         base.Start();
+    }
+
+    public override void OnPlayerRespawn()
+    {
+        base.OnPlayerRespawn();
+        fromWaypointIndex = 0;
+        percentBetweenWaypoints = 0;
+        Speed = 0;
+        if(!rightway)
+        {
+            System.Array.Reverse(globalWaypoints);
+        }
+        restTimer = Time.time;
     }
     protected override void FixedUpdate()
     {
@@ -46,6 +60,7 @@ public class PingPongPlatform : PlatformController
             {
                 fromWaypointIndex = 0;
                 System.Array.Reverse(globalWaypoints);
+                rightway = !rightway;
             }
         }
 

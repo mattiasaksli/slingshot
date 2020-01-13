@@ -14,7 +14,7 @@ public class KinematicBody : MonoBehaviour
     [HideInInspector]
     public float storedMovementRestTimer = 0f;
 
-    private float storedRetention = 0.1f;
+    private float storedRetention = 0.3f;
     private float retentionTime = 0;
 
     public float Acceleration;
@@ -57,8 +57,17 @@ public class KinematicBody : MonoBehaviour
             TargetStoredMovement = Vector2.zero;
         } else
         {
-            retentionTime = Time.time + storedRetention;
-            StoredMovement = TargetStoredMovement;
+            if (TargetStoredMovement == Vector2.zero)
+            {
+                if (Time.time > retentionTime)
+                {
+                    StoredMovement = TargetStoredMovement;
+                }
+            } else
+            {
+                retentionTime = Time.time + storedRetention;
+                StoredMovement = TargetStoredMovement;
+            }
         }
     }
 
@@ -81,6 +90,5 @@ public class KinematicBody : MonoBehaviour
         StoredMovement = Vector2.zero;
         TargetStoredMovement = Vector2.zero;
         detection.MovedByPlatform = false;
-        Debug.Log(this + ": Released");
     }
 }

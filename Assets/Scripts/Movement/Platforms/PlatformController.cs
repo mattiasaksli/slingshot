@@ -15,17 +15,44 @@ public class PlatformController : RaycastController
 
     public Vector3[] localWaypoints;
     public Vector3[] globalWaypoints;
+    [HideInInspector]
+    public LineRenderer WaypointLine;
+    private Vector3 startPos;
+
+    private void Awake()
+    {
+        LevelEvents.OnPlayerRespawn += OnPlayerRespawn;
+        startPos = transform.position;
+    }
+
+    private void OnDestroy()
+    {
+        LevelEvents.OnPlayerRespawn -= OnPlayerRespawn;
+    }
+
+    public virtual void OnPlayerRespawn()
+    {
+        transform.position = startPos;
+        //globalWaypoints = startWaypoints;
+        Debug.Log("Position reset: " + startPos);
+    }
 
     public override void Start()
     {
         base.Start();
+        WaypointLine = GetComponent<LineRenderer>();
 
         globalWaypoints = new Vector3[localWaypoints.Length];
-        for(int i = 0; i < globalWaypoints.Length; i++)
+        Vector3[] linePositions = new Vector3[localWaypoints.Length];
+        for (int i = 0; i < globalWaypoints.Length; i++)
         {
             globalWaypoints[i] = localWaypoints[i] + transform.position;
+            linePositions[i] = globalWaypoints[i] + new Vector3(0, 0, 1);
         }
         pastPassengerMovement = new List<PassengerMovement>();
+        WaypointLine.useWorldSpace = true;
+        WaypointLine.positionCount = 2;
+        WaypointLine.SetPositions(linePositions);
     }
 
     protected virtual void FixedUpdate()
@@ -62,7 +89,6 @@ public class PlatformController : RaycastController
                 passengerDictionary[passenger.transform].detection.Move(passenger.velocity,passenger.standingOnPlatform,passenger.leftCollision,passenger.rightCollision,passenger.belowCollision);
                 passengerDictionary[passenger.transform].TargetStoredMovement = GetStoredMovement();
                 passengerDictionary[passenger.transform].detection.MovedByPlatform = true;
-                Debug.Log(passengerDictionary[passenger.transform] + ": " + passengerDictionary[passenger.transform].detection.MovedByPlatform);
                 pastPassengerMovement.Add(passenger);
             }
         }
@@ -74,7 +100,6 @@ public class PlatformController : RaycastController
         {
             foreach (PassengerMovement passenger in pastPassengerMovement)
             {
-                Debug.Log(passengerDictionary[passenger.transform] + " before reset: " + passengerDictionary[passenger.transform].detection.MovedByPlatform);
                 passengerDictionary[passenger.transform].detection.MovedByPlatform = false;
             }
             pastPassengerMovement = new List<PassengerMovement>();
@@ -176,7 +201,6 @@ public class PlatformController : RaycastController
                     if (!movedPassengers.Contains(hit.transform) && hit.transform.GetComponent<KinematicBody>().CanHugWalls())
                     {
                         movedPassengers.Add(hit.transform);
-                        Debug.Log("Moved");
                         float pushX = velocity.x;
                         float pushY = velocity.y;
 
