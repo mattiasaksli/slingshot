@@ -8,14 +8,13 @@ public class PlatformController : RaycastController
     public LayerMask passengerMask;
 
     List<PassengerMovement> passengerMovement;
+    List<PassengerMovement> pastPassengerMovement;
     Dictionary<Transform, KinematicBody> passengerDictionary = new Dictionary<Transform, KinematicBody>();
+
+    public Vector3 Movement;
 
     public Vector3[] localWaypoints;
     public Vector3[] globalWaypoints;
-
-    public float speed;
-    int fromWaypointIndex;
-    float percentBetweenWaypoints;
 
     public override void Start()
     {
@@ -26,44 +25,30 @@ public class PlatformController : RaycastController
         {
             globalWaypoints[i] = localWaypoints[i] + transform.position;
         }
+        pastPassengerMovement = new List<PassengerMovement>();
     }
 
-    Vector3 CalculatePlatformMovement()
-    {
-        int toWaypointIndex = fromWaypointIndex + 1;
-        float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
-        percentBetweenWaypoints += Time.fixedDeltaTime * speed/distanceBetweenWaypoints;
-
-        Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], percentBetweenWaypoints);
-
-        if (percentBetweenWaypoints >= 1)
-        {
-            percentBetweenWaypoints = 0;
-            fromWaypointIndex++;
-            if (fromWaypointIndex >= globalWaypoints.Length-1)
-            {
-                fromWaypointIndex = 0;
-                System.Array.Reverse(globalWaypoints);
-            }
-        }
-
-        return newPos - transform.position;
-    }
-
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         UpdateRaycastOrigins();
-
-        Vector3 velocity = CalculatePlatformMovement();
-
-        CalculatePassengerMovement(velocity);
-        MovePassengers(true,velocity);
-        transform.Translate(velocity);
-        Physics2D.SyncTransforms();
-        MovePassengers(false,velocity);
+        ResetMovedByPlatform();
     }
 
-    void MovePassengers(bool beforeMovePlatform, Vector3 velocity)
+    public void Move(Vector3 velocity)
+    {
+        CalculatePassengerMovement(velocity);
+        MovePassengers(true);
+        transform.Translate(velocity);
+        Physics2D.SyncTransforms();
+        MovePassengers(false);
+    }
+
+    public virtual Vector3 GetStoredMovement()
+    {
+        return Movement / Time.deltaTime;
+    }
+
+    void MovePassengers(bool beforeMovePlatform)
     {
         foreach (PassengerMovement passenger in passengerMovement)
         {
@@ -73,10 +58,26 @@ public class PlatformController : RaycastController
             }
             if (passenger.moveBeforePlatform == beforeMovePlatform)
             {
+                passengerDictionary[passenger.transform].SetStoredMovementRestTime();
                 passengerDictionary[passenger.transform].detection.Move(passenger.velocity,passenger.standingOnPlatform,passenger.leftCollision,passenger.rightCollision,passenger.belowCollision);
-                passengerDictionary[passenger.transform].TargetStoredMovement = speed*velocity.normalized;
-                //passengerDictionary[passenger.transform].Movement.y = -0.1f;
+                passengerDictionary[passenger.transform].TargetStoredMovement = GetStoredMovement();
+                passengerDictionary[passenger.transform].detection.MovedByPlatform = true;
+                Debug.Log(passengerDictionary[passenger.transform] + ": " + passengerDictionary[passenger.transform].detection.MovedByPlatform);
+                pastPassengerMovement.Add(passenger);
             }
+        }
+    }
+
+    void ResetMovedByPlatform()
+    {
+        if (pastPassengerMovement.Count > 0)
+        {
+            foreach (PassengerMovement passenger in pastPassengerMovement)
+            {
+                Debug.Log(passengerDictionary[passenger.transform] + " before reset: " + passengerDictionary[passenger.transform].detection.MovedByPlatform);
+                passengerDictionary[passenger.transform].detection.MovedByPlatform = false;
+            }
+            pastPassengerMovement = new List<PassengerMovement>();
         }
     }
 

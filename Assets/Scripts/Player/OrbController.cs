@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrbController : MonoBehaviour
 {
-    public KinematicBody body;
+    public OrbBody body;
     public float AccelerationGround = 40;
     public float AccelerationAir = 30;
     public float GravityPower = 40;
@@ -13,13 +13,7 @@ public class OrbController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        body = gameObject.GetComponent<KinematicBody>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        body = gameObject.GetComponent<OrbBody>();
     }
 
     void FixedUpdate()

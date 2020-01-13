@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     [Space(10)]
     [Header("Slingshot attributes")]
-    public KinematicBody OrbPrefab;
+    public OrbBody OrbPrefab;
     public float ThrowPower = 20;
     public float SlingShotStartSpeed = 10;
     public float SlingShotAcceleration = 60;
@@ -46,9 +46,9 @@ public class PlayerController : MonoBehaviour
     private bool createOrb = false;
 
     [HideInInspector]
-    public KinematicBody body { get; private set; }
+    public PlayerBody body { get; private set; }
     [HideInInspector]
-    public KinematicBody orb = null;
+    public OrbBody orb = null;
     [HideInInspector]
     public SpriteRenderer Sprite;
     [HideInInspector]
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead() };
         state = states[0];
-        body = gameObject.GetComponent<KinematicBody>();
+        body = gameObject.GetComponent<PlayerBody>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
         DeathCooldown = Time.time;
     }
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject.Destroy(orb.gameObject);
             }
-            orb = GameObject.Instantiate<KinematicBody>(OrbPrefab);
+            orb = GameObject.Instantiate<OrbBody>(OrbPrefab);
             orb.transform.position = transform.position;
             orb.Movement = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position).normalized * ThrowPower;
             createOrb = false;

@@ -9,7 +9,7 @@ public class StatePlayerWallHug : State
     public void Update(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
-        float input = Mathf.Round(Input.GetAxis("Horizontal"));
+        float input = Mathf.Round(Input.GetAxisRaw("Horizontal"));
         if(input == 1 && !player.IsHuggingRight || input == -1 && player.IsHuggingRight)
         {
             player.WalljumpHoldCounter += Time.deltaTime;
@@ -29,6 +29,7 @@ public class StatePlayerWallHug : State
             player.body.detection.collisions.Reset();
             player.state = player.states[0];
             player.AudioJump?.Play();
+            player.body.ReleaseStoredEnergy();
             return;
         }
         if (!Input.GetKey("space") && player.IsJumping)

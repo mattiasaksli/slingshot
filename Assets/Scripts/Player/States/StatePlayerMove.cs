@@ -8,7 +8,8 @@ public class StatePlayerMove : State
     public void Update(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
-        player.body.TargetMovement.x = Mathf.Round(Input.GetAxisRaw("Horizontal")) * player.MovementSpeed;
+        float input = Mathf.Round(Input.GetAxisRaw("Horizontal"));
+        player.body.TargetMovement.x = input * player.MovementSpeed;
         if (Input.GetKeyDown("space") && player.IsGrounded)
         {
             player.body.TargetMovement.y = player.JumpPower;
@@ -22,6 +23,7 @@ public class StatePlayerMove : State
             wall = player.body.detection.Cast(-wallcheck);
             if (player.body.detection.collisions.left) { LeftHug(); }
             player.AudioJump?.Play();
+            player.body.ReleaseStoredEnergy();
         }
 
         player.WalljumpHoldCounter = Mathf.Max(0,player.WalljumpHoldCounter - Time.deltaTime);
@@ -37,12 +39,12 @@ public class StatePlayerMove : State
 
         if (!player.IsGrounded)
         {
-            if(player.body.detection.collisions.right)
+            if(player.body.detection.collisions.right && input > 0)
             {
                 RightHug();
                 player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
             }
-            if(player.body.detection.collisions.left)
+            if(player.body.detection.collisions.left && input < 0)
             {
                 LeftHug();
                 player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
