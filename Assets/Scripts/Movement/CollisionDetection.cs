@@ -18,7 +18,7 @@ public class CollisionDetection : RaycastController
         base.Start();
     }
 
-    public void Move(Vector3 velocity, bool standingOnPlatform = false)
+    public void Move(Vector3 velocity, bool standingOnPlatform = false, bool leftCollision = false, bool rightCollision = false, bool belowCollision = false)
     {
         UpdateRaycastOrigins();
         collisions.Reset();
@@ -38,6 +38,18 @@ public class CollisionDetection : RaycastController
         if (standingOnPlatform)
         {
             collisions.below = true;
+        }
+        if (leftCollision)
+        {
+            collisions.right = true;
+        }
+        if (rightCollision)
+        {
+            collisions.left = true;
+        }
+        if (belowCollision)
+        {
+            collisions.above = true;
         }
     }
 

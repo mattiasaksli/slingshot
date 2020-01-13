@@ -7,9 +7,11 @@ public class AutoSnap : EditorWindow
 {
     private Vector3 prevPosition;
     private bool doSnap = true;
-    private float snapValue = 1;
+    private float snapValue = 0.5f;
 
     [MenuItem("Edit/Auto Snap %_l")]
+
+    void OnEnable() { EditorApplication.update += Update; }
 
     static void Init()
     {

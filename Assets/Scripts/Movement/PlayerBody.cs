@@ -13,6 +13,11 @@ public class PlayerBody : KinematicBody
         //Physics2D.autoSyncTransforms = true;
     }
 
+    public override bool CanHugWalls()
+    {
+        return controller.state == controller.states[2];
+    }
+
     // Update is called once per frame
     public override void FixedUpdate()
     {

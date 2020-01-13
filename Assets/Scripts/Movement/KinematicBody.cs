@@ -25,6 +25,11 @@ public class KinematicBody : MonoBehaviour
         collider2d = gameObject.GetComponent<BoxCollider2D>();
     }
 
+    public virtual bool CanHugWalls()
+    {
+        return false;
+    }
+
     // Update is called once per frame
     public virtual void FixedUpdate()
     {

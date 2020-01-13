@@ -73,7 +73,7 @@ public class PlatformController : RaycastController
             }
             if (passenger.moveBeforePlatform == beforeMovePlatform)
             {
-                passengerDictionary[passenger.transform].detection.Move(passenger.velocity,passenger.standingOnPlatform);
+                passengerDictionary[passenger.transform].detection.Move(passenger.velocity,passenger.standingOnPlatform,passenger.leftCollision,passenger.rightCollision,passenger.belowCollision);
                 passengerDictionary[passenger.transform].TargetStoredMovement = speed*velocity.normalized;
                 //passengerDictionary[passenger.transform].Movement.y = -0.1f;
             }
@@ -103,7 +103,7 @@ public class PlatformController : RaycastController
                         float pushX = (directionY == 1) ? velocity.x : 0;
                         float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
 
-                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY),directionY == 1,true));
+                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY),directionY == 1,true,false,false,directionX == -1));
                     }
                 }
             }
@@ -128,7 +128,7 @@ public class PlatformController : RaycastController
                         float pushX = velocity.x - (hit.distance - skinWidth) * directionX;
                         float pushY = -skinWidth;
 
-                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), false, true));
+                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), false, true,directionX == -1, directionX == 1, false));
                     }
                 }
             }
@@ -159,6 +159,32 @@ public class PlatformController : RaycastController
                 }
             }
         }
+
+        // Passenger to the side of a horizontally or downward moving platform
+        if(velocity.x != 0)
+        {
+            float rayLength = 2 * skinWidth;
+            for (int i = 0; i < verticalRayCount; i++)
+            {
+                Vector2 rayOrigin = (directionX == 1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+                rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * -directionX, rayLength, passengerMask);
+
+                if (hit)
+                {
+                    if (!movedPassengers.Contains(hit.transform) && hit.transform.GetComponent<KinematicBody>().CanHugWalls())
+                    {
+                        movedPassengers.Add(hit.transform);
+                        Debug.Log("Moved");
+                        float pushX = velocity.x;
+                        float pushY = velocity.y;
+
+                        //hit.transform.Translate(new Vector3(pushX, pushY));
+                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), false, false));
+                    }
+                }
+            }
+        }
     }
 
     struct PassengerMovement
@@ -167,6 +193,9 @@ public class PlatformController : RaycastController
         public Vector3 velocity;
         public bool standingOnPlatform;
         public bool moveBeforePlatform;
+        public bool leftCollision;
+        public bool rightCollision;
+        public bool belowCollision;
 
         public PassengerMovement(Transform _transform, Vector3 _velocity, bool _standingOnPlatform, bool _moveBeforePlatform)
         {
@@ -174,7 +203,20 @@ public class PlatformController : RaycastController
             velocity = _velocity;
             standingOnPlatform = _standingOnPlatform;
             moveBeforePlatform = _moveBeforePlatform;
+            leftCollision = false;
+            rightCollision = false;
+            belowCollision = false;
+        }
 
+        public PassengerMovement(Transform _transform, Vector3 _velocity, bool _standingOnPlatform, bool _moveBeforePlatform, bool _leftCollision, bool _rightCollision, bool _belowCollision)
+        {
+            transform = _transform;
+            velocity = _velocity;
+            standingOnPlatform = _standingOnPlatform;
+            moveBeforePlatform = _moveBeforePlatform;
+            leftCollision = _leftCollision;
+            rightCollision = _rightCollision;
+            belowCollision = _belowCollision;
         }
     }
 
