@@ -9,6 +9,11 @@ public class KinematicBody : MonoBehaviour
 
     public Vector2 TargetStoredMovement = new Vector2(0, 0);
     public Vector2 StoredMovement = new Vector2(0, 0);
+    public float StoredMovementRest = 0.2f;
+
+    [HideInInspector]
+    public float storedMovementRestTimer = 0f;
+
     private float storedRetention = 0.1f;
     private float retentionTime = 0;
 
@@ -30,23 +35,33 @@ public class KinematicBody : MonoBehaviour
         return false;
     }
 
+    //Delays stored movement
+    public void SetStoredMovementRestTime()
+    {
+        if (TargetStoredMovement == Vector2.zero)
+        {
+            storedMovementRestTimer = Time.time + StoredMovementRest;
+            Debug.Log("Stored Movement Rest");
+        }
+    }
+
     // Update is called once per frame
     public virtual void FixedUpdate()
     {
         Movement = AccelerateVector(Movement, TargetMovement, Acceleration);
-        if(TargetStoredMovement == Vector2.zero)
+        if(!detection.MovedByPlatform)
         {
             if(Time.time > retentionTime)
             {
                 Debug.Log(StoredMovement);
                 StoredMovement = Vector2.zero;
             }
+            TargetStoredMovement = Vector2.zero;
         } else
         {
             retentionTime = Time.time + storedRetention;
             StoredMovement = TargetStoredMovement;
         }
-        TargetStoredMovement = Vector2.zero;
     }
 
     public Vector2 AccelerateVector(Vector2 _Start, Vector2 _Target, float _Acceleration)

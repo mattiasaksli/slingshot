@@ -29,6 +29,7 @@ public class StatePlayerWallHug : State
             player.body.detection.collisions.Reset();
             player.state = player.states[0];
             player.AudioJump?.Play();
+            player.body.ReleaseStoredEnergy();
             return;
         }
         if (!Input.GetKey("space") && player.IsJumping)

@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private bool createOrb = false;
 
     [HideInInspector]
-    public KinematicBody body { get; private set; }
+    public PlayerBody body { get; private set; }
     [HideInInspector]
     public KinematicBody orb = null;
     [HideInInspector]
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead() };
         state = states[0];
-        body = gameObject.GetComponent<KinematicBody>();
+        body = gameObject.GetComponent<PlayerBody>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
         DeathCooldown = Time.time;
     }

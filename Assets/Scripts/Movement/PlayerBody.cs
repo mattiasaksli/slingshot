@@ -22,11 +22,17 @@ public class PlayerBody : KinematicBody
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        if (!detection.collisions.below && controller.state != controller.states[2] && StoredMovement != Vector2.zero && Movement.y != -0.1f)
+        if (!detection.collisions.below && controller.state != controller.states[2] && StoredMovement != Vector2.zero && Time.time > storedMovementRestTimer && !detection.MovedByPlatform)
         {
-            Movement += StoredMovement;
-            StoredMovement = Vector2.zero;
-            TargetStoredMovement = Vector2.zero;
+            ReleaseStoredEnergy();
         }
+    }
+
+    public void ReleaseStoredEnergy()
+    {
+        Movement += StoredMovement;
+        StoredMovement = Vector2.zero;
+        TargetStoredMovement = Vector2.zero;
+        detection.MovedByPlatform = false;
     }
 }

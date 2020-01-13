@@ -12,6 +12,8 @@ public class CollisionDetection : RaycastController
     public CollisionInfo collisions;
     public List<Transform> InsideCollisions;
 
+    public bool MovedByPlatform;
+
 
     public override void Start()
     {
@@ -20,6 +22,7 @@ public class CollisionDetection : RaycastController
 
     public void Move(Vector3 velocity, bool standingOnPlatform = false, bool leftCollision = false, bool rightCollision = false, bool belowCollision = false)
     {
+        MovedByPlatform = false;
         UpdateRaycastOrigins();
         collisions.Reset();
 

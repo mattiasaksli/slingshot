@@ -22,6 +22,7 @@ public class StatePlayerMove : State
             wall = player.body.detection.Cast(-wallcheck);
             if (player.body.detection.collisions.left) { LeftHug(); }
             player.AudioJump?.Play();
+            player.body.detection.MovedByPlatform = false;
         }
 
         player.WalljumpHoldCounter = Mathf.Max(0,player.WalljumpHoldCounter - Time.deltaTime);
