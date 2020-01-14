@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class LevelProgression : MonoBehaviour
@@ -36,7 +37,7 @@ public class LevelProgression : MonoBehaviour
         }
     }
 
-    public void ShowAllOpenLevelDoors()
+    private void ShowAllOpenLevelDoors()
     {
         foreach (LevelDoor door in openLevels)
         {
@@ -50,5 +51,11 @@ public class LevelProgression : MonoBehaviour
         {
             door.gameObject.SetActive(false);
         }
+    }
+
+    public void ResetProgress()
+    {
+        PlayerPrefs.SetInt("highest", 1);
+        SceneManager.LoadScene(0);
     }
 }
