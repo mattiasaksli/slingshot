@@ -129,7 +129,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 9216
   suffocationMask:
     serializedVersion: 2
     m_Bits: 0
