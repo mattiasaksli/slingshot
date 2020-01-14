@@ -44,6 +44,11 @@ public class KinematicBody : MonoBehaviour
         }
     }
 
+    public virtual bool CanBeGrounded()
+    {
+        return false;
+    }
+
     // Update is called once per frame
     public virtual void FixedUpdate()
     {

@@ -28,6 +28,7 @@ public class PingPongPlatform : PlatformController
             System.Array.Reverse(globalWaypoints);
         }
         restTimer = Time.time;
+        rightway = true;
     }
     protected override void FixedUpdate()
     {

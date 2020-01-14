@@ -29,4 +29,9 @@ public class PlayerBody : KinematicBody
             }
         }
     }
+
+    public override bool CanBeGrounded()
+    {
+        return true;
+    }
 }

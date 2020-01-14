@@ -5,9 +5,12 @@ using UnityEngine;
 //Credit to Sebastian Lague for their Unity 2D Platformer series: https://github.com/SebLague/2DPlatformer-Tutorial
 public class RaycastController : MonoBehaviour
 {
+    [HideInInspector]
     public const float skinWidth = .015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
+    public bool autoRay = false;
+    public float autoRaySpacing = 0.2f;
 
     [HideInInspector]
     public float horizontalRaySpacing;
@@ -16,7 +19,9 @@ public class RaycastController : MonoBehaviour
     [HideInInspector]
     public float inwardRaySpacing;
 
+    [HideInInspector]
     public BoxCollider2D collider;
+    [HideInInspector]
     public RaycastOrigins raycastOrigins;
 
     public virtual void Start()
@@ -40,9 +45,16 @@ public class RaycastController : MonoBehaviour
     {
         Bounds bounds = collider.bounds;
         bounds.Expand(skinWidth * -2);
-
-        horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
-        verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
+        if (autoRay)
+        {
+            horizontalRayCount = Mathf.Clamp((int)(bounds.size.y / autoRaySpacing) + 2, 2, int.MaxValue);
+            verticalRayCount = Mathf.Clamp((int)(bounds.size.x/autoRaySpacing)+2, 2, int.MaxValue);
+        }
+        else
+        {
+            horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
+            verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
+        }
 
         horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
         verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);

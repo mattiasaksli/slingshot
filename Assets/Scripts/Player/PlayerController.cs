@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (t != null && t.GetComponent<OneWayPlatform>() == null)
                 {
+                    Debug.Log(t.GetComponent<PlatformController>());
                     Defeat();
                     break;
                 }
