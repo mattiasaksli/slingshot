@@ -26,8 +26,12 @@ public class PlayerBody : KinematicBody
             if (!detection.collisions.below && controller.state != controller.states[2] && TargetStoredMovement != Vector2.zero)
             {
                 ReleaseStoredEnergy();
-                Debug.Log("Released");
             }
         }
+    }
+
+    public override bool CanBeGrounded()
+    {
+        return true;
     }
 }

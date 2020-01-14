@@ -13,19 +13,49 @@ public class PlatformController : RaycastController
 
     public Vector3 Movement;
 
-    public Vector3[] localWaypoints;
+    public Vector3[] localWaypoints = new Vector3[2];
+    [HideInInspector]
     public Vector3[] globalWaypoints;
+    [HideInInspector]
+    public LineRenderer WaypointLine;
+    private Vector3 startPos;
+
+    private ContactFilter2D passengerFilter;
+
+    private void Awake()
+    {
+        LevelEvents.OnPlayerRespawn += OnPlayerRespawn;
+        startPos = transform.position;
+    }
+
+    private void OnDestroy()
+    {
+        LevelEvents.OnPlayerRespawn -= OnPlayerRespawn;
+    }
+
+    public virtual void OnPlayerRespawn()
+    {
+        transform.position = startPos;
+    }
 
     public override void Start()
     {
         base.Start();
+        passengerFilter.layerMask = passengerMask;
+        passengerFilter.useLayerMask = true;
+        WaypointLine = GetComponent<LineRenderer>();
 
         globalWaypoints = new Vector3[localWaypoints.Length];
-        for(int i = 0; i < globalWaypoints.Length; i++)
+        Vector3[] linePositions = new Vector3[localWaypoints.Length];
+        for (int i = 0; i < globalWaypoints.Length; i++)
         {
             globalWaypoints[i] = localWaypoints[i] + transform.position;
+            linePositions[i] = globalWaypoints[i] + new Vector3(0, 0, 1);
         }
         pastPassengerMovement = new List<PassengerMovement>();
+        WaypointLine.useWorldSpace = true;
+        WaypointLine.positionCount = 2;
+        WaypointLine.SetPositions(linePositions);
     }
 
     protected virtual void FixedUpdate()
@@ -62,7 +92,6 @@ public class PlatformController : RaycastController
                 passengerDictionary[passenger.transform].detection.Move(passenger.velocity,passenger.standingOnPlatform,passenger.leftCollision,passenger.rightCollision,passenger.belowCollision);
                 passengerDictionary[passenger.transform].TargetStoredMovement = GetStoredMovement();
                 passengerDictionary[passenger.transform].detection.MovedByPlatform = true;
-                Debug.Log(passengerDictionary[passenger.transform] + ": " + passengerDictionary[passenger.transform].detection.MovedByPlatform);
                 pastPassengerMovement.Add(passenger);
             }
         }
@@ -74,7 +103,6 @@ public class PlatformController : RaycastController
         {
             foreach (PassengerMovement passenger in pastPassengerMovement)
             {
-                Debug.Log(passengerDictionary[passenger.transform] + " before reset: " + passengerDictionary[passenger.transform].detection.MovedByPlatform);
                 passengerDictionary[passenger.transform].detection.MovedByPlatform = false;
             }
             pastPassengerMovement = new List<PassengerMovement>();
@@ -85,6 +113,7 @@ public class PlatformController : RaycastController
     {
         HashSet<Transform> movedPassengers = new HashSet<Transform>();
         passengerMovement = new List<PassengerMovement>();
+        RaycastHit2D[] results = new RaycastHit2D[2];
 
         float directionX = Mathf.Sign(velocity.x);
         float directionY = Mathf.Sign(velocity.y);
@@ -96,15 +125,23 @@ public class PlatformController : RaycastController
             for (int i = 0; i < verticalRayCount; i++) {
                 Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
                 rayOrigin += Vector2.right * (verticalRaySpacing * i);
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, passengerMask);
+                int n = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, passengerFilter, results, rayLength);
 
-                if(hit) {
-                    if (!movedPassengers.Contains(hit.transform)) {
-                        movedPassengers.Add(hit.transform);
-                        float pushX = (directionY == 1) ? velocity.x : 0;
-                        float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
+                Debug.DrawRay(rayOrigin, Vector2.up * rayLength * 3, Color.blue);
 
-                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY),directionY == 1,true,false,false,directionX == -1));
+                if (n > 0)
+                {
+                    for (int j = 0; j < n; j++) {
+                        RaycastHit2D hit = results[j];
+                        if (!movedPassengers.Contains(hit.transform))
+                        {
+                            movedPassengers.Add(hit.transform);
+                            Debug.Log(hit.transform);
+                            float pushX = (directionY == 1) ? velocity.x : 0;
+                            float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
+
+                            passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), directionY == 1, true, false, false, directionX == -1));
+                        }
                     }
                 }
             }
@@ -144,11 +181,9 @@ public class PlatformController : RaycastController
                 Vector2 rayOrigin = raycastOrigins.topLeft + Vector2.right * (verticalRaySpacing * i);
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, passengerMask);
 
-                Debug.DrawRay(rayOrigin, Vector2.up  * rayLength, Color.blue);
-
                 if (hit)
                 {
-                    if (!movedPassengers.Contains(hit.transform))
+                    if (!movedPassengers.Contains(hit.transform) && hit.transform.GetComponent<KinematicBody>().CanBeGrounded())
                     {
                         movedPassengers.Add(hit.transform);
                         float pushX = velocity.x;
@@ -176,7 +211,6 @@ public class PlatformController : RaycastController
                     if (!movedPassengers.Contains(hit.transform) && hit.transform.GetComponent<KinematicBody>().CanHugWalls())
                     {
                         movedPassengers.Add(hit.transform);
-                        Debug.Log("Moved");
                         float pushX = velocity.x;
                         float pushY = velocity.y;
 

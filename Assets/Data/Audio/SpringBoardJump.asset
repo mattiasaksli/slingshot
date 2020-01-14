@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
+  m_Name: SpringBoardJump
+  m_EditorClassIdentifier: 
+  VolumeMin: 1
+  VolumeMax: 1
+  PitchMin: 0.97
+  PitchMax: 1.03
+  Cooldown: 0.1
+  AudioClips:
+  - {fileID: 8300000, guid: 9f0d90e7af659ac45b25f458c89a2a34, type: 3}

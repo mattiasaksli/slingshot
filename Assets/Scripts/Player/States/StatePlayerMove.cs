@@ -18,12 +18,22 @@ public class StatePlayerMove : State
             player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.5f, 3.2f,0,-1);
             float walldist = 0.05f;
             Vector2 wallcheck = new Vector2(walldist, 0);
+            bool release = true;
             int wall = player.body.detection.Cast(wallcheck);
-            if (player.body.detection.collisions.right) { RightHug(); }
+            if (player.body.detection.collisions.right) {
+                RightHug();
+                release = false;
+            }
             wall = player.body.detection.Cast(-wallcheck);
-            if (player.body.detection.collisions.left) { LeftHug(); }
+            if (player.body.detection.collisions.left) {
+                LeftHug();
+                release = false;
+            }
             player.AudioJump?.Play();
-            player.body.ReleaseStoredEnergy();
+            if (release)
+            {
+                player.body.ReleaseStoredEnergy();
+            }
         }
 
         player.WalljumpHoldCounter = Mathf.Max(0,player.WalljumpHoldCounter - Time.deltaTime);

@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
         RecallOrb();
         IsOrbAvailable = true;
         DeathCooldown = Time.time + 0.1f;
-        Debug.Log("Respawned");
     }
 
 
@@ -109,11 +108,11 @@ public class PlayerController : MonoBehaviour
         }
         if (body.detection.InsideCollisions.Count > 0 && state != states[3] && Time.time > DeathCooldown)
         {
-            Debug.Log(body.detection.InsideCollisions.Count);
             foreach (Transform t in body.detection.InsideCollisions)
             {
                 if (t != null && t.GetComponent<OneWayPlatform>() == null)
                 {
+                    Debug.Log(t.GetComponent<PlatformController>());
                     Defeat();
                     break;
                 }
@@ -150,7 +149,11 @@ public class PlayerController : MonoBehaviour
     {
         state = states[1];
         body.detection.collisions.Reset();
-        body.Movement = SlingShotStartSpeed * new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;
+        var dir = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;
+        body.Movement = SlingShotStartSpeed * dir;
+        var st = ((StatePlayerSlingshot)states[1]);
+        st.initialDirection = dir;
+        st.stateStartTime = Time.time;
     }
 
     public void OrbBehaviour()
@@ -207,7 +210,6 @@ public class PlayerController : MonoBehaviour
     {
         if (state != states[3])
         {
-            Debug.Log("Defeated");
             state = states[3];
             DeathTime = Time.time + 0.7f;
             body.Movement.y = 10;

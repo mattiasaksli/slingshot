@@ -10,9 +10,11 @@ public class CollisionDetection : RaycastController
     public LayerMask suffocationMask;
 
     public CollisionInfo collisions;
+    public FreeRays freeRays;
     public List<Transform> InsideCollisions;
 
     public bool MovedByPlatform;
+    public Vector2 collisionNormal;
 
 
     public override void Start()
@@ -81,6 +83,7 @@ public class CollisionDetection : RaycastController
     public int Cast(Vector3 velocity)
     {
         Vector3 originalVelocity = new Vector3(velocity.x,velocity.y,velocity.z);
+        collisionNormal = Vector2.zero;
 
         UpdateRaycastOrigins();
         collisions.Reset();
@@ -101,6 +104,7 @@ public class CollisionDetection : RaycastController
     {
         float directionX = Mathf.Sign(velocity.x);
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+        int[] rayhits = new int[2];
 
         for (int i = 0; i < horizontalRayCount; i++)
         {
@@ -112,22 +116,28 @@ public class CollisionDetection : RaycastController
 
             if (hit)
             {
+                rayhits[directionX == -1 ? 0 : 1]++;
                 if (!hit.transform.GetComponent<OneWayPlatform>())
                 {
                     velocity.x = (hit.distance - skinWidth) * directionX;
                     rayLength = hit.distance;
+                    collisionNormal = hit.normal;
 
                     collisions.left = directionX == -1;
                     collisions.right = directionX == 1;
                 }
             }
         }
+        freeRays.left = rayhits[0] / horizontalRayCount;
+        freeRays.right = rayhits[1] / horizontalRayCount;
     }
 
     void VerticalCollisions(ref Vector3 velocity)
     {
         float directionY = Mathf.Sign(velocity.y);
         float rayLength = Mathf.Abs(velocity.y) + skinWidth;
+        int[] rayhits = new int[2];
+
         for (int i = 0; i < verticalRayCount; i++)
         {
             Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
@@ -138,16 +148,20 @@ public class CollisionDetection : RaycastController
 
             if (hit)
             {
+                rayhits[directionY == -1 ? 0 : 1]++;
                 if (!hit.transform.GetComponent<OneWayPlatform>() || directionY != 1)
                 {
                     velocity.y = (hit.distance - skinWidth) * directionY;
                     rayLength = hit.distance;
+                    collisionNormal = hit.normal;
 
                     collisions.below = directionY == -1;
                     collisions.above = directionY == 1;
                 }
             }
         }
+        freeRays.below = rayhits[0] / verticalRayCount;
+        freeRays.above = rayhits[1] / verticalRayCount;
     }
 
     public struct CollisionInfo
@@ -159,6 +173,18 @@ public class CollisionDetection : RaycastController
         {
             above = below = false;
             left = right = false;
+        }
+    }
+
+    public struct FreeRays
+    {
+        public float above, below;
+        public float left, right;
+
+        public void Reset()
+        {
+            above = below = 0;
+            left = right = 0;
         }
     }
 }
