@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e6f01edf580a94fa0923a1388462da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioJump: {fileID: 0}
+  AudioJump: {fileID: 11400000, guid: 80960aabb17208b4782c74d03f6f7e6b, type: 2}
   JumpPower: 20
 --- !u!50 &2792387675692198531
 Rigidbody2D:

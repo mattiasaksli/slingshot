@@ -14,12 +14,6 @@ public class SpringPad : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         KinematicBody body = collision.gameObject.GetComponent<KinematicBody>();
@@ -36,6 +30,7 @@ public class SpringPad : MonoBehaviour
             body.Movement = set;
             Debug.Log(body +  ": " + body.Movement);
             animator.SetTrigger("Jump");
+            AudioJump?.Play();
         }
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if(player)
