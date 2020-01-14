@@ -124,7 +124,7 @@ MonoBehaviour:
   horizontalRayCount: 8
   verticalRayCount: 8
   autoRay: 1
-  autoRaySpacing: 0.5
+  autoRaySpacing: 0.25
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   inwardRaySpacing: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   Movement: {x: 0, y: 0, z: 0}
   localWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 9, z: 0}
+  - {x: 0, y: 0, z: 0}
   globalWaypoints: []
   WaypointLine: {fileID: 0}
   MaxSpeed: 8

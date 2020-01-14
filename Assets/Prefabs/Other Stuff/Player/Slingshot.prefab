@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 5976969579933806209}
   - component: {fileID: 5928280460796649520}
   - component: {fileID: 1110169750061414498}
+  - component: {fileID: 5737283701973525447}
   m_Layer: 11
   m_Name: Slingshot
   m_TagString: Untagged
@@ -120,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalRayCount: 4
   verticalRayCount: 4
+  autoRay: 0
+  autoRaySpacing: 0.2
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   inwardRaySpacing: 0
@@ -132,6 +135,7 @@ MonoBehaviour:
     m_Bits: 0
   InsideCollisions: []
   MovedByPlatform: 0
+  collisionNormal: {x: 0, y: 0}
 --- !u!61 &5976969579933806209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,3 +199,24 @@ MonoBehaviour:
   storedMovementRestTimer: 0
   Acceleration: 0
   collider2d: {fileID: 0}
+--- !u!50 &5737283701973525447
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578387907975380876}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

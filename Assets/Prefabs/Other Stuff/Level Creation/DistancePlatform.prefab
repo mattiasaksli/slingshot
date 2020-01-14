@@ -218,7 +218,7 @@ MonoBehaviour:
   horizontalRayCount: 16
   verticalRayCount: 8
   autoRay: 1
-  autoRaySpacing: 0.5
+  autoRaySpacing: 0.25
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   inwardRaySpacing: 0

@@ -149,7 +149,11 @@ public class PlayerController : MonoBehaviour
     {
         state = states[1];
         body.detection.collisions.Reset();
-        body.Movement = SlingShotStartSpeed * new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;
+        var dir = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;
+        body.Movement = SlingShotStartSpeed * dir;
+        var st = ((StatePlayerSlingshot)states[1]);
+        st.initialDirection = dir;
+        st.stateStartTime = Time.time;
     }
 
     public void OrbBehaviour()
