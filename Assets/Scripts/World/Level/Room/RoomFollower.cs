@@ -27,7 +27,7 @@ public class RoomFollower : MonoBehaviour
         float lerpAmount = 0.2f;
         TargetZoom = Mathf.Max(1, TargetZoom);
         zoom = Mathf.Lerp(zoom, TargetZoom, lerpAmount);
-        camera.orthographicSize = 9 * 1/zoom;
+        camera.orthographicSize = 8.4375f * 1/zoom;
         UpdateCameraSize();
         room = GameObject.Find("RoomBounds");
         player = GameObject.Find("Player").transform;

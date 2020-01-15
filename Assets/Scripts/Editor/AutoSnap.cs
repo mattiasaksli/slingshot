@@ -11,8 +11,6 @@ public class AutoSnap : EditorWindow
 
     [MenuItem("Edit/Auto Snap %_l")]
 
-    void OnEnable() { EditorApplication.update += Update; }
-
     static void Init()
     {
         var window = (AutoSnap)EditorWindow.GetWindow(typeof(AutoSnap));
