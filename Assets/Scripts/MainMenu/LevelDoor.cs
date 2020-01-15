@@ -9,11 +9,12 @@ public class LevelDoor : MonoBehaviour
     private bool inputUnlocked = false;
     private SpriteRenderer keySprite;
     private SceneLoader sceneLoader;
+    private GameObject Player;
 
     void Start()
     {
-        GameObject PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        keySprite = PlayerObject.GetComponentsInChildren<SpriteRenderer>()[1];
+        Player = GameObject.FindGameObjectWithTag("Player");
+        keySprite = Player.GetComponentsInChildren<SpriteRenderer>()[1];
         sceneLoader = GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>();
         keySprite.enabled = false;
     }
@@ -23,13 +24,14 @@ public class LevelDoor : MonoBehaviour
     {
         if (inputUnlocked)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().IsInputLocked)
+            if (Input.GetKeyDown(KeyCode.E) && !Player.GetComponentInChildren<PlayerController>().IsInputLocked)
             {
                 sceneLoader.SceneName = LevelToLoad;
                 sceneLoader.LoadSceneAsync();
 
                 GameEventMessage.SendEvent("GoToLevel");
                 keySprite.enabled = false;
+                Player.GetComponentInChildren<PlayerController>().LockInput();
             }
         }
     }
@@ -51,6 +53,4 @@ public class LevelDoor : MonoBehaviour
             keySprite.enabled = false;
         }
     }
-
-
 }
