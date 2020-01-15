@@ -59,8 +59,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Doozy.Engine.Events.StringEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   GameEvent: UnlockInput
   ListenForAllGameEvents: 0
 --- !u!114 &868340797
@@ -90,8 +88,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Doozy.Engine.Events.StringEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   GameEvent: LockInput
   ListenForAllGameEvents: 0
 --- !u!1 &1031023326
@@ -139,6 +135,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -223,6 +220,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -357,18 +355,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalRayCount: 4
   verticalRayCount: 4
+  autoRay: 0
+  autoRaySpacing: 0.2
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   inwardRaySpacing: 0
   collider: {fileID: 5179772920493900193}
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 9216
   suffocationMask:
     serializedVersion: 2
     m_Bits: 1024
   InsideCollisions: []
   MovedByPlatform: 0
+  collisionNormal: {x: 0, y: 0}
 --- !u!61 &5179772920493900193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -432,7 +433,8 @@ MonoBehaviour:
   IsWallJumping: 0
   IsFacingRight: 1
   IsOrbAvailable: 1
-  isInputLocked: 1
+  IsInputLocked: 1
+  createOrb: 0
   orb: {fileID: 0}
   Sprite: {fileID: 0}
   AudioSlingShot: {fileID: 11400000, guid: f9e6378d5a232d7439df3dbe71dc3952, type: 2}

@@ -21,7 +21,7 @@ public class SpringPad : MonoBehaviour
         {
             Vector2 target = transform.position - body.transform.position;
             target.y = Mathf.Max(0, target.y);
-            body.Move(Mathf.Min(target.magnitude)*target.normalized+(Vector2)transform.up*1.5f);
+            //body.Move(Mathf.Min(target.magnitude)*target.normalized+(Vector2)transform.up*1.5f);
             Vector2 set = (Vector2)(JumpPower * transform.up);
             if (transform.up != Vector3.down)
             {
@@ -38,6 +38,10 @@ public class SpringPad : MonoBehaviour
             if(player.state == player.states[1])
             {
                 player.state = player.states[0];
+            }
+            if(!player.IsOrbAvailable && player.orb == null)
+            {
+                player.IsOrbAvailable = true;
             }
         }
     }
