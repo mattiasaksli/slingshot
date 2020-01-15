@@ -48,6 +48,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -140,8 +141,8 @@ MonoBehaviour:
   WaypointLine: {fileID: 0}
   MaxSpeed: 8
   Speed: 0
-  Acceleration: 1
-  Rest: 1
+  Acceleration: 6
+  Rest: 0.5
 --- !u!120 &6646212148833157262
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -156,6 +157,7 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
