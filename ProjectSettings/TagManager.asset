@@ -11,6 +11,8 @@ TagManager:
   - LevelEndView
   - Time
   - Death
+  - FadeView
+  - LevelProgression
   layers:
   - Default
   - TransparentFX
