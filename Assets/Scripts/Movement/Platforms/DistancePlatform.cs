@@ -32,7 +32,7 @@ public class DistancePlatform : PlatformController
         float targetPercent = DistanceBetweenOrbAndPlayer();
         float currentPercent = (transform.position - globalWaypoints[0]).magnitude / waypointDist.magnitude;
         float direction = targetPercent - currentPercent;
-        if(Mathf.Abs(direction) < 0.01f)
+        if(Mathf.Abs(direction) == 0)
         {
             Speed = 0;
         } else
