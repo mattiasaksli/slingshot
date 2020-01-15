@@ -11433,17 +11433,22 @@ PrefabInstance:
     - target: {fileID: 241170769780893688, guid: 0629bbfdc72458140b77eb0850d3f60d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68
+      value: 0.45454544
+      objectReference: {fileID: 0}
+    - target: {fileID: 241170769780893688, guid: 0629bbfdc72458140b77eb0850d3f60d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.3636363
       objectReference: {fileID: 0}
     - target: {fileID: 241170770066385234, guid: 0629bbfdc72458140b77eb0850d3f60d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0691
+      value: -0.045454543
       objectReference: {fileID: 0}
     - target: {fileID: 241170770066385234, guid: 0629bbfdc72458140b77eb0850d3f60d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1176
+      value: 0.13636363
       objectReference: {fileID: 0}
     - target: {fileID: 241170770066385234, guid: 0629bbfdc72458140b77eb0850d3f60d,
         type: 3}
@@ -11489,6 +11494,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 241170770862508897, guid: 0629bbfdc72458140b77eb0850d3f60d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9090909
+      objectReference: {fileID: 0}
+    - target: {fileID: 241170770862508897, guid: 0629bbfdc72458140b77eb0850d3f60d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.3636363
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0629bbfdc72458140b77eb0850d3f60d, type: 3}
@@ -20409,7 +20424,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -24387,7 +24402,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.5454559, y: 0.2727273}
+  m_AnchoredPosition: {x: 1.5454545, y: 0.27272725}
   m_SizeDelta: {x: 3920.51, y: 768}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2206464008995507372
@@ -25079,7 +25094,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -26886,7 +26901,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
