@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         RecallOrb();
         IsOrbAvailable = true;
         DeathCooldown = Time.time + 0.1f;
+        Physics2D.SyncTransforms();
     }
 
 
