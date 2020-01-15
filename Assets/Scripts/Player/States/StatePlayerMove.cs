@@ -66,7 +66,7 @@ public class StatePlayerMove : State
         {
             player.body.Acceleration = player.IsGrounded ? player.AccelerationGround : player.AccelerationAir;
         }
-        if(!player.IsGrounded && Mathf.Sign(player.body.TargetMovement.x) == Mathf.Sign(player.body.Movement.x) && Mathf.Abs(player.body.TargetMovement.x) < Mathf.Abs(player.body.Movement.x) || player.WalljumpHoldCounter > 0)
+        if(!player.IsGrounded && Mathf.Sign(player.body.TargetMovement.x) == Mathf.Sign(player.body.Movement.x) && Mathf.Abs(player.body.TargetMovement.x) < Mathf.Abs(player.body.Movement.x) || player.WalljumpHoldCounter > 0 || player.JumpPadTimestamp > Time.time)
         {
             player.body.Acceleration = player.AccelerationAir;
         }

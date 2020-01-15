@@ -23,8 +23,10 @@ public class PlayerController : MonoBehaviour
     public float WalljumpHoldCounter = 0;
     public float WalljumpMinHoldTime = 0.01f;
     public float WalljumpUnHugTime = 0.1f;
+    [HideInInspector]
+    public float JumpPadTimestamp;
 
-    [Space(10)]
+[Space(10)]
     [Header("Slingshot attributes")]
     public OrbBody OrbPrefab;
     public float ThrowPower = 20;
