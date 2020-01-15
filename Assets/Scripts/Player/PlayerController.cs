@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public float JumpPadTimestamp;
 
-[Space(10)]
+    [Space(10)]
     [Header("Slingshot attributes")]
     public OrbBody OrbPrefab;
     public float ThrowPower = 20;
@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     public AudioClipGroup AudioLand;
     public AudioClipGroup AudioJump;
     public AudioClipGroup AudioDefeat;
+    public AudioClipGroup AudioThrow;
 
     void Start()
     {
@@ -166,6 +167,7 @@ public class PlayerController : MonoBehaviour
             if (orb != null)
             {
                 RecallOrb();
+                AudioThrow?.Play();
             }
         }
 
@@ -173,7 +175,11 @@ public class PlayerController : MonoBehaviour
         {
             if (orb == null)
             {
-                if (IsOrbAvailable) { createOrb = true; }
+                if (IsOrbAvailable)
+                {
+                    createOrb = true;
+                    AudioThrow?.Play();
+                }
             }
             else
             {

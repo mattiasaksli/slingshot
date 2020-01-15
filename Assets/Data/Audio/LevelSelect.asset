@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
-  m_Name: Defeat
+  m_Name: LevelSelect
   m_EditorClassIdentifier: 
   VolumeMin: 1
   VolumeMax: 1
-  PitchMin: 1.04
-  PitchMax: 1.15
-  Cooldown: 0
+  PitchMin: 1
+  PitchMax: 1
+  Cooldown: 0.1
   AudioClips:
-  - {fileID: 8300000, guid: da33ad131e8c6ec4dbec2393a69cbfc9, type: 3}
+  - {fileID: 8300000, guid: 459d02879a9ba6948aef2cde31e27b25, type: 3}

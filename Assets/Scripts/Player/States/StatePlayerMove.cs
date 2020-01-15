@@ -10,7 +10,7 @@ public class StatePlayerMove : State
         PlayerController player = (PlayerController)controller;
         float input = Mathf.Round(Input.GetAxisRaw("Horizontal"));
         player.body.TargetMovement.x = input * player.MovementSpeed;
-        if (Input.GetKeyDown("space") && player.IsGrounded)
+        if ((Input.GetKeyDown("space") || Input.GetKeyDown("w")) && player.IsGrounded)
         {
             player.body.TargetMovement.y = player.JumpPower;
             player.body.Movement.y = player.JumpPower;
@@ -71,7 +71,7 @@ public class StatePlayerMove : State
             player.body.Acceleration = player.AccelerationAir;
         }
 
-        if (!Input.GetKey("space") && player.IsJumping)
+        if (!Input.GetKey("space") && !Input.GetKey("w") && player.IsJumping)
         {
             if (player.IsJumping)
             {
