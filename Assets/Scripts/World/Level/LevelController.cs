@@ -68,7 +68,6 @@ public class LevelController : MonoBehaviour
 
     public void LevelCompleted()
     {
-        roomFollower.TargetZoom = 2;
         player.disablePlayer();
         DeathText.text = "Deaths: " + Deaths;
         TimeText.text = "Time: " + TimeSpan.FromSeconds((int)CompletionTime).ToString(@"mm\:ss");

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class RoomFollower : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class RoomFollower : MonoBehaviour
 
     private Vector2 CameraSize;
     private Camera camera;
+    private PixelPerfectCamera pixelperfect;
 
     private void Start()
     {
         camera = gameObject.GetComponent<Camera>();
         TargetZoom = 1;
         zoom = 1;
+        pixelperfect = gameObject.GetComponent<PixelPerfectCamera>();
     }
 
     // Update is called once per frame

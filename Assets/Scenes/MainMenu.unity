@@ -131,12 +131,12 @@ PrefabInstance:
     - target: {fileID: 5321000934778758789, guid: df446d76d2cd45b48ab71bb9c4a80f27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5321000934778758789, guid: df446d76d2cd45b48ab71bb9c4a80f27,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5321000934778758789, guid: df446d76d2cd45b48ab71bb9c4a80f27,
         type: 3}
@@ -19611,7 +19611,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -23653,11 +23653,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2840479143077286418, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 17
-      objectReference: {fileID: 0}
     - target: {fileID: 5646484374827985344, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00,
         type: 3}
       propertyPath: m_Name
@@ -23726,11 +23721,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2840479143077286418, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5646484374827985344, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00,
         type: 3}
