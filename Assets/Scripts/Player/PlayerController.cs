@@ -206,7 +206,10 @@ public class PlayerController : MonoBehaviour
 
     public void disablePlayer()
     {
-        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        foreach (SpriteRenderer r in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            r.enabled = false;
+        }
         IsInputLocked = true;
     }
 
