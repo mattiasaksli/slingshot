@@ -8,7 +8,7 @@ public class OffsetScrolling : MonoBehaviour
 
     float scrollSpeed = 0.5f;
     Renderer rend;
-    public Vector2 scrolling;
+    private Vector2 scrolling;
     public Vector2 ScrollingSpeed;
     Camera camera;
 
@@ -20,9 +20,9 @@ public class OffsetScrolling : MonoBehaviour
 
     void FixedUpdate()
     {
-        /*scrolling = camera.transform.position;
+        scrolling = camera.transform.position;
         scrolling.x *= ScrollingSpeed.x;
-        scrolling.y *= ScrollingSpeed.y;*/
+        scrolling.y *= ScrollingSpeed.y;
         rend.material.SetVector("_Scrolling", scrolling);
     }
 }
