@@ -420,6 +420,7 @@ MonoBehaviour:
   WalljumpHoldCounter: 0
   WalljumpMinHoldTime: 0.1
   WalljumpUnHugTime: 0.1
+  JumpPadTimestamp: 0
   OrbPrefab: {fileID: 1110169750061414498, guid: 414912d6b12af6a418fec736c84d2bdf,
     type: 3}
   ThrowPower: 17
