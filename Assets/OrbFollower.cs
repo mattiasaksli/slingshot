@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class OrbFollower : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class OrbFollower : MonoBehaviour
 
     private PlayerController player;
     private SpriteRenderer sprite;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,16 +23,20 @@ public class OrbFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Orb.position = Vector3.Lerp(Orb.position, TargetPosition, currentLerpSpeed * Time.deltaTime);
-        if(player.orb)
+        if (Orb != null)
         {
-            TargetPosition = player.orb.transform.position;
-            currentLerpSpeed += 30.0f * Time.deltaTime;
-        } else
-        {
-            TargetPosition = player.transform.position + new Vector3((player.IsFacingRight ? -1 : 1),0,0);
-            currentLerpSpeed = LerpSpeed;
+            Orb.position = Vector3.Lerp(Orb.position, TargetPosition, currentLerpSpeed * Time.deltaTime);
+            if (player.orb)
+            {
+                TargetPosition = player.orb.transform.position;
+                currentLerpSpeed += 30.0f * Time.deltaTime;
+            }
+            else
+            {
+                TargetPosition = player.transform.position + new Vector3((player.IsFacingRight ? -1 : 1), 0, 0);
+                currentLerpSpeed = LerpSpeed;
+            }
+            sprite.enabled = player.IsOrbAvailable;
         }
-        sprite.enabled = player.IsOrbAvailable;
     }
 }

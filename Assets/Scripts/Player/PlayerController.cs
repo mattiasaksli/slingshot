@@ -210,6 +210,7 @@ public class PlayerController : MonoBehaviour
         {
             r.enabled = false;
         }
+        Destroy(GameObject.FindGameObjectWithTag("OrbFollower"));
         IsInputLocked = true;
     }
 
