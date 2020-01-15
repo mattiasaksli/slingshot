@@ -6,6 +6,7 @@ public class Tutorial : MonoBehaviour
 {
     Transform player;
     SpriteRenderer renderer;
+    public float Range = 8;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class Tutorial : MonoBehaviour
     {
         Color col = renderer.color;
         float target = 0;
-        if ((player.position - transform.position).magnitude < 8)
+        if ((player.position - transform.position).magnitude < Range)
         {
             target = 1;
         }

@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour
             if (orb != null)
             {
                 RecallOrb();
+                IsOrbAvailable = true;
                 AudioThrow?.Play();
             }
         }

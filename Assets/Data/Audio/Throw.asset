@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
   m_Name: Throw
   m_EditorClassIdentifier: 
-  VolumeMin: 0.7
-  VolumeMax: 0.7
-  PitchMin: 0.971
-  PitchMax: 1.025
+  VolumeMin: 0.158
+  VolumeMax: 0.186
+  PitchMin: 0.835
+  PitchMax: 0.889
   Cooldown: 0.1
   AudioClips:
   - {fileID: 8300000, guid: 7bf46fa6689842e45b84b846ef9cc9d7, type: 3}
