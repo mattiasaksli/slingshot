@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4636345264402671081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321424806147217494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea9f92203d31e240bc110ff7b26d05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  Event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8933006725998270534}
+        m_MethodName: Hide
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GameEvent: HideLevelFadeView
+  ListenForAllGameEvents: 0
 --- !u!1 &548332238435712396
 GameObject:
   m_ObjectHideFlags: 0
@@ -20639,6 +20668,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f0c1be91f3d5914da58782c4ddafed6, type: 3}
+--- !u!224 &7969620910459927271 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7985269199146962190, guid: 9f0c1be91f3d5914da58782c4ddafed6,
+    type: 3}
+  m_PrefabInstance: {fileID: 20450886773438441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7969620910459927264 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7985269199146962185, guid: 9f0c1be91f3d5914da58782c4ddafed6,
@@ -20651,12 +20686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7969620910459927271 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7985269199146962190, guid: 9f0c1be91f3d5914da58782c4ddafed6,
-    type: 3}
-  m_PrefabInstance: {fileID: 20450886773438441}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &321424807006997610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20729,6 +20758,12 @@ PrefabInstance:
 --- !u!4 &4870553042075553225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5179772920493900195, guid: 6d359111f1b8d6942a672d2dc478b653,
+    type: 3}
+  m_PrefabInstance: {fileID: 321424807006997610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &321424806147217494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 868340796, guid: 6d359111f1b8d6942a672d2dc478b653,
     type: 3}
   m_PrefabInstance: {fileID: 321424807006997610}
   m_PrefabAsset: {fileID: 0}
@@ -20811,6 +20846,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df446d76d2cd45b48ab71bb9c4a80f27, type: 3}
+--- !u!20 &8060438824576330212 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5321000934778758790, guid: df446d76d2cd45b48ab71bb9c4a80f27,
+    type: 3}
+  m_PrefabInstance: {fileID: 2741443467961028450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8060438824576330209 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5321000934778758787, guid: df446d76d2cd45b48ab71bb9c4a80f27,
@@ -20823,12 +20864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccd3a0e65cdec144972dc32dde27ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &8060438824576330212 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5321000934778758790, guid: df446d76d2cd45b48ab71bb9c4a80f27,
-    type: 3}
-  m_PrefabInstance: {fileID: 2741443467961028450}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8060438824576330215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5321000934778758789, guid: df446d76d2cd45b48ab71bb9c4a80f27,

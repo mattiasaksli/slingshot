@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class WinTrigger : MonoBehaviour
 {
+    public AudioClipGroup AudioWin;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
+            AudioWin?.Play();
+
             SceneLoader sceneLoader = GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>();
 
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

@@ -1,92 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7687213405093847336
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea82279f292f4f6ebe47212017fa5f89, type: 3}
-  m_Name: LoadSceneNode
-  m_EditorClassIdentifier: 
-  ErrorNodeNameIsEmpty: 0
-  ErrorDuplicateNameFoundInGraph: 1
-  m_inputSockets:
-  - m_connectionMode: 1
-    m_connections:
-    - m_inputConnectionPoint: {x: -2, y: 4}
-      m_outputConnectionPoint: {x: 202, y: 4}
-      m_id: 609d7c07-170a-4ceb-8e93-5ca66d1f99e2
-      m_inputNodeId: 6ddfdccc-81ee-4307-9968-ffce7beec0af
-      m_inputSocketId: 23ed0632-d03b-4d4a-b30c-2c6220c2c00b
-      m_outputNodeId: 59dfd3e1-5d22-4e8d-a3c4-1011e1676a63
-      m_outputSocketId: 9914c0f6-392b-4d6e-9e22-9a6b4818b194
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 0
-    m_canBeDeleted: 0
-    m_canBeReordered: 0
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 38
-    m_id: 23ed0632-d03b-4d4a-b30c-2c6220c2c00b
-    m_nodeId: 6ddfdccc-81ee-4307-9968-ffce7beec0af
-    m_socketName: InputSocket_0
-    m_value: '{}'
-    m_valueTypeQualifiedName: Doozy.Engine.Nody.Connections.PassthroughConnection,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_outputSockets:
-  - m_connectionMode: 0
-    m_connections: []
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 1
-    m_canBeDeleted: 0
-    m_canBeReordered: 0
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 62
-    m_id: dbf4f06e-f2bb-4e86-8b2d-31eede5e71f5
-    m_nodeId: 6ddfdccc-81ee-4307-9968-ffce7beec0af
-    m_socketName: OutputSocket_0
-    m_value: '{}'
-    m_valueTypeQualifiedName: Doozy.Engine.Nody.Connections.PassthroughConnection,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_nodeType: 4
-  m_allowDuplicateNodeName: 0
-  m_allowEmptyNodeName: 0
-  m_canBeDeleted: 1
-  m_debugMode: 0
-  m_useFixedUpdate: 0
-  m_useLateUpdate: 0
-  m_useUpdate: 0
-  m_height: 184
-  m_width: 216
-  m_x: 1320
-  m_y: -240
-  m_minimumInputSocketsCount: 1
-  m_minimumOutputSocketsCount: 1
-  m_graphId: d3537508-6b61-487f-b54d-5ce4184f655a
-  m_id: 6ddfdccc-81ee-4307-9968-ffce7beec0af
-  m_name: Load Scene
-  m_notes: 
-  ErrorNoSceneName: 0
-  ErrorBadBuildIndex: 0
-  GetSceneBy: 1
-  LoadSceneMode: 0
-  AllowSceneActivation: 1
-  SceneActivationDelay: 1.001
-  SceneBuildIndex: 0
-  SceneName: MainMenu
 --- !u!114 &-7525810543315983931
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,7 +76,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 152
+  m_height: 156
   m_width: 216
   m_x: 1320
   m_y: -240
@@ -251,7 +164,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 168
+  m_height: 174
   m_width: 216
   m_x: 1056
   m_y: -240
@@ -342,7 +255,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 168
+  m_height: 174
   m_width: 216
   m_x: 168
   m_y: 204
@@ -433,7 +346,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 168
+  m_height: 174
   m_width: 216
   m_x: 840
   m_y: 360
@@ -746,7 +659,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 168
+  m_height: 174
   m_width: 216
   m_x: 168
   m_y: -228
@@ -933,7 +846,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: d3537508-6b61-487f-b54d-5ce4184f655a
-  m_lastModified: 132234289858101181
+  m_lastModified: 132235830742363134
 --- !u!114 &631012851701386170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1010,7 +923,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 168
+  m_height: 174
   m_width: 216
   m_x: 1092
   m_y: 360
@@ -1111,7 +1024,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 152
+  m_height: 156
   m_width: 216
   m_x: 1560
   m_y: 0
@@ -1220,7 +1133,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 152
+  m_height: 156
   m_width: 216
   m_x: 1320
   m_y: 360

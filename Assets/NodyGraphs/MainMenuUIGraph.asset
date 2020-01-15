@@ -188,7 +188,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 152
+  m_height: 156
   m_width: 216
   m_x: 780
   m_y: 120
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 152
+  m_height: 156
   m_width: 216
   m_x: 144
   m_y: -336
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 04b803cb-7eda-40cb-9b1c-17c84a35570b
-  m_lastModified: 132234195865674648
+  m_lastModified: 132235830672267877
 --- !u!114 &1199917243277278288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_notes: 
   m_onEnterShowViews:
   - Category: Main Menu
-    InstantAction: 1
+    InstantAction: 0
     Name: Main Menu
   m_onEnterHideViews: []
   m_onExitShowViews: []
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 152
+  m_height: 156
   m_width: 216
   m_x: 156
   m_y: 72
