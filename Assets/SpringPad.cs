@@ -27,7 +27,11 @@ public class SpringPad : MonoBehaviour
                 Vector2 target = transform.position - body.transform.position;
                 target.y = Mathf.Max(0, target.y);
                 body.Move(target);
-                Debug.Log("Horizontal");
+            }
+            if(transform.up.y == 1)
+            {
+                Vector2 target = new Vector2(0, transform.position.y - body.transform.position.y);
+                body.Move(target);
             }
             Vector2 set = (Vector2)(JumpPower * transform.up);
             if (transform.up != Vector3.down && player)
