@@ -18,7 +18,7 @@ public class StatePlayerWallHug : State
             player.WalljumpHoldCounter = 0;
         }
 
-        if (Input.GetKeyDown("space") && !player.IsGrounded)
+        if ((Input.GetKeyDown("space") || Input.GetKeyDown("w")) && !player.IsGrounded)
         {
             player.body.TargetMovement.y = player.WalljumpVerticalPower;
             player.body.Movement.y = player.WalljumpVerticalPower;
@@ -32,7 +32,7 @@ public class StatePlayerWallHug : State
             player.body.ReleaseStoredEnergy();
             return;
         }
-        if (!Input.GetKey("space") && player.IsJumping)
+        if (!Input.GetKey("space") && !Input.GetKey("w") && player.IsJumping)
         {
             if (player.IsJumping)
             {
