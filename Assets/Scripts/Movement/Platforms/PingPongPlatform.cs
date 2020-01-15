@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PingPongPlatform : PlatformController
 {
@@ -23,7 +22,7 @@ public class PingPongPlatform : PlatformController
         fromWaypointIndex = 0;
         percentBetweenWaypoints = 0;
         Speed = 0;
-        if(!rightway)
+        if (!rightway)
         {
             System.Array.Reverse(globalWaypoints);
         }
@@ -70,6 +69,6 @@ public class PingPongPlatform : PlatformController
 
     public override Vector3 GetStoredMovement()
     {
-        return Movement.normalized*Speed;
+        return Movement.normalized * Speed;
     }
 }
