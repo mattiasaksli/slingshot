@@ -1,43 +1,28 @@
 fileFormatVersion: 2
-guid: d4e50c49b43c4484aaec0ba7f265c8da
+guid: 55a2a8f1101573f4d9fd783b28a6bbf1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9072859220229341931
-    second: smallerorb_0
+      213: 6780163795253843707
+    second: Orb_0
   - first:
-      213: -3040524363928799604
-    second: smallerorb_1
+      213: -4486065727169466305
+    second: Orb_1
   - first:
-      213: 4653999375234074
-    second: smallerorb_2
+      213: 6521724798416525601
+    second: Orb_2
   - first:
-      213: 2079783487628968115
-    second: smallerorb_3
+      213: 5508258879551068211
+    second: Orb_3
   - first:
-      213: 8577297187134035589
-    second: smallerorb_4
+      213: 5560692450764658396
+    second: Orb_4
   - first:
-      213: 1964009453966151456
-    second: smallerorb_5
+      213: 8379195954435202362
+    second: Orb_5
   - first:
-      213: 1538865019366077555
-    second: smallerorb_6
-  - first:
-      213: -6733845012316385192
-    second: smallerorb_7
-  - first:
-      213: -6149447513078089617
-    second: smallerorb_8
-  - first:
-      213: 1000553505175032968
-    second: smallerorb_9
-  - first:
-      213: 8051521017459324050
-    second: smallerorb_10
-  - first:
-      213: 2560673373946787922
-    second: smallerorb_11
+      213: 7302810906892890752
+    second: Orb_6
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -81,9 +66,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 36
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -99,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: smallerorb_0
+      name: Orb_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5893f156f3391474a8162b79b651f6da
-      internalID: 9072859220229341931
+      spriteID: bf6d1178c0bf71e50800000000000000
+      internalID: 6780163795253843707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallerorb_1
+      name: Orb_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 10
         y: 0
-        width: 32
-        height: 32
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cb5fa62cb704ee439d312d7f6c1588e
-      internalID: -3040524363928799604
+      spriteID: f3072054dfa4eb1c0800000000000000
+      internalID: -4486065727169466305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallerorb_2
+      name: Orb_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 20
         y: 0
-        width: 32
-        height: 32
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74f89abcb3469914682315523c1c146d
-      internalID: 4653999375234074
+      spriteID: 129197c8622d18a50800000000000000
+      internalID: 6521724798416525601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallerorb_3
+      name: Orb_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 30
         y: 0
-        width: 32
-        height: 32
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e073a969fefc184587eb373f5e8425f
-      internalID: 2079783487628968115
+      spriteID: 33858865444417c40800000000000000
+      internalID: 5508258879551068211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallerorb_4
+      name: Orb_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 40
         y: 0
-        width: 32
-        height: 32
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0db9ebfe62ccd9d44b3dcf3e4ec17400
-      internalID: 8577297187134035589
+      spriteID: cd61609725c8b2d40800000000000000
+      internalID: 5560692450764658396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallerorb_5
+      name: Orb_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 50
         y: 0
-        width: 32
-        height: 32
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,20 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 250532e57d929a945b886a8f76624789
-      internalID: 1964009453966151456
+      spriteID: a3d108f5352e84470800000000000000
+      internalID: 8379195954435202362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallerorb_6
+      name: Orb_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 60
         y: 0
-        width: 32
-        height: 32
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,113 +247,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22ed2ba91353ae94bb44b9b645b93b73
-      internalID: 1538865019366077555
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallerorb_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b984b379737ed164f9073db3a1da4b2e
-      internalID: -6733845012316385192
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallerorb_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb87e5b94b0406d45b9111b8a17e9135
-      internalID: -6149447513078089617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallerorb_9
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f6f88674160a6040a9bb638b212d683
-      internalID: 1000553505175032968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallerorb_10
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 217671a242910074da2f529a5bd7bfb7
-      internalID: 8051521017459324050
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallerorb_11
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3494b8657256fca4b921fde581bfe7cc
-      internalID: 2560673373946787922
+      spriteID: 082f23fe3dbc85560800000000000000
+      internalID: 7302810906892890752
       vertices: []
       indices: 
       edges: []
