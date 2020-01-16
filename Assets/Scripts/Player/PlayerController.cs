@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour
     public AudioClipGroup AudioDefeat;
     public AudioClipGroup AudioThrow;
 
+    private Animator animator;
+
     void Start()
     {
         states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead() };
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
         body = gameObject.GetComponent<PlayerBody>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
         DeathCooldown = Time.time;
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void Respawn()
@@ -89,6 +92,20 @@ public class PlayerController : MonoBehaviour
         Physics2D.SyncTransforms();
     }
 
+    public void Animations()
+    {
+        Vector2 absMovement = new Vector2(Mathf.Abs(body.Movement.x), Mathf.Abs(body.Movement.y));
+        var isMoving = absMovement[0] > 0.1f;
+        animator.SetBool("IsGrounded", IsGrounded);
+        animator.SetBool("IsFalling", body.Movement.y < 0);
+        animator.SetBool("IsMoving", isMoving);
+        animator.SetBool("IsWallHugging", state == states[2]);
+        animator.SetBool("IsFlinging", absMovement[0] > 15 && absMovement[0] > absMovement[1] * 2);
+        if((Mathf.Sign(body.Movement.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal")) && Mathf.Sign(Input.GetAxisRaw("Horizontal")) != 0)) {
+            Debug.Log(Mathf.Sign(body.Movement.x) + ", "+ Mathf.Sign(body.TargetMovement.x) + ", " + Mathf.Sign(body.TargetMovement.x) + ", " + Input.GetAxisRaw("Horizontal"));
+        }
+        animator.SetBool("IsTurning", (Mathf.Sign(body.Movement.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal")) && Input.GetAxisRaw("Horizontal") != 0));
+    }
 
     void Update()
     {
@@ -98,6 +115,7 @@ public class PlayerController : MonoBehaviour
         }
         if (!IsFacingRight) Sprite.flipX = true;
         else Sprite.flipX = false;
+        Animations();
     }
 
     private void FixedUpdate()

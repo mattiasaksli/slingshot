@@ -18,6 +18,7 @@ public class StatePlayerSlingshot : State
     public void FixedUpdate(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
+        player.IsGrounded = false;
         Vector2 lastNormal = player.body.detection.collisionNormal;
         var detection = player.body.detection;
         Vector2 towardsorb = player.orb.transform.position - player.transform.position;

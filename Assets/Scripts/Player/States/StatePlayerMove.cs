@@ -8,7 +8,7 @@ public class StatePlayerMove : State
     public void Update(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
-        float input = Mathf.Round(Input.GetAxisRaw("Horizontal"));
+        float input = Input.GetAxisRaw("Horizontal");
         player.body.TargetMovement.x = input * player.MovementSpeed;
         if ((Input.GetKeyDown("space") || Input.GetKeyDown("w")) && player.IsGrounded)
         {
