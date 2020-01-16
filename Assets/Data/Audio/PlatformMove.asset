@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
   m_Name: PlatformMove
   m_EditorClassIdentifier: 
-  VolumeMin: 1
-  VolumeMax: 1
+  VolumeMin: 0.648
+  VolumeMax: 0.694
   PitchMin: 1
   PitchMax: 1
   Cooldown: 0.1
   AudioClips:
-  - {fileID: 8300000, guid: 7cd93d2f49211fc4fa63428474f0a529, type: 3}
+  - {fileID: 8300000, guid: f0a7709e45dc97a45ac463382cb413a8, type: 3}

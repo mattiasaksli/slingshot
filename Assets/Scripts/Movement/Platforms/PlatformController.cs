@@ -26,6 +26,8 @@ public class PlatformController : RaycastController
     public AudioClipGroup AudioMove;
     public AudioClipGroup AudioStop;
     private AudioSource audioSource;
+    public float Volume = 1;
+    public float StopVolume = 1;
 
     private void Awake()
     {
@@ -78,10 +80,10 @@ public class PlatformController : RaycastController
     {
         if (Movement.magnitude != 0 && !audioSource.isPlaying)
         {
-            audioSource.volume = 5;
             if (!audioSource.isPlaying)
             {
                 audioSource.loop = true;
+                audioSource.volume = 0.5f * Volume;
                 audioSource.clip = AudioMove.AudioClips[Random.Range(0, AudioMove.AudioClips.Count)];
                 audioSource.Play();
             }
@@ -89,7 +91,7 @@ public class PlatformController : RaycastController
         if (Movement.magnitude == 0 && pastMovement.magnitude != 0)
         {
             audioSource.loop = false;
-            audioSource.volume = 0.5f * pastMovement.magnitude;
+            audioSource.volume = 0.5f * pastMovement.magnitude * 5 * Volume * StopVolume;
             audioSource.clip = AudioStop.AudioClips[Random.Range(0, AudioStop.AudioClips.Count)];
             audioSource.Play();
         }
