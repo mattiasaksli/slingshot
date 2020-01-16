@@ -46,6 +46,7 @@ public class StatePlayerSlingshot : State
                     p.localRotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, player.body.Movement));
                     p.transform.position = player.transform.position;
                 }
+                GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = false;
                 player.RecallOrb();
                 player.AudioSlingShot?.Play();
             }
@@ -55,6 +56,7 @@ public class StatePlayerSlingshot : State
             player.state = player.states[0];
             player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
             player.RecallOrb();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = false;
             player.AudioSlingShot?.Play();
         }
     }
