@@ -42,6 +42,12 @@ public class StatePlayerSlingshot : State
             {
                 player.state = player.states[0];
                 player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
+                if (towardsorb.magnitude <= 0.1f)
+                {
+                    Transform p = GameObject.Instantiate<ParticleSystem>(player.SlingshotParticle).transform;
+                    p.localRotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, player.body.Movement));
+                    p.transform.position = player.transform.position;
+                }
                 player.RecallOrb();
                 player.AudioSlingShot?.Play();
             }

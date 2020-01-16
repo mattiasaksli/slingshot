@@ -66,7 +66,10 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
     public DefeatFade fade;
+    [Space(10)]
+    [Header("Player particle effects")]
     public ParticleSystem DefeatParticle;
+    public ParticleSystem SlingshotParticle;
 
     private void Awake()
     {
