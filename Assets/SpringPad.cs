@@ -41,7 +41,6 @@ public class SpringPad : MonoBehaviour
             if(orb && transform.up.y != 1)
             {
                 set.x *= 1.2f;
-                Debug.Log("Orb");
             }
             body.Movement = set;
             animator.SetTrigger("Jump");
