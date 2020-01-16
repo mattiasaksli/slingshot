@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     public AudioClipGroup AudioThrow;
 
     private Animator animator;
+    public DefeatFade fade;
 
     void Start()
     {

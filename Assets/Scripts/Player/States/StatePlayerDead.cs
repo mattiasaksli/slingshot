@@ -10,8 +10,10 @@ public class StatePlayerDead : State
         PlayerController player = (PlayerController)controller;
         if (Time.time > player.DeathTime && player.Sprite.enabled)
         {
-            player.Sprite.enabled = false;
-            LevelEvents.RespawnPlayer();
+            player.fade.animation.clip = player.fade.animation.GetClip("FadeOut");
+            player.fade.animation.Play();
+            //player.Sprite.enabled = false;
+            //LevelEvents.RespawnPlayer();
         } 
     }
     public void FixedUpdate(MonoBehaviour controller)
