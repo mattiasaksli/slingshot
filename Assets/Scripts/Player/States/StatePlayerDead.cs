@@ -12,7 +12,6 @@ public class StatePlayerDead : State
         {
             player.fade.animation.clip = player.fade.animation.GetClip("FadeOut");
             player.fade.animation.Play();
-            Debug.Log("Animation");
         }
 
         if(Time.time > player.DeathTime-1.0f && player.Sprite.color != Color.clear)

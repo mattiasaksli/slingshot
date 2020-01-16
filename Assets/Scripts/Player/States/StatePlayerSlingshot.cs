@@ -36,7 +36,6 @@ public class StatePlayerSlingshot : State
             disconnectTimestamp = Time.time + Mathf.Max(0.05f,s*3);
         }
         var lowD = LowestDot(player, detection, towardsorb);
-        Debug.Log(towardsorb.magnitude);
         if (towardsorb.magnitude <= 0.1f || (lowD < 0.2 && Time.time > disconnectTimestamp) || lowD < -0.9f)
         {
             player.state = player.states[0];

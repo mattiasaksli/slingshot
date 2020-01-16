@@ -170,7 +170,6 @@ public class PlatformController : RaycastController
                         if (!movedPassengers.Contains(hit.transform))
                         {
                             movedPassengers.Add(hit.transform);
-                            Debug.Log(hit.transform);
                             float pushX = (directionY == 1) ? velocity.x : 0;
                             float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
 

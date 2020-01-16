@@ -9,6 +9,5 @@ public class RunningSound : MonoBehaviour
     public void PlayRunningSound()
     {
         AudioStep?.Play();
-        Debug.Log("Play");
     }
 }
