@@ -12,6 +12,7 @@ public class PlatformController : RaycastController
     Dictionary<Transform, KinematicBody> passengerDictionary = new Dictionary<Transform, KinematicBody>();
 
     public Vector3 Movement;
+    private Vector3 pastMovement;
 
     public Vector3[] localWaypoints = new Vector3[2];
     [HideInInspector]
@@ -21,6 +22,10 @@ public class PlatformController : RaycastController
     private Vector3 startPos;
 
     private ContactFilter2D passengerFilter;
+
+    public AudioClipGroup AudioMove;
+    public AudioClipGroup AudioStop;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -41,6 +46,7 @@ public class PlatformController : RaycastController
     public override void Start()
     {
         base.Start();
+        audioSource = GetComponent<AudioSource>();
         passengerFilter.layerMask = passengerMask;
         passengerFilter.useLayerMask = true;
         WaypointLine = GetComponent<LineRenderer>();
@@ -56,14 +62,40 @@ public class PlatformController : RaycastController
         WaypointLine.useWorldSpace = true;
         WaypointLine.positionCount = 2;
         WaypointLine.SetPositions(linePositions);
+        /*audioSource.clip = AudioMove.AudioClips[Random.Range(0, AudioMove.AudioClips.Count)];
+        audioSource.volume = AudioMove.VolumeMin * Movement.magnitude;
+        audioSource.pitch = AudioMove.PitchMin * Movement.magnitude;*/
     }
 
     protected virtual void FixedUpdate()
     {
         UpdateRaycastOrigins();
         ResetMovedByPlatform();
+        pastMovement = Movement;
     }
 
+    private void Update()
+    {
+        if (Movement.magnitude != 0 && !audioSource.isPlaying)
+        {
+            audioSource.volume = 5;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.loop = true;
+                audioSource.clip = AudioMove.AudioClips[Random.Range(0, AudioMove.AudioClips.Count)];
+                audioSource.Play();
+            }
+        }
+        if (Movement.magnitude == 0 && pastMovement.magnitude != 0)
+        {
+            audioSource.loop = false;
+            audioSource.volume = 0.5f * pastMovement.magnitude;
+            audioSource.clip = AudioStop.AudioClips[Random.Range(0, AudioStop.AudioClips.Count)];
+            audioSource.Play();
+        }
+        Vector2 inscreen = Camera.main.WorldToViewportPoint(transform.position);
+        audioSource.mute = !(inscreen.x >= 0 && inscreen.x <= 1 && inscreen.y >= 0 && inscreen.y <= 1);
+    }
     public void Move(Vector3 velocity)
     {
         CalculatePassengerMovement(velocity);

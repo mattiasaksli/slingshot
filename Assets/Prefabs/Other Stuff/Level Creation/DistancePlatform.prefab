@@ -235,6 +235,8 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   globalWaypoints: []
   WaypointLine: {fileID: 0}
+  AudioMove: {fileID: 11400000, guid: 02de9a084d559bd46813bd6021d59649, type: 2}
+  AudioStop: {fileID: 11400000, guid: 6fe2a8a7e52f3bc46981df1b54ad2477, type: 2}
   MaxSpeed: 14
   Speed: 0
   Acceleration: 11
@@ -252,7 +254,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2356516132646034312, guid: 0a786b2de0b324b48964c2e4ffde5fa9,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: e4f579583c13af248be6ab14e3ba3b5c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -261,10 +263,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 20
-  MaxDistance: 20.2
+  MinDistance: 29.70297
+  MaxDistance: 30
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -324,7 +326,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
