@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -20572,7 +20572,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -22136,15 +22136,6 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 2147483650
-  - first: {x: -3, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 9
-      m_TileMatrixIndex: 1
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 2147483650
   - first: {x: 50, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -23400,8 +23391,8 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 311
     m_Data: {fileID: 11400000, guid: 8404635061ca91843a674825315549b5, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: c09d2dfe0f335a54385faa1af20c955e, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -23421,9 +23412,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: -3424164501861073015, guid: d735c27d638f1d74c86553ad7e1dd45d,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 8912562414019452659, guid: b3deff9e616d93a4c86af74c9bf424b2,
       type: 3}
@@ -23487,7 +23477,7 @@ Tilemap:
       e31: 0
       e32: 8.14e-43
       e33: 8.14e-43
-  - m_RefCount: 312
+  - m_RefCount: 311
     m_Data:
       e00: 1
       e01: 0
@@ -23506,7 +23496,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 312
+  - m_RefCount: 311
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -23866,6 +23856,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomBoundsManager (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6439672672037052098, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.43333337
+      objectReference: {fileID: 0}
+    - target: {fileID: 6439672672037052098, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14814813
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00, type: 3}
 --- !u!1001 &1939168181
@@ -23934,6 +23934,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoomBoundsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6439672672037052098, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.116666675
+      objectReference: {fileID: 0}
+    - target: {fileID: 6439672672037052098, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14814813
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f03ac24e1fd6049a9c6ecaf5a39d00, type: 3}

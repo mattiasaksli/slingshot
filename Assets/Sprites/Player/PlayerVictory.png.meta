@@ -1,28 +1,37 @@
 fileFormatVersion: 2
-guid: 7af0f100ea28fb749bbd0d060094117f
+guid: 00416cd24d962be4e8f35ff6ca04bb5e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6562574191426043450
-    second: characterchilling_0
+      213: 3218012795921759313
+    second: PlayerVictory_0
   - first:
-      213: -6097068397996871370
-    second: characterchilling_1
+      213: -2399153146923491439
+    second: PlayerVictory_1
   - first:
-      213: 4230548451080005024
-    second: characterchilling_2
+      213: -6420821482381203050
+    second: PlayerVictory_2
   - first:
-      213: -5791187035650330613
-    second: characterchilling_3
+      213: -8256013201144955189
+    second: PlayerVictory_3
   - first:
-      213: -8588783154620867592
-    second: characterchilling_4
+      213: 2661583752489754382
+    second: PlayerVictory_4
   - first:
-      213: 6281162510006118588
-    second: characterchilling_5
+      213: -8004323199463995203
+    second: PlayerVictory_5
   - first:
-      213: -935966659732237872
-    second: characterchilling_6
+      213: -3990712209174195565
+    second: PlayerVictory_6
+  - first:
+      213: 8873977938479676392
+    second: PlayerVictory_7
+  - first:
+      213: -5371507698304449048
+    second: PlayerVictory_8
+  - first:
+      213: -8363020214710389662
+    second: PlayerVictory_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -66,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 24
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,7 +105,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -107,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: characterchilling_0
+      name: PlayerVictory_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56c9d3a627947a749bb52a13aa77b002
-      internalID: -6562574191426043450
+      spriteID: 15cf39f869da8ac20800000000000000
+      internalID: 3218012795921759313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characterchilling_1
+      name: PlayerVictory_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 24
         y: 0
-        width: 32
-        height: 32
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fdb9aed019d5e2439ead22e5d4f7f16
-      internalID: -6097068397996871370
+      spriteID: 19f5dd39cee74bed0800000000000000
+      internalID: -2399153146923491439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characterchilling_2
+      name: PlayerVictory_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 0
-        width: 32
-        height: 32
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +172,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ca9b3dc4838ae049bd2cea3f414a627
-      internalID: 4230548451080005024
+      spriteID: 699a87871e8a4e6a0800000000000000
+      internalID: -6420821482381203050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characterchilling_3
+      name: PlayerVictory_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bceb1dc5cbfbc6d80800000000000000
+      internalID: -8256013201144955189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerVictory_4
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb8880f66776ad643a3487343c7372d7
-      internalID: -5791187035650330613
+      spriteID: e0f5a1b3258dfe420800000000000000
+      internalID: 2661583752489754382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characterchilling_4
+      name: PlayerVictory_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 120
         y: 0
-        width: 32
-        height: 32
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +235,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41b1d020d4ea63f4cace49ca80b69156
-      internalID: -8588783154620867592
+      spriteID: db8c784757eeae090800000000000000
+      internalID: -8004323199463995203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characterchilling_5
+      name: PlayerVictory_6
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 0
-        width: 32
-        height: 32
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,29 +256,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f621d8d2b46f7847bf97ce2deb2f928
-      internalID: 6281162510006118588
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characterchilling_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 11d92767d70588a48be0150609175d25
-      internalID: -935966659732237872
+      spriteID: 3929b53b3642e98c0800000000000000
+      internalID: -3990712209174195565
       vertices: []
       indices: 
       edges: []

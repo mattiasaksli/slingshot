@@ -68,7 +68,7 @@ public class LevelController : MonoBehaviour
 
     public void LevelCompleted()
     {
-        player.disablePlayer();
+        player.state = player.states[4];
         DeathText.text = "Deaths: " + Deaths;
         TimeText.text = "Time: " + TimeSpan.FromSeconds((int)CompletionTime).ToString(@"mm\:ss");
     }

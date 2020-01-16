@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead() };
+        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead(), new StatePlayerVictory() };
         state = states[0];
         body = gameObject.GetComponent<PlayerBody>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
@@ -97,13 +97,12 @@ public class PlayerController : MonoBehaviour
         Vector2 absMovement = new Vector2(Mathf.Abs(body.Movement.x), Mathf.Abs(body.Movement.y));
         var isMoving = absMovement[0] > 0.1f;
         animator.SetBool("IsGrounded", IsGrounded);
+        animator.SetBool("IsDefeated", state == states[3]);
+        animator.SetBool("IsVictorious", state == states[4]);
         animator.SetBool("IsFalling", body.Movement.y < 0);
         animator.SetBool("IsMoving", isMoving);
         animator.SetBool("IsWallHugging", state == states[2]);
         animator.SetBool("IsFlinging", absMovement[0] > 15 && absMovement[0] > absMovement[1] * 2);
-        if((Mathf.Sign(body.Movement.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal")) && Mathf.Sign(Input.GetAxisRaw("Horizontal")) != 0)) {
-            Debug.Log(Mathf.Sign(body.Movement.x) + ", "+ Mathf.Sign(body.TargetMovement.x) + ", " + Mathf.Sign(body.TargetMovement.x) + ", " + Input.GetAxisRaw("Horizontal"));
-        }
         animator.SetBool("IsTurning", (Mathf.Sign(body.Movement.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal")) && Input.GetAxisRaw("Horizontal") != 0));
     }
 
@@ -240,7 +239,7 @@ public class PlayerController : MonoBehaviour
 
     public void Defeat()
     {
-        if (state != states[3])
+        if (state != states[3] && state != states[4])
         {
             state = states[3];
             DeathTime = Time.time + 0.7f;
