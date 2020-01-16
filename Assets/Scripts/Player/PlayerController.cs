@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
     public DefeatFade fade;
+    public ParticleSystem DefeatParticle;
 
     void Start()
     {
@@ -90,6 +91,7 @@ public class PlayerController : MonoBehaviour
         RecallOrb();
         IsOrbAvailable = true;
         DeathCooldown = Time.time + 0.1f;
+        Sprite.color = Color.white;
         Physics2D.SyncTransforms();
     }
 

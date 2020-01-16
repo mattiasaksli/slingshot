@@ -12,9 +12,14 @@ public class StatePlayerDead : State
         {
             player.fade.animation.clip = player.fade.animation.GetClip("FadeOut");
             player.fade.animation.Play();
-            //player.Sprite.enabled = false;
-            //LevelEvents.RespawnPlayer();
-        } 
+            Debug.Log("Animation");
+        }
+
+        if(Time.time > player.DeathTime-1.0f && player.Sprite.color != Color.clear)
+        {
+            player.DefeatParticle.Play();
+            player.Sprite.color = Color.clear;
+        }
     }
     public void FixedUpdate(MonoBehaviour controller)
     {
