@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StatePlayerSlingshot : State
 {
@@ -51,7 +49,8 @@ public class StatePlayerSlingshot : State
                 player.RecallOrb();
                 player.AudioSlingShot?.Play();
             }
-        } else
+        }
+        else
         {
             player.state = player.states[0];
             player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
@@ -60,7 +59,8 @@ public class StatePlayerSlingshot : State
         }
     }
 
-    private float LowestDot(PlayerController player, CollisionDetection detection, Vector2 towardsorb) {
+    private float LowestDot(PlayerController player, CollisionDetection detection, Vector2 towardsorb)
+    {
         float[] dots = { detection.collisions.above? Vector2.Dot(Vector2.down, towardsorb.normalized) : 1,
             detection.collisions.below? Vector2.Dot(Vector2.up, towardsorb.normalized) : 1,
             detection.collisions.right? Vector2.Dot(Vector2.left, towardsorb.normalized) : 1,
@@ -99,6 +99,6 @@ public class StatePlayerSlingshot : State
             }
         }
 
-        return (lowestDot * 0.5f+0.5f)*(1f- lowestPercent);
+        return (lowestDot * 0.5f + 0.5f) * (1f - lowestPercent);
     }
 }
