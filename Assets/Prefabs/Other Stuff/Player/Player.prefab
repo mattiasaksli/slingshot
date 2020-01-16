@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 8786401999708148324}
   - component: {fileID: 3218498140462182921}
   - component: {fileID: 1108802298118487566}
+  - component: {fileID: 3599676767420620208}
   m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
@@ -413,6 +414,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StickHorizontal: 0
   StickVertical: 0
+--- !u!114 &3599676767420620208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630022359919258305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9ac23b4006a2144a2b01d2efa3ef7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioStep: {fileID: 11400000, guid: febcec16d8230b743ac70547ec8b8e66, type: 2}
 --- !u!1 &5179772920493900223
 GameObject:
   m_ObjectHideFlags: 0
