@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             Mathf.Abs(bounds.min.y - transform.position.y),
             Mathf.Abs(bounds.max.y - transform.position.y) };
         float min = distances[0];
-        for(int i = 1; i < 4; i++)
+        for (int i = 1; i < 4; i++)
         {
             if (distances[i] < min)
             {
@@ -210,6 +210,7 @@ public class PlayerController : MonoBehaviour
 
     public void Slingshot()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = true;
         state = states[1];
         body.detection.collisions.Reset();
         var dir = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;

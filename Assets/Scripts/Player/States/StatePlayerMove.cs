@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StatePlayerMove : State
 {
@@ -15,17 +13,19 @@ public class StatePlayerMove : State
             player.body.TargetMovement.y = player.JumpPower;
             player.body.Movement.y = player.JumpPower;
             player.IsJumping = true;
-            player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.5f, 3.2f,0,-1);
+            player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.5f, 3.2f, 0, -1);
             float walldist = 0.05f;
             Vector2 wallcheck = new Vector2(walldist, 0);
             bool release = true;
             int wall = player.body.detection.Cast(wallcheck);
-            if (player.body.detection.collisions.right) {
+            if (player.body.detection.collisions.right)
+            {
                 RightHug();
                 release = false;
             }
             wall = player.body.detection.Cast(-wallcheck);
-            if (player.body.detection.collisions.left) {
+            if (player.body.detection.collisions.left)
+            {
                 LeftHug();
                 release = false;
             }
@@ -36,7 +36,7 @@ public class StatePlayerMove : State
             }
         }
 
-        player.WalljumpHoldCounter = Mathf.Max(0,player.WalljumpHoldCounter - Time.deltaTime);
+        player.WalljumpHoldCounter = Mathf.Max(0, player.WalljumpHoldCounter - Time.deltaTime);
 
         if (player.body.Movement.y <= 0)
         {
@@ -49,12 +49,12 @@ public class StatePlayerMove : State
 
         if (!player.IsGrounded)
         {
-            if(player.body.detection.collisions.right && input > 0)
+            if (player.body.detection.collisions.right && input > 0)
             {
                 RightHug();
                 player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
             }
-            if(player.body.detection.collisions.left && input < 0)
+            if (player.body.detection.collisions.left && input < 0)
             {
                 LeftHug();
                 player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
@@ -62,11 +62,11 @@ public class StatePlayerMove : State
         }
 
         player.body.Acceleration = player.AccelerationGround;
-        if(Mathf.Round(Input.GetAxis("Horizontal")) == 0)
+        if (Mathf.Round(Input.GetAxis("Horizontal")) == 0)
         {
             player.body.Acceleration = player.IsGrounded ? player.AccelerationGround : player.AccelerationAir;
         }
-        if(!player.IsGrounded && Mathf.Sign(player.body.TargetMovement.x) == Mathf.Sign(player.body.Movement.x) && Mathf.Abs(player.body.TargetMovement.x) < Mathf.Abs(player.body.Movement.x) || player.WalljumpHoldCounter > 0 || player.JumpPadTimestamp > Time.time)
+        if (!player.IsGrounded && Mathf.Sign(player.body.TargetMovement.x) == Mathf.Sign(player.body.Movement.x) && Mathf.Abs(player.body.TargetMovement.x) < Mathf.Abs(player.body.Movement.x) || player.WalljumpHoldCounter > 0 || player.JumpPadTimestamp > Time.time)
         {
             player.body.Acceleration = player.AccelerationAir;
         }
@@ -87,7 +87,7 @@ public class StatePlayerMove : State
             }
         }
 
-        if(player.WalljumpHoldCounter == 0 && player.IsWallJumping)
+        if (player.WalljumpHoldCounter == 0 && player.IsWallJumping)
         {
             player.body.Movement.x *= 0.6f;
             player.IsWallJumping = false;
@@ -131,7 +131,7 @@ public class StatePlayerMove : State
         var referenceY = player.body.Movement.y; //Used to determine whether to play the landing animation or not
         player.body.Move(player.body.Movement * Time.deltaTime);
 
-        if(player.body.detection.collisions.below || player.body.detection.collisions.above)
+        if (player.body.detection.collisions.below || player.body.detection.collisions.above)
         {
             player.body.Movement.y = 0;
             player.body.TargetMovement.y = player.body.Movement.y;
@@ -144,17 +144,18 @@ public class StatePlayerMove : State
         }
         bool g = player.IsGrounded;
         player.IsGrounded = player.body.detection.collisions.below;
-        if(player.IsGrounded && !g/* && referenceY < -1.7*/)
+        if (player.IsGrounded && !g/* && referenceY < -1.7*/)
         {
-            player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f,0,-1);
+            player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f, 0, -1);
             player.AudioLand?.Play();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = false;
         }
-        if(!aboveC && player.body.detection.collisions.above)
+        if (!aboveC && player.body.detection.collisions.above)
         {
             player.Sprite.GetComponent<SquashStrech>().ApplyMorph(1.2f, 2.2f, 0, 1);
         }
 
-        if(player.IsGrounded)
+        if (player.IsGrounded)
         {
             player.IsOrbAvailable = true;
         }
