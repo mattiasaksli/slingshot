@@ -68,6 +68,43 @@ public class PlayerController : MonoBehaviour
     public DefeatFade fade;
     public ParticleSystem DefeatParticle;
 
+    private void Awake()
+    {
+        LevelEvents.OnRoomChange += OnRoomChange;
+    }
+
+    private void OnDestroy()
+    {
+        LevelEvents.OnRoomChange -= OnRoomChange;
+    }
+
+    void OnRoomChange(RoomBoundsManager manager)
+    {
+        state = states[0];
+        RecallOrb();
+        IsOrbAvailable = true;
+        Bounds bounds = manager.RoomCollider.bounds;
+        float[] distances = { Mathf.Abs(bounds.min.x - transform.position.x),
+            Mathf.Abs(bounds.max.x - transform.position.x),
+            Mathf.Abs(bounds.min.y - transform.position.y),
+            Mathf.Abs(bounds.max.y - transform.position.y) };
+        float min = distances[0];
+        for(int i = 1; i < 4; i++)
+        {
+            if (distances[i] < min)
+            {
+                min = distances[i];
+            }
+        }
+        if (min == distances[2])
+        {
+            Debug.Log("From Below");
+            body.Movement.y = 15;
+            IsJumping = false;
+            IsWallJumping = false;
+        }
+    }
+
     void Start()
     {
         states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead(), new StatePlayerVictory() };

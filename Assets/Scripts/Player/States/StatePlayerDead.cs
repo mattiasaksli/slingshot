@@ -14,7 +14,7 @@ public class StatePlayerDead : State
             player.fade.animation.Play();
         }
 
-        if(Time.time > player.DeathTime-1.0f && player.Sprite.color != Color.clear)
+        if(Time.time > player.DeathTime-0.6f && player.Sprite.color != Color.clear)
         {
             player.DefeatParticle.Play();
             player.Sprite.color = Color.clear;

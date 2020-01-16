@@ -53,6 +53,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_A8F1D9CA: 0.87
+    - Vector1_F69345D: 1.34
     - _EnableExternalAlpha: 0
     m_Colors:
     - Vector2_F2E33F34: {r: 0.87, g: -0.24, b: 0, a: 0}
