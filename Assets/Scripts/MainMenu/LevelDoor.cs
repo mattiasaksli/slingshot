@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LevelDoor : MonoBehaviour
 {
-    public int LevelToLoadIndex;
+    public string LevelToLoad;
+    public AudioClipGroup AudioLevelSelect;
 
     private bool inputUnlocked = false;
     private SpriteRenderer keySprite;
     private SceneLoader sceneLoader;
-    [SerializeField]
     private GameObject Player;
 
     void Start()
@@ -33,6 +33,7 @@ public class LevelDoor : MonoBehaviour
                 GameEventMessage.SendEvent("GoToLevel");
                 keySprite.enabled = false;
                 Player.GetComponentInChildren<PlayerController>().LockInput();
+                AudioLevelSelect?.Play();
             }
         }
     }

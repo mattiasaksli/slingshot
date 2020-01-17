@@ -12,7 +12,8 @@ TagManager:
   - Time
   - Death
   - FadeView
-  - LevelProgress
+  - LevelProgression
+  - OrbFollower
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - Player
   - Obstacle
   - Body
-  - OnlyPlayer
   - OnlyOrb
+  - OnlyPlayer
   - 
   - 
   - 

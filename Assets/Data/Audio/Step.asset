@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
+  m_Name: Step
+  m_EditorClassIdentifier: 
+  VolumeMin: 1
+  VolumeMax: 1
+  PitchMin: 0.94
+  PitchMax: 1.02
+  Cooldown: 0.01
+  AudioClips:
+  - {fileID: 8300000, guid: 49f1708e82e8c744b8fd993ebff82b57, type: 3}
+  - {fileID: 8300000, guid: c21e4859938464d4aa4403a43e76f100, type: 3}
+  - {fileID: 8300000, guid: 8b319da7a9c84844ab82034e38e2eec9, type: 3}
+  - {fileID: 8300000, guid: 9d31137aa3011bd47a7b27f8018ee297, type: 3}

@@ -55,6 +55,8 @@ MonoBehaviour:
   m_UseNormalMap: 0
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -129,7 +131,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
-    m_Bits: 9216
+    m_Bits: 5120
   suffocationMask:
     serializedVersion: 2
     m_Bits: 0

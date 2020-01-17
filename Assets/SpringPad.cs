@@ -17,27 +17,48 @@ public class SpringPad : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         KinematicBody body = collision.gameObject.GetComponent<KinematicBody>();
+        OrbBody orb = body.GetComponent<OrbBody>();
+        PlayerController player = body.GetComponent<PlayerController>();
+
         if (body)
         {
-            Vector2 target = transform.position - body.transform.position;
-            target.y = Mathf.Max(0, target.y);
-            body.Move(Mathf.Min(target.magnitude)*target.normalized+(Vector2)transform.up*1.5f);
-            Vector2 set = (Vector2)(JumpPower * transform.up);
-            if (transform.up != Vector3.down)
+            if (transform.up.y != 1)
             {
-                set.y = Mathf.Max(set.y, 4);
+                Vector2 target = transform.position - body.transform.position;
+                target.y = Mathf.Max(0, target.y);
+                body.Move(target);
+            }
+            if(transform.up.y == 1)
+            {
+                Vector2 target = new Vector2(0, transform.position.y - body.transform.position.y);
+                body.Move(target);
+            }
+            Vector2 set = (Vector2)(JumpPower * transform.up);
+            if (transform.up != Vector3.down && player)
+            {
+                set.y = Mathf.Max(set.y, 8);
+            }
+            if(orb && transform.up.y != 1)
+            {
+                set.x *= 1.2f;
             }
             body.Movement = set;
-            Debug.Log(body +  ": " + body.Movement);
             animator.SetTrigger("Jump");
             AudioJump?.Play();
         }
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if(player)
         {
-            if(player.state == player.states[1])
+            if (transform.up.y != 1)
+            {
+                player.JumpPadTimestamp = Time.time + 0.1f;
+            }
+            if (player.state == player.states[1])
             {
                 player.state = player.states[0];
+            }
+            if(!player.IsOrbAvailable && player.orb == null)
+            {
+                player.IsOrbAvailable = true;
             }
         }
     }

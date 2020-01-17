@@ -41,19 +41,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a97622006c9aa27409e41e0ee4a18226, type: 2}
   - {fileID: 11400000, guid: 545657eebf30f2e4e82457bf284e4d09, type: 2}
   CopiedNodes: []
-  DeletedNodes:
-  - {fileID: -7687213405093847336, guid: a97622006c9aa27409e41e0ee4a18226, type: 2}
-  SelectedNodes: []
+  DeletedNodes: []
+  SelectedNodes:
+  - {fileID: -1643114647636859097, guid: a97622006c9aa27409e41e0ee4a18226, type: 2}
   GraphTabs:
   - IsRootTab: 1
     Graph: {fileID: 11400000, guid: a97622006c9aa27409e41e0ee4a18226, type: 2}
     SubGraphNode: {fileID: 0}
     Zoom: 0.6
-    PanOffset: {x: 375.69995, y: 386.9}
+    PanOffset: {x: 246.69997, y: 332.3}
     SelectedNodes: []
     DeletedNodes: []
   CurrentView: 1
-  CurrentPanOffset: {x: 200.69995, y: 403.9}
+  CurrentPanOffset: {x: 246.69997, y: 332.3}
   DefaultPanOffset: {x: 0, y: 0}
   IsDirty: 0
   SaveCurrentGraphWithControlS: 1

@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public float WalljumpHoldCounter = 0;
     public float WalljumpMinHoldTime = 0.01f;
     public float WalljumpUnHugTime = 0.1f;
+    [HideInInspector]
+    public float JumpPadTimestamp;
 
     [Space(10)]
     [Header("Slingshot attributes")]
@@ -60,14 +62,60 @@ public class PlayerController : MonoBehaviour
     public AudioClipGroup AudioLand;
     public AudioClipGroup AudioJump;
     public AudioClipGroup AudioDefeat;
+    public AudioClipGroup AudioThrow;
+
+    private Animator animator;
+    public DefeatFade fade;
+    [Space(10)]
+    [Header("Player particle effects")]
+    public ParticleSystem DefeatParticle;
+    public ParticleSystem SlingshotParticle;
+
+    private void Awake()
+    {
+        LevelEvents.OnRoomChange += OnRoomChange;
+    }
+
+    private void OnDestroy()
+    {
+        LevelEvents.OnRoomChange -= OnRoomChange;
+    }
+
+    void OnRoomChange(RoomBoundsManager manager)
+    {
+        state = states[0];
+        RecallOrb();
+        IsOrbAvailable = true;
+        Bounds bounds = manager.RoomCollider.bounds;
+        float[] distances = { Mathf.Abs(bounds.min.x - transform.position.x),
+            Mathf.Abs(bounds.max.x - transform.position.x),
+            Mathf.Abs(bounds.min.y - transform.position.y),
+            Mathf.Abs(bounds.max.y - transform.position.y) };
+        float min = distances[0];
+        for (int i = 1; i < 4; i++)
+        {
+            if (distances[i] < min)
+            {
+                min = distances[i];
+            }
+        }
+        if (min == distances[2])
+        {
+            Debug.Log("From Below");
+            body.Movement.y = 15;
+            IsJumping = false;
+            IsWallJumping = false;
+        }
+    }
 
     void Start()
     {
-        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead() };
+        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead(), new StatePlayerVictory() };
         state = states[0];
         body = gameObject.GetComponent<PlayerBody>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
         DeathCooldown = Time.time;
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void Respawn()
@@ -83,8 +131,23 @@ public class PlayerController : MonoBehaviour
         RecallOrb();
         IsOrbAvailable = true;
         DeathCooldown = Time.time + 0.1f;
+        Sprite.color = Color.white;
+        Physics2D.SyncTransforms();
     }
 
+    public void Animations()
+    {
+        Vector2 absMovement = new Vector2(Mathf.Abs(body.Movement.x), Mathf.Abs(body.Movement.y));
+        var isMoving = absMovement[0] > 0.1f;
+        animator.SetBool("IsGrounded", IsGrounded);
+        animator.SetBool("IsDefeated", state == states[3]);
+        animator.SetBool("IsVictorious", state == states[4]);
+        animator.SetBool("IsFalling", body.Movement.y < 0);
+        animator.SetBool("IsMoving", isMoving);
+        animator.SetBool("IsWallHugging", state == states[2]);
+        animator.SetBool("IsFlinging", absMovement[0] > 15 && absMovement[0] > absMovement[1] * 2);
+        animator.SetBool("IsTurning", (Mathf.Sign(body.Movement.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal")) && Input.GetAxisRaw("Horizontal") != 0));
+    }
 
     void Update()
     {
@@ -94,6 +157,7 @@ public class PlayerController : MonoBehaviour
         }
         if (!IsFacingRight) Sprite.flipX = true;
         else Sprite.flipX = false;
+        Animations();
     }
 
     private void FixedUpdate()
@@ -112,7 +176,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (t != null && t.GetComponent<OneWayPlatform>() == null)
                 {
-                    Debug.Log(t.GetComponent<PlatformController>());
                     Defeat();
                     break;
                 }
@@ -147,6 +210,7 @@ public class PlayerController : MonoBehaviour
 
     public void Slingshot()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = true;
         state = states[1];
         body.detection.collisions.Reset();
         var dir = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;
@@ -163,6 +227,8 @@ public class PlayerController : MonoBehaviour
             if (orb != null)
             {
                 RecallOrb();
+                IsOrbAvailable = true;
+                AudioThrow?.Play();
             }
         }
 
@@ -170,7 +236,11 @@ public class PlayerController : MonoBehaviour
         {
             if (orb == null)
             {
-                if (IsOrbAvailable) { createOrb = true; }
+                if (IsOrbAvailable)
+                {
+                    createOrb = true;
+                    AudioThrow?.Play();
+                }
             }
             else
             {
@@ -196,7 +266,11 @@ public class PlayerController : MonoBehaviour
 
     public void disablePlayer()
     {
-        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        foreach (SpriteRenderer r in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            r.enabled = false;
+        }
+        Destroy(GameObject.FindGameObjectWithTag("OrbFollower"));
         IsInputLocked = true;
     }
 
@@ -208,7 +282,7 @@ public class PlayerController : MonoBehaviour
 
     public void Defeat()
     {
-        if (state != states[3])
+        if (state != states[3] && state != states[4])
         {
             state = states[3];
             DeathTime = Time.time + 0.7f;

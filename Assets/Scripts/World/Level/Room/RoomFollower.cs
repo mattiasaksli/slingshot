@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class RoomFollower : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class RoomFollower : MonoBehaviour
 
     private Vector2 CameraSize;
     private Camera camera;
+    private PixelPerfectCamera pixelperfect;
 
     private void Start()
     {
         camera = gameObject.GetComponent<Camera>();
         TargetZoom = 1;
         zoom = 1;
+        pixelperfect = gameObject.GetComponent<PixelPerfectCamera>();
     }
 
     // Update is called once per frame
@@ -27,7 +30,7 @@ public class RoomFollower : MonoBehaviour
         float lerpAmount = 0.2f;
         TargetZoom = Mathf.Max(1, TargetZoom);
         zoom = Mathf.Lerp(zoom, TargetZoom, lerpAmount);
-        camera.orthographicSize = 9 * 1/zoom;
+        camera.orthographicSize = 8.4375f * 1/zoom;
         UpdateCameraSize();
         room = GameObject.Find("RoomBounds");
         player = GameObject.Find("Player").transform;

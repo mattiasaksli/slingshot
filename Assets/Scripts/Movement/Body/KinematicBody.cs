@@ -14,7 +14,7 @@ public class KinematicBody : MonoBehaviour
     [HideInInspector]
     public float storedMovementRestTimer = 0f;
 
-    private float storedRetention = 0.3f;
+    private float storedRetention = 0.2f;
     private float retentionTime = 0;
 
     public float Acceleration;

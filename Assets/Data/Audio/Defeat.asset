@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
   m_Name: Defeat
   m_EditorClassIdentifier: 
-  VolumeMin: 1
-  VolumeMax: 1
+  VolumeMin: 0.448
+  VolumeMax: 0.477
   PitchMin: 1.04
   PitchMax: 1.15
   Cooldown: 0
   AudioClips:
-  - {fileID: 8300000, guid: b39fb7aba84ea9144baa82d6632d02b8, type: 3}
+  - {fileID: 8300000, guid: da33ad131e8c6ec4dbec2393a69cbfc9, type: 3}

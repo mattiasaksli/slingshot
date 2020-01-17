@@ -33,6 +33,21 @@ public class AudioClipGroup : ScriptableObject
         audioSource.clip = AudioClips[Random.Range(0, AudioClips.Count)];
         audioSource.volume = Random.Range(VolumeMin, VolumeMax);
         audioSource.pitch = Random.Range(PitchMin, PitchMax);
+        audioSource.transform.parent = pool.transform.parent;
+        audioSource.Play();
+        timeStamp = Time.time + Cooldown;
+    }
+
+    public void Play(AudioSource audioSource, Transform audioparent)
+    {
+        if (AudioClips == null || AudioClips.Count <= 0) return;
+
+        if (Time.time < timeStamp) return;
+
+        audioSource.clip = AudioClips[Random.Range(0, AudioClips.Count)];
+        audioSource.volume = Random.Range(VolumeMin, VolumeMax);
+        audioSource.pitch = Random.Range(PitchMin, PitchMax);
+        audioSource.transform.parent = audioparent;
         audioSource.Play();
         timeStamp = Time.time + Cooldown;
     }
@@ -45,5 +60,15 @@ public class AudioClipGroup : ScriptableObject
         }
 
         Play(pool.GetSource());
+    }
+
+    public void Play(Transform audioparent)
+    {
+        if (pool == null)
+        {
+            pool = FindObjectOfType<AudioSourcePool>();
+        }
+
+        Play(pool.GetSource(), audioparent);
     }
 }
