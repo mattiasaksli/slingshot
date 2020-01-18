@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
         }
         if (min == distances[2])
         {
-            Debug.Log("From Below");
             body.Movement.y = 15;
             IsJumping = false;
             IsWallJumping = false;
