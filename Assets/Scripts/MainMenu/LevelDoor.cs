@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelDoor : MonoBehaviour
 {
+    public int LevelToLoadIndex;
+
     public string LevelToLoad;
     public AudioClipGroup AudioLevelSelect;
 

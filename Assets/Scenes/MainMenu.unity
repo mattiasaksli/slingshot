@@ -11539,7 +11539,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 829763521}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0629bbfdc72458140b77eb0850d3f60d, type: 3}
 --- !u!4 &559298584 stripped
@@ -19821,7 +19821,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -23889,6 +23889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39e0ff851c056a428dbaabc2daa6cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelToLoadIndex: 1
   LevelToLoad: Level1
   AudioLevelSelect: {fileID: 11400000, guid: 8bd8c26a69c7c854cb3b9c691f04aa9c, type: 2}
 --- !u!1 &1733333057
@@ -24830,6 +24831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39e0ff851c056a428dbaabc2daa6cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelToLoadIndex: 2
   LevelToLoad: Level2
   AudioLevelSelect: {fileID: 11400000, guid: 8bd8c26a69c7c854cb3b9c691f04aa9c, type: 2}
 --- !u!1 &4731816434826366513
@@ -34549,6 +34551,6 @@ PrefabInstance:
     - target: {fileID: 421968095, guid: cc3d5dea9013f0c4495c0cae6095c0ee, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1134686891}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f0c1be91f3d5914da58782c4ddafed6, type: 3}
