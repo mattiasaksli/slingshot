@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player particle effects")]
     public ParticleSystem DefeatParticle;
     public ParticleSystem SlingshotParticle;
+    private TrailRenderer slingshotTrail;
 
     private void Awake()
     {
@@ -83,9 +84,12 @@ public class PlayerController : MonoBehaviour
 
     void OnRoomChange(RoomBoundsManager manager)
     {
-        state = states[0];
-        RecallOrb();
-        IsOrbAvailable = true;
+        if (state != states[1])
+        {
+            state = states[0];
+            RecallOrb();
+            IsOrbAvailable = true;
+        }
         Bounds bounds = manager.RoomCollider.bounds;
         float[] distances = { Mathf.Abs(bounds.min.x - transform.position.x),
             Mathf.Abs(bounds.max.x - transform.position.x),
@@ -115,6 +119,7 @@ public class PlayerController : MonoBehaviour
         Sprite = GetComponentInChildren<SpriteRenderer>();
         DeathCooldown = Time.time;
         animator = GetComponentInChildren<Animator>();
+        slingshotTrail = GetComponent<TrailRenderer>();
     }
 
     public void Respawn()
@@ -131,6 +136,7 @@ public class PlayerController : MonoBehaviour
         IsOrbAvailable = true;
         DeathCooldown = Time.time + 0.1f;
         Sprite.color = Color.white;
+        slingshotTrail.emitting = false;
         Physics2D.SyncTransforms();
     }
 
@@ -204,12 +210,13 @@ public class PlayerController : MonoBehaviour
             GameObject.Destroy(orb.gameObject);
             IsOrbAvailable = false;
             orb = null;
+            slingshotTrail.emitting = false;
         }
     }
 
     public void Slingshot()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = true;
+        slingshotTrail.emitting = true;
         state = states[1];
         body.detection.collisions.Reset();
         var dir = new Vector2(orb.transform.position.x - transform.position.x, orb.transform.position.y - transform.position.y).normalized;

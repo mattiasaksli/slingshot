@@ -5,6 +5,7 @@ public class StatePlayerSlingshot : State
     private float disconnectTimestamp = 0;
     public float stateStartTime;
     public Vector2 initialDirection;
+    private Vector2 towardsorb;
 
 
     public void Update(MonoBehaviour controller)
@@ -21,7 +22,7 @@ public class StatePlayerSlingshot : State
             player.IsGrounded = false;
             Vector2 lastNormal = player.body.detection.collisionNormal;
             var detection = player.body.detection;
-            Vector2 towardsorb = player.orb.transform.position - player.transform.position;
+            towardsorb = player.orb.transform.position - player.transform.position;
             player.body.Acceleration = player.SlingShotAcceleration;
             player.body.TargetMovement = towardsorb.normalized * player.SlingShotMaxSpeed;
             player.body.StoredMovement = Vector2.zero;
@@ -38,17 +39,7 @@ public class StatePlayerSlingshot : State
             var lowD = LowestDot(player, detection, towardsorb);
             if (towardsorb.magnitude <= 0.1f || (lowD < 0.2 && Time.time > disconnectTimestamp) || lowD < -0.9f)
             {
-                player.state = player.states[0];
-                player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
-                if (towardsorb.magnitude <= 0.1f)
-                {
-                    Transform p = GameObject.Instantiate<ParticleSystem>(player.SlingshotParticle).transform;
-                    p.localRotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, player.body.Movement));
-                    p.transform.position = player.transform.position;
-                }
-                GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = false;
-                player.RecallOrb();
-                player.AudioSlingShot?.Play();
+                Slingshot(player);
             }
         }
         else
@@ -102,5 +93,20 @@ public class StatePlayerSlingshot : State
         }
 
         return (lowestDot * 0.5f + 0.5f) * (1f - lowestPercent);
+    }
+
+    public void Slingshot(PlayerController player)
+    {
+        player.state = player.states[0];
+        player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
+        if (towardsorb.magnitude <= 0.1f)
+        {
+            Transform p = GameObject.Instantiate<ParticleSystem>(player.SlingshotParticle).transform;
+            p.localRotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, player.body.Movement));
+            p.transform.position = player.transform.position;
+        }
+        GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = false;
+        player.RecallOrb();
+        player.AudioSlingShot?.Play();
     }
 }
