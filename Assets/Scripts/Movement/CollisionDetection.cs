@@ -58,6 +58,24 @@ public class CollisionDetection : RaycastController
         }
     }
 
+    public RaycastHit2D CastRay(Vector2 Direction, float PercentAlongSide, float rayLength)
+    {
+        float directionX = Mathf.Sign(Direction.x);
+        float directionY = Mathf.Sign(Direction.y);
+
+        if (directionX != 0) {
+            Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            rayOrigin += Vector2.up * (horizontalRaySpacing * (int)(PercentAlongSide*horizontalRayCount));
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+            return hit;
+        } else {
+            Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+            rayOrigin += Vector2.right * (verticalRaySpacing * (int)(PercentAlongSide*verticalRayCount));
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+            return hit;
+        }
+    }
+
     public List<Transform> CheckInside()
     {
         float rayLength = collider.bounds.size.x - skinWidth * 2;

@@ -45,12 +45,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_27071E5: 0.81
-    - Vector1_A4207AED: 0.7
-    - Vector1_D98D8137: 0.97
+    - Vector1_27071E5: 0.66
+    - Vector1_A4207AED: 0.85
+    - Vector1_D98D8137: 0.83
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Color_F6B43B46: {r: 0.6719677, g: 0.3287202, b: 0.7830189, a: 0}
+    - Color_F6B43B46: {r: 0.61825716, g: 0.31181026, b: 0.7264151, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

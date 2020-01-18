@@ -3,6 +3,8 @@
 public class StatePlayerMove : State
 {
     // Start is called before the first frame update
+    private float walljumpThreshold = 0.4f;
+
     public void Update(MonoBehaviour controller)
     {
         PlayerController player = (PlayerController)controller;
@@ -52,12 +54,10 @@ public class StatePlayerMove : State
             if (player.body.detection.collisions.right && input > 0)
             {
                 RightHug();
-                player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
             }
             if (player.body.detection.collisions.left && input < 0)
             {
                 LeftHug();
-                player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
             }
         }
 
@@ -97,26 +97,34 @@ public class StatePlayerMove : State
 
         void RightHug()
         {
-            player.state = player.states[2];
-            player.body.Movement.y = Mathf.Max(0, player.body.Movement.y);
-            player.IsHuggingRight = true;
-            player.WalljumpHoldCounter = 0;
-            player.IsGrounded = false;
-            if (player.body.Movement.x > 0)
+            if (player.body.detection.freeRays.right > walljumpThreshold || player.body.detection.CastRay(Vector2.right,0.9f,0.2f))
             {
-                //player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, 1, 0);
+                player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
+                player.state = player.states[2];
+                player.body.Movement.y = Mathf.Max(0, player.body.Movement.y);
+                player.IsHuggingRight = true;
+                player.WalljumpHoldCounter = 0;
+                player.IsGrounded = false;
+                if (player.body.Movement.x > 0)
+                {
+                    //player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, 1, 0);
+                }
             }
         }
         void LeftHug()
         {
-            player.state = player.states[2];
-            player.body.Movement.y = Mathf.Max(0, player.body.Movement.y);
-            player.IsHuggingRight = false;
-            player.WalljumpHoldCounter = 0;
-            player.IsGrounded = false;
-            if (player.body.Movement.x < 0)
+            if (player.body.detection.freeRays.left > walljumpThreshold || player.body.detection.CastRay(Vector2.left, 0.9f, 0.2f))
             {
-                //player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, 1, 0);
+                player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
+                player.state = player.states[2];
+                player.body.Movement.y = Mathf.Max(0, player.body.Movement.y);
+                player.IsHuggingRight = false;
+                player.WalljumpHoldCounter = 0;
+                player.IsGrounded = false;
+                if (player.body.Movement.x < 0)
+                {
+                    //player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, 1, 0);
+                }
             }
         }
     }
