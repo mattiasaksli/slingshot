@@ -5322,8 +5322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d9da3175092404b8d5096d75ec6edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalRayCount: 4
-  verticalRayCount: 4
+  horizontalRayCount: 10
+  verticalRayCount: 10
   autoRay: 0
   autoRaySpacing: 0.2
   horizontalRaySpacing: 0

@@ -3,7 +3,7 @@
 public class StatePlayerMove : State
 {
     // Start is called before the first frame update
-    private float walljumpThreshold = 0.4f;
+    private float walljumpThreshold = 0.6f;
 
     public void Update(MonoBehaviour controller)
     {
@@ -97,6 +97,7 @@ public class StatePlayerMove : State
 
         void RightHug()
         {
+            Debug.Log(player.body.detection.freeRays.right);
             if (player.body.detection.freeRays.right > walljumpThreshold || player.body.detection.CastRay(Vector2.right,0.9f,0.2f))
             {
                 player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
@@ -113,6 +114,7 @@ public class StatePlayerMove : State
         }
         void LeftHug()
         {
+            Debug.Log(player.body.detection.freeRays.left);
             if (player.body.detection.freeRays.left > walljumpThreshold || player.body.detection.CastRay(Vector2.left, 0.9f, 0.2f))
             {
                 player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);

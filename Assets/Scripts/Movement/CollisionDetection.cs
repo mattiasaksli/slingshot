@@ -122,7 +122,7 @@ public class CollisionDetection : RaycastController
     {
         float directionX = Mathf.Sign(velocity.x);
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
-        int[] rayhits = new int[2];
+        int[] rayhits = { 0, 0 };
 
         for (int i = 0; i < horizontalRayCount; i++)
         {
@@ -146,8 +146,8 @@ public class CollisionDetection : RaycastController
                 }
             }
         }
-        freeRays.left = rayhits[0] / horizontalRayCount;
-        freeRays.right = rayhits[1] / horizontalRayCount;
+        freeRays.left = (rayhits[0] / (float)horizontalRayCount);
+        freeRays.right = rayhits[1] / (float)horizontalRayCount;
     }
 
     void VerticalCollisions(ref Vector3 velocity)
@@ -178,8 +178,8 @@ public class CollisionDetection : RaycastController
                 }
             }
         }
-        freeRays.below = rayhits[0] / verticalRayCount;
-        freeRays.above = rayhits[1] / verticalRayCount;
+        freeRays.below = rayhits[0] / (float)verticalRayCount;
+        freeRays.above = rayhits[1] / (float)verticalRayCount;
     }
 
     public struct CollisionInfo

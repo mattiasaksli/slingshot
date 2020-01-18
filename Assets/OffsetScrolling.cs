@@ -11,16 +11,19 @@ public class OffsetScrolling : MonoBehaviour
     private Vector2 scrolling;
     public Vector2 ScrollingSpeed;
     Camera camera;
+    private Vector3 localPositon;
 
     void Start()
     {
         rend = GetComponent<Renderer>();
         camera = Camera.main;
+        localPositon = camera.transform.position;
     }
 
     void FixedUpdate()
     {
-        scrolling = camera.transform.position;
+        localPositon = Vector3.Lerp(localPositon, camera.transform.position, 1);
+        scrolling = localPositon;
         scrolling.x *= ScrollingSpeed.x;
         scrolling.y *= ScrollingSpeed.y;
         rend.material.SetVector("_Scrolling", scrolling);
