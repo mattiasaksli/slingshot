@@ -116,10 +116,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: -4}
-        - {x: 0, y: 4}
-        - {x: 4, y: 4}
-        - {x: 4, y: -4}
+      - - {x: 0, y: -3}
+        - {x: 0, y: 3}
+        - {x: 4, y: 3}
+        - {x: 4, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: 46e998183ac38c880800000000000000
@@ -141,10 +141,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: -4}
-        - {x: 0, y: 4}
-        - {x: 4, y: 4}
-        - {x: 4, y: -4}
+      - - {x: 0, y: -3}
+        - {x: 0, y: 3}
+        - {x: 4, y: 3}
+        - {x: 4, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: 6c0d39d6252f28710800000000000000
@@ -166,10 +166,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: -4}
-        - {x: 0, y: 4}
-        - {x: 4, y: 4}
-        - {x: 4, y: -4}
+      - - {x: 0, y: -3}
+        - {x: 0, y: 3}
+        - {x: 4, y: 3}
+        - {x: 4, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: 93d59a0abb2bc9500800000000000000
@@ -191,10 +191,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: -4}
-        - {x: 0, y: 4}
-        - {x: 4, y: 4}
-        - {x: 4, y: -4}
+      - - {x: 0, y: -3}
+        - {x: 0, y: 3}
+        - {x: 4, y: 3}
+        - {x: 4, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: d682396f225f821b0800000000000000
@@ -216,10 +216,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 0, y: -4}
-        - {x: 0, y: 4}
-        - {x: 4, y: 4}
-        - {x: 4, y: -4}
+      - - {x: 0, y: -3}
+        - {x: 0, y: 3}
+        - {x: 4, y: 3}
+        - {x: 4, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: a9ba3f9433aafd030800000000000000

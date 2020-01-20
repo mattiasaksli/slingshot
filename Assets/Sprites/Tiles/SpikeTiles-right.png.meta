@@ -128,10 +128,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 4}
-        - {x: 0, y: 4}
-        - {x: 0, y: -4}
+      - - {x: -4, y: -3}
+        - {x: -4, y: 3}
+        - {x: 0, y: 3}
+        - {x: 0, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: dbb97e93958bd18c0800000000000000
@@ -153,10 +153,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 4}
-        - {x: 0, y: 4}
-        - {x: 0, y: -4}
+      - - {x: -4, y: -3}
+        - {x: -4, y: 3}
+        - {x: 0, y: 3}
+        - {x: 0, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: d18aee70e079b1e00800000000000000
@@ -178,10 +178,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 4}
-        - {x: 0, y: 4}
-        - {x: 0, y: -4}
+      - - {x: -4, y: -3}
+        - {x: -4, y: 3}
+        - {x: 0, y: 3}
+        - {x: 0, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: fdb506774bef55990800000000000000
@@ -203,10 +203,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 4}
-        - {x: 0, y: 4}
-        - {x: 0, y: -4}
+      - - {x: -4, y: -3}
+        - {x: -4, y: 3}
+        - {x: 0, y: 3}
+        - {x: 0, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: f35e48c0e536275f0800000000000000
@@ -228,10 +228,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 4}
-        - {x: 0, y: 4}
-        - {x: 0, y: -4}
+      - - {x: -4, y: -3}
+        - {x: -4, y: 3}
+        - {x: 0, y: 3}
+        - {x: 0, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: 134583b49a694f1d0800000000000000

@@ -113,10 +113,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 0}
-        - {x: 4, y: 0}
-        - {x: 4, y: -4}
+      - - {x: -3, y: -4}
+        - {x: -3, y: 0}
+        - {x: 3, y: 0}
+        - {x: 3, y: -4}
       tessellationDetail: 0
       bones: []
       spriteID: 97120bd1a7a5789a0800000000000000
@@ -138,10 +138,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 0}
-        - {x: 4, y: 0}
-        - {x: 4, y: -4}
+      - - {x: -3, y: -4}
+        - {x: -3, y: 0}
+        - {x: 3, y: 0}
+        - {x: 3, y: -4}
       tessellationDetail: 0
       bones: []
       spriteID: 374a54c1cdcb63780800000000000000
@@ -163,10 +163,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 0}
-        - {x: 4, y: 0}
-        - {x: 4, y: -4}
+      - - {x: -3, y: -4}
+        - {x: -3, y: 0}
+        - {x: 3, y: 0}
+        - {x: 3, y: -4}
       tessellationDetail: 0
       bones: []
       spriteID: 64f7f3175f46dc7e0800000000000000
@@ -188,10 +188,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 0}
-        - {x: 4, y: 0}
-        - {x: 4, y: -4}
+      - - {x: -3, y: -4}
+        - {x: -3, y: 0}
+        - {x: 3, y: 0}
+        - {x: 3, y: -4}
       tessellationDetail: 0
       bones: []
       spriteID: 6f448b9a30c089500800000000000000
@@ -213,10 +213,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -4, y: -4}
-        - {x: -4, y: 0}
-        - {x: 4, y: 0}
-        - {x: 4, y: -4}
+      - - {x: -3, y: -4}
+        - {x: -3, y: 0}
+        - {x: 3, y: 0}
+        - {x: 3, y: -4}
       tessellationDetail: 0
       bones: []
       spriteID: 6dd28bf203dd92000800000000000000

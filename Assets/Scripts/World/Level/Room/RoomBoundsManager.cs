@@ -7,7 +7,8 @@ public class RoomBoundsManager : MonoBehaviour
 {
     public BoxCollider2D RoomCollider;
     private Transform player;
-    private BoxCollider2D collider;
+    [HideInInspector]
+    public BoxCollider2D collider;
     
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,7 @@ public class RoomBoundsManager : MonoBehaviour
                 }
             }
         }
+
     }
 
     public SpawnPoint GetClosestSpawnPoint()
