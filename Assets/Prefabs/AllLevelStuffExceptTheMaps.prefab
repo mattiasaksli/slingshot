@@ -20744,31 +20744,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7985269198007284548, guid: 9f0c1be91f3d5914da58782c4ddafed6,
         type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7985269198007284548, guid: 9f0c1be91f3d5914da58782c4ddafed6,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7985269198007284548, guid: 9f0c1be91f3d5914da58782c4ddafed6,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7985269198007284548, guid: 9f0c1be91f3d5914da58782c4ddafed6,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7985269198007284548, guid: 9f0c1be91f3d5914da58782c4ddafed6,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7985269198007284548, guid: 9f0c1be91f3d5914da58782c4ddafed6,
-        type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: 0
       objectReference: {fileID: 0}
@@ -20777,11 +20752,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 548332240214017003}
-    - target: {fileID: 7985269199146962185, guid: 9f0c1be91f3d5914da58782c4ddafed6,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetResolution
-      objectReference: {fileID: 0}
     - target: {fileID: 7985269199146962190, guid: 9f0c1be91f3d5914da58782c4ddafed6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20927,7 +20897,7 @@ PrefabInstance:
     - target: {fileID: 5179772920493900195, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 5179772920493900195, guid: 6d359111f1b8d6942a672d2dc478b653,
         type: 3}
