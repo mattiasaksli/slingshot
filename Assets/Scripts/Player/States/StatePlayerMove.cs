@@ -51,11 +51,11 @@ public class StatePlayerMove : State
 
         if (!player.IsGrounded)
         {
-            if (player.body.detection.collisions.right && input > 0)
+            if (player.body.detection.collisions.right)
             {
                 RightHug();
             }
-            if (player.body.detection.collisions.left && input < 0)
+            if (player.body.detection.collisions.left)
             {
                 LeftHug();
             }
@@ -136,6 +136,7 @@ public class StatePlayerMove : State
     {
         PlayerController player = (PlayerController)controller;
         player.body.Movement.y -= player.GravityPower * Time.deltaTime;
+        player.body.Movement.y = Mathf.Max(-player.MaxFallSpeed, player.body.Movement.y);
         player.body.TargetMovement.y = player.body.Movement.y;
         bool aboveC = player.body.detection.collisions.above;
         var referenceY = player.body.Movement.y; //Used to determine whether to play the landing animation or not

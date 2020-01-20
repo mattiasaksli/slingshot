@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float AccelerationAir = 20;
     public float GravityPower = 40;
     public float DeathTime;
+    public float MaxFallSpeed = 20;
     public State state;
     public List<State> states;
 

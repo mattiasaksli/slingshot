@@ -51,6 +51,7 @@ public class StatePlayerWallHug : State
         //if (player.state == player.states[2])
         //{
         player.body.Movement.y -= player.GravityPower * Time.deltaTime * (player.body.Movement.y < 0 ? 0.5f : 1f);
+        player.body.Movement.y = Mathf.Max(-player.MaxFallSpeed, player.body.Movement.y) ;
         player.body.TargetMovement.y = player.body.Movement.y;
         bool aboveC = player.body.detection.collisions.above;
         player.body.Move(player.body.Movement * Time.deltaTime);
