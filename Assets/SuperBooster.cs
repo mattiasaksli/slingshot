@@ -62,10 +62,10 @@ public class SuperBooster : MonoBehaviour
         if(detectorb && !orb)
         {
             var t = (detectorb.transform.position- transform.position);
-            particle.transform.localPosition = t;//(1-(t.magnitude/LatchRadius.radius)) * t.normalized* 2f;
+            particle.transform.localPosition = Mathf.Clamp(1-(t.magnitude/ DetectRadius.radius),0,1) * t.magnitude * t.normalized;
         } else
         {
-            particle.transform.localPosition = Vector3.zero;
+            particle.transform.localPosition += -particle.transform.localPosition*20*Time.deltaTime;
         }
     }
 }

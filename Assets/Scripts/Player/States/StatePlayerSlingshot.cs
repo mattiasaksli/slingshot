@@ -97,7 +97,8 @@ public class StatePlayerSlingshot : State
 
     public void Slingshot(PlayerController player)
     {
-        if (player.orb.GetComponent<OrbController>().isSuperBoosting)
+        bool superboosting = player.orb.GetComponent<OrbController>().isSuperBoosting;
+        if (superboosting && towardsorb.magnitude <= 0.1f)
         {
             player.state = player.statedict["Superboost"];
             float angle = Mathf.Round(Vector2.SignedAngle(player.body.Movement.normalized, Vector3.right) / 45) * 45;
@@ -109,6 +110,10 @@ public class StatePlayerSlingshot : State
         {
             player.state = player.statedict["Move"];
             player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
+            if (!superboosting)
+            {
+                player.RecallOrb();
+            }
         }
         if (towardsorb.magnitude <= 0.1f)
         {
@@ -117,7 +122,6 @@ public class StatePlayerSlingshot : State
             p.transform.position = player.transform.position;
         }
         GameObject.FindGameObjectWithTag("Player").GetComponent<TrailRenderer>().emitting = false;
-        player.RecallOrb();
         player.AudioSlingShot?.Play();
     }
 }
