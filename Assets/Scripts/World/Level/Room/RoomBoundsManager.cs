@@ -18,6 +18,27 @@ public class RoomBoundsManager : MonoBehaviour
         RoomCollider.gameObject.SetActive(false);
     }
 
+    private void Awake()
+    {
+        LevelEvents.OnRoomChange += OnRoomChange;
+    }
+
+    private void OnDestroy()
+    {
+        LevelEvents.OnRoomChange -= OnRoomChange;
+    }
+
+    private void OnRoomChange(RoomBoundsManager newroom)
+    {
+        if(newroom != this)
+        {
+            if (RoomCollider.gameObject.activeSelf)
+            {
+                RoomCollider.gameObject.SetActive(false);
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +47,11 @@ public class RoomBoundsManager : MonoBehaviour
         PlayerController controller = player.GetComponent<PlayerController>();
         if (controller.state != controller.states[3])
         {
-            if (player.position.x < bounds.min.x- padding || player.position.y < bounds.min.y- padding || player.position.x > bounds.max.x+ padding || player.position.y > bounds.max.y+ padding)
+            if (!RoomCollider.gameObject.activeSelf)
+            {
+                padding = 0;
+            }
+                if (player.position.x < bounds.min.x- padding || player.position.y < bounds.min.y- padding || player.position.x > bounds.max.x+ padding || player.position.y > bounds.max.y+ padding)
             {
                 if (RoomCollider.gameObject.activeSelf)
                 {
