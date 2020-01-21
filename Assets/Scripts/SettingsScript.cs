@@ -19,8 +19,11 @@ public class SettingsScript : MonoBehaviour
         List<string> options = new List<string>();
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "HZ";
-            options.Add(option);
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            if (!options.Contains(option))
+            {
+                options.Add(option);
+            }
 
             if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
             {
@@ -31,6 +34,8 @@ public class SettingsScript : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResIndex;
         resolutionDropdown.RefreshShownValue();
+
+
     }
 
     public void SetMasterVolume(float volume)
@@ -58,10 +63,14 @@ public class SettingsScript : MonoBehaviour
         Screen.fullScreen = isFullscreen;
     }
 
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+
     public void SetResolution(int resolutionIndex)
     {
         Resolution res = resolutions[resolutionIndex];
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen, res.refreshRate);
-        Application.targetFrameRate = res.refreshRate;
+        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
     }
 }
