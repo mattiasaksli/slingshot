@@ -97,8 +97,19 @@ public class StatePlayerSlingshot : State
 
     public void Slingshot(PlayerController player)
     {
-        player.state = player.states[0];
-        player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
+        if (player.orb.GetComponent<OrbController>().isSuperBoosting)
+        {
+            player.state = player.statedict["Superboost"];
+            float angle = Mathf.Round(Vector2.SignedAngle(player.body.Movement.normalized, Vector3.right) / 45) * 45;
+            Debug.Log("Angle: " + angle);
+            float magnitude = 15;
+            player.body.Movement = new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad)*magnitude, -Mathf.Sin(angle * Mathf.Deg2Rad) * magnitude);
+        }
+        else
+        {
+            player.state = player.statedict["Move"];
+            player.body.Movement = player.body.Movement.normalized * Mathf.Min(player.SlingShotMaxSpeed * 0.3f, player.body.Movement.magnitude * 0.7f);
+        }
         if (towardsorb.magnitude <= 0.1f)
         {
             Transform p = GameObject.Instantiate<ParticleSystem>(player.SlingshotParticle).transform;

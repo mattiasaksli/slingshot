@@ -9,6 +9,8 @@ public class OrbController : MonoBehaviour
     public float AccelerationAir = 30;
     public float GravityPower = 40;
     public bool IsFloating = true;
+    [HideInInspector]
+    public SuperBooster isSuperBoosting = null;
 
     // Start is called before the first frame update
     void Start()

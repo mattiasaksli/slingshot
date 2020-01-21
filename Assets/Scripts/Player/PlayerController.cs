@@ -14,7 +14,10 @@ public class PlayerController : MonoBehaviour
     public float DeathTime;
     public float MaxFallSpeed = 20;
     public State state;
+    [HideInInspector]
     public List<State> states;
+    [HideInInspector]
+    public Dictionary<string,State> statedict = new Dictionary<string, State>();
 
     [Space(10)]
     [Header("Player walljump attributes")]
@@ -114,7 +117,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead(), new StatePlayerVictory() };
+        states = new List<State>() { new StatePlayerMove(), new StatePlayerSlingshot(), new StatePlayerWallHug(), new StatePlayerDead(), new StatePlayerVictory(), new StatePlayerSuperboost() };
+        statedict.Add("Move", states[0]);
+        statedict.Add("Slingshot", states[1]);
+        statedict.Add("Wallhug", states[2]);
+        statedict.Add("Dead", states[3]);
+        statedict.Add("Victory", states[4]);
+        statedict.Add("Superboost", states[5]);
         state = states[0];
         body = gameObject.GetComponent<PlayerBody>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
@@ -153,6 +162,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsWallHugging", state == states[2]);
         animator.SetBool("IsFlinging", absMovement[0] > 15 && absMovement[0] > absMovement[1] * 2);
         animator.SetBool("IsTurning", (Mathf.Sign(body.Movement.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal")) && Input.GetAxisRaw("Horizontal") != 0));
+        animator.SetBool("IsSuperboosting", state == statedict["Superboost"]);
     }
 
     void Update()
@@ -212,6 +222,7 @@ public class PlayerController : MonoBehaviour
             IsOrbAvailable = false;
             orb = null;
             slingshotTrail.emitting = false;
+
         }
     }
 
