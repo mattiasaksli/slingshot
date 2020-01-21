@@ -22,10 +22,11 @@ public class RoomBoundsManager : MonoBehaviour
     void Update()
     {
         Bounds bounds = collider.bounds;
+        var padding = 1;
         PlayerController controller = player.GetComponent<PlayerController>();
         if (controller.state != controller.states[3])
         {
-            if (player.position.x < bounds.min.x || player.position.y < bounds.min.y || player.position.x > bounds.max.x || player.position.y > bounds.max.y)
+            if (player.position.x < bounds.min.x- padding || player.position.y < bounds.min.y- padding || player.position.x > bounds.max.x+ padding || player.position.y > bounds.max.y+ padding)
             {
                 if (RoomCollider.gameObject.activeSelf)
                 {

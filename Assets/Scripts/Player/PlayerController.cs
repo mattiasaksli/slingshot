@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
                 min = distances[i];
             }
         }
-        if (min == distances[2])
+        if (min == distances[2] && min < 3)
         {
             body.Movement.y = 15;
             IsJumping = false;
