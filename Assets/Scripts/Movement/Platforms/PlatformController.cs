@@ -32,17 +32,26 @@ public class PlatformController : RaycastController
     private void Awake()
     {
         LevelEvents.OnPlayerRespawn += OnPlayerRespawn;
+        if(transform.parent && transform.parent.name == "Content")
+        {
+            transform.parent.parent.GetComponent<RoomManager>().OnRoomStart += OnPlayerRespawn;
+        }
         startPos = transform.position;
     }
 
     private void OnDestroy()
     {
         LevelEvents.OnPlayerRespawn -= OnPlayerRespawn;
+        if (transform.parent && transform.parent.name == "Content")
+        {
+            transform.parent.parent.GetComponent<RoomManager>().OnRoomStart -= OnPlayerRespawn;
+        }
     }
 
     public virtual void OnPlayerRespawn()
     {
         transform.position = startPos;
+        audioSource.Stop();
     }
 
     public override void Start()
@@ -290,7 +299,7 @@ public class PlatformController : RaycastController
 
     private void OnDrawGizmos()
     {
-        if (localWaypoints != null)
+        /*if (localWaypoints != null)
         {
             Gizmos.color = Color.red;
             float size = .3f;
@@ -301,6 +310,6 @@ public class PlatformController : RaycastController
                 Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
                 Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
             }
-        }
+        }*/
     }
 }

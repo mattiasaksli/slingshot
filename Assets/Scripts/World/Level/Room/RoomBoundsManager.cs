@@ -9,13 +9,17 @@ public class RoomBoundsManager : MonoBehaviour
     private Transform player;
     [HideInInspector]
     public BoxCollider2D collider;
+    private Transform content;
+    private RoomManager manager;
     
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").transform;
         collider = gameObject.GetComponentInChildren<BoxCollider2D>();
-        RoomCollider.gameObject.SetActive(false);
+        content = transform.parent.Find("Content");
+        manager = transform.parent.GetComponent<RoomManager>();
+        SetRoomActive(false);
     }
 
     private void Awake()
@@ -34,7 +38,7 @@ public class RoomBoundsManager : MonoBehaviour
         {
             if (RoomCollider.gameObject.activeSelf)
             {
-                RoomCollider.gameObject.SetActive(false);
+                SetRoomActive(false);
             }
         }
     }
@@ -55,14 +59,15 @@ public class RoomBoundsManager : MonoBehaviour
             {
                 if (RoomCollider.gameObject.activeSelf)
                 {
-                    RoomCollider.gameObject.SetActive(false);
+                    SetRoomActive(false);
+
                 }
             }
             else
             {
                 if (!RoomCollider.gameObject.activeSelf)
                 {
-                    RoomCollider.gameObject.SetActive(true);
+                    SetRoomActive(true);
                     LevelEvents.ChangeRoom(this);
                 }
             }
@@ -90,6 +95,16 @@ public class RoomBoundsManager : MonoBehaviour
         }
         return closest;
     }
+
+    private void SetRoomActive(bool active)
+    {
+        RoomCollider.gameObject.SetActive(active);
+        if (active)
+        {
+            manager.StartRoom();
+        }
+        //content.gameObject.SetActive(active);
+    } 
 
     private void OnDrawGizmos()
     {
