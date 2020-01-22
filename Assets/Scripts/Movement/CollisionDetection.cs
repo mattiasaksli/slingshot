@@ -12,6 +12,7 @@ public class CollisionDetection : RaycastController
     public CollisionInfo collisions;
     public FreeRays freeRays;
     public List<Transform> InsideCollisions;
+    private Dictionary<Transform, PlatformController> platformdictionary;
 
     public bool MovedByPlatform;
     public Vector2 collisionNormal;
@@ -20,6 +21,7 @@ public class CollisionDetection : RaycastController
     public override void Start()
     {
         base.Start();
+        platformdictionary = new Dictionary<Transform, PlatformController>();
     }
 
     public void Move(Vector3 velocity, bool standingOnPlatform = false, bool leftCollision = false, bool rightCollision = false, bool belowCollision = false)
@@ -134,7 +136,21 @@ public class CollisionDetection : RaycastController
 
             if (hit)
             {
+                if(!platformdictionary.ContainsKey(hit.transform))
+                {
+                    var cont = hit.transform.GetComponent<PlatformController>();
+                    if (cont)
+                    {
+                        platformdictionary.Add(hit.transform, cont);
+                    }
+                }
+                if (platformdictionary.ContainsKey(hit.transform))
+                {
+                    platformdictionary[hit.transform].OnMovingTransform?.Invoke(transform);
+                }
                 rayhits[directionX == -1 ? 0 : 1]++;
+                //var cont = hit.transform.GetComponent<PlatformController>();
+
                 if (!hit.transform.GetComponent<OneWayPlatform>())
                 {
                     velocity.x = (hit.distance - skinWidth) * directionX;
@@ -167,6 +183,18 @@ public class CollisionDetection : RaycastController
             if (hit)
             {
                 rayhits[directionY == -1 ? 0 : 1]++;
+                if (!platformdictionary.ContainsKey(hit.transform))
+                {
+                    var cont = hit.transform.GetComponent<PlatformController>();
+                    if (cont)
+                    {
+                        platformdictionary.Add(hit.transform, cont);
+                    }
+                }
+                if (platformdictionary.ContainsKey(hit.transform))
+                {
+                    platformdictionary[hit.transform].OnMovingTransform?.Invoke(transform);
+                }
                 if (!hit.transform.GetComponent<OneWayPlatform>() || directionY != 1)
                 {
                     velocity.y = (hit.distance - skinWidth) * directionY;

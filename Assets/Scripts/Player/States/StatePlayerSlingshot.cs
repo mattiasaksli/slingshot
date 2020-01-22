@@ -102,7 +102,6 @@ public class StatePlayerSlingshot : State
         {
             player.state = player.statedict["Superboost"];
             float angle = Mathf.Round(Vector2.SignedAngle(player.body.Movement.normalized, Vector3.right) / 45) * 45;
-            Debug.Log("Angle: " + angle);
             float magnitude = 15;
             player.body.Movement = new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad)*magnitude, -Mathf.Sin(angle * Mathf.Deg2Rad) * magnitude);
         }

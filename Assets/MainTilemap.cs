@@ -32,7 +32,6 @@ public class MainTilemap : MonoBehaviour
                 {
                     Vector3Int cellpos = tilemap.WorldToCell(tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0)) + tilemap.transform.position);
                     TileBase tile = tilemap.GetTile(new Vector3Int(x, y, 0));
-                    Debug.Log(tile);
 
                     if (tile != null)
                     {

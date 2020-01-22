@@ -9,7 +9,7 @@ public class RaycastController : MonoBehaviour
     public const float skinWidth = .015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
-    public bool autoRay = false;
+    public bool autoRay = true;
     public float autoRaySpacing = 0.2f;
 
     [HideInInspector]
