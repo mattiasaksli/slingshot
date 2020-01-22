@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
   m_Name: PlatformFall
   m_EditorClassIdentifier: 
-  VolumeMin: 1
-  VolumeMax: 1
+  VolumeMin: 0.498
+  VolumeMax: 0.538
   PitchMin: 0.88
   PitchMax: 1.09
   Cooldown: 0.1

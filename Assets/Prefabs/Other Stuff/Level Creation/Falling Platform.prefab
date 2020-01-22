@@ -338,7 +338,7 @@ MonoBehaviour:
   Movement: {x: 0, y: 0, z: 0}
   localWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: -10, z: 0}
   globalWaypoints: []
   WaypointLine: {fileID: 0}
   AudioMove: {fileID: 11400000, guid: d9b5cf7a62cc11a43854a7493ee8ec57, type: 2}

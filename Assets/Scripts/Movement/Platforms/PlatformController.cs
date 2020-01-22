@@ -308,7 +308,7 @@ namespace UnityEngine
 
         private void OnDrawGizmos()
         {
-            /*if (localWaypoints != null)
+            if (localWaypoints != null)
             {
                 Gizmos.color = Color.red;
                 float size = .3f;
@@ -319,7 +319,7 @@ namespace UnityEngine
                     Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
                     Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
                 }
-            }*/
+            }
         }
     }
 }

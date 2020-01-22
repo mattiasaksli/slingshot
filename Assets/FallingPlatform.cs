@@ -23,6 +23,7 @@ public class FallingPlatform : PlatformController
     public override void Start()
     {
         base.Start();
+        WaypointLine.enabled = false;
     }
 
     protected override void OnDestroy()
@@ -54,7 +55,8 @@ public class FallingPlatform : PlatformController
             Move(Vector2.down * 0.15f);
             hasBudged = true;
         }
-        Move(Movement*Time.deltaTime);
+        var s = CalculatePlatformMovement();
+        Move(s);
     }
 
     public void OnContact(Transform othertransform)
@@ -65,14 +67,20 @@ public class FallingPlatform : PlatformController
         }
     }
 
+    Vector3 CalculatePlatformMovement()
+    {
+        var v = (globalWaypoints[1] - transform.position).magnitude;
+        return Mathf.Max(Movement.y * Time.deltaTime, -v)*Vector2.up;
+    }
+
     public void Triggered()
     {
         if(!triggered)
         {
             triggered = true;
             audioSource.loop = false;
-            audioSource.volume = 1 * Volume * StopVolume;
-            audioSource.clip = AudioMove.AudioClips[Random.Range(0, AudioStop.AudioClips.Count)];
+            audioSource.volume = 1 * Volume * StopVolume * AudioMove.VolumeMin;
+            audioSource.clip = AudioMove.AudioClips[Random.Range(0, AudioMove.AudioClips.Count)];
             audioSource.Play();
             StartTimestamp = Time.time + StartTime;
         }
@@ -80,7 +88,7 @@ public class FallingPlatform : PlatformController
 
     public override Vector3 GetStoredMovement()
     {
-        return Movement.normalized * FallSpeed;
+        return Movement.normalized * FallSpeed / 2;
     }
 
     protected override void Update()

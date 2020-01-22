@@ -17,6 +17,33 @@ TextureImporter:
   - first:
       213: 2859675880533502774
     second: RechargeCrystal_4
+  - first:
+      213: 8478703498291171571
+    second: RechargeCrystal_0
+  - first:
+      213: 842735463699700771
+    second: RechargeCrystal_1
+  - first:
+      213: -2373553782082453829
+    second: RechargeCrystal_2
+  - first:
+      213: 1659566484553967758
+    second: RechargeCrystal_3
+  - first:
+      213: 3476128964336953118
+    second: RechargeCrystal_4
+  - first:
+      213: 7982694958945230879
+    second: RechargeCrystal_5
+  - first:
+      213: -182241305516829015
+    second: RechargeCrystal_6
+  - first:
+      213: -5572856399983224398
+    second: RechargeCrystal_7
+  - first:
+      213: 3576226980905758553
+    second: RechargeCrystal_8
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -115,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a4d1b64088d95148987891d32f83606
-      internalID: -4748519286009265917
+      spriteID: 3f0d18bd8e76aa570800000000000000
+      internalID: 8478703498291171571
       vertices: []
       indices: 
       edges: []
@@ -136,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41ac360c75f42dc49807d5bc7e5baf09
-      internalID: 8175308407246124566
+      spriteID: 32cd171707ff1bb00800000000000000
+      internalID: 842735463699700771
       vertices: []
       indices: 
       edges: []
@@ -157,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dbeb4808c20e4744b186216bf6d9289
-      internalID: -2092588181089232935
+      spriteID: bbeb0bb29617f0fd0800000000000000
+      internalID: -2373553782082453829
       vertices: []
       indices: 
       edges: []
@@ -178,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 577008586c97e4347866118cc5eea569
-      internalID: -7948816904611585147
+      spriteID: e88abf8cce6f70710800000000000000
+      internalID: 1659566484553967758
       vertices: []
       indices: 
       edges: []
@@ -199,8 +226,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64165c078926987439fb4c1e21c447aa
-      internalID: 2859675880533502774
+      spriteID: e1720c030e0bd3030800000000000000
+      internalID: 3476128964336953118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RechargeCrystal_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f106b3265ca38ce60800000000000000
+      internalID: 7982694958945230879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RechargeCrystal_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a614498f7c887df0800000000000000
+      internalID: -182241305516829015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RechargeCrystal_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b9dcb661ac39a2b0800000000000000
+      internalID: -5572856399983224398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RechargeCrystal_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95f2e01dd7f41a130800000000000000
+      internalID: 3576226980905758553
       vertices: []
       indices: 
       edges: []
