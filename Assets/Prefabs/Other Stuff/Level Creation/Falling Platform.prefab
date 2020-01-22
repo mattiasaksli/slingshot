@@ -342,7 +342,7 @@ MonoBehaviour:
   globalWaypoints: []
   WaypointLine: {fileID: 0}
   AudioMove: {fileID: 11400000, guid: d9b5cf7a62cc11a43854a7493ee8ec57, type: 2}
-  AudioStop: {fileID: 11400000, guid: 6fe2a8a7e52f3bc46981df1b54ad2477, type: 2}
+  AudioStop: {fileID: 11400000, guid: db1eaaf1ef4073745b30fa2c2c2bb896, type: 2}
   Volume: 1
   StopVolume: 1
   triggered: 0

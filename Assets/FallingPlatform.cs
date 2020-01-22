@@ -49,6 +49,10 @@ public class FallingPlatform : PlatformController
         {
             isFalling = true;
             Movement.y = -FallSpeed;
+            audioSource.loop = false;
+            audioSource.volume = 1 * Volume * StopVolume * AudioStop.VolumeMin;
+            audioSource.clip = AudioStop.AudioClips[Random.Range(0, AudioStop.AudioClips.Count)];
+            audioSource.Play();
         }
         if(!hasBudged && triggered)
         {

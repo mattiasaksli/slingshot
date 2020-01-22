@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour
 {
+    public Sprite[] SpikeSprites;
     // Start is called before the first frame update
     void Start()
     {
-        
+        var s = GetComponent<SpriteRenderer>();
+        if(s)
+        {
+            s.sprite = SpikeSprites[Random.Range(0,SpikeSprites.Length)];
+        }
     }
 
     // Update is called once per frame
