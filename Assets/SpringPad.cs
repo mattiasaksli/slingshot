@@ -7,11 +7,13 @@ public class SpringPad : MonoBehaviour
     public AudioClipGroup AudioJump;
     private Animator animator;
     public float JumpPower;
+    private FallingPlatform parentplatform;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        parentplatform = gameObject.GetComponentInParent<FallingPlatform>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,6 +43,10 @@ public class SpringPad : MonoBehaviour
             if(orb && transform.up.y != 1)
             {
                 set.x *= 1.2f;
+            }
+            if(parentplatform)
+            {
+                parentplatform.Triggered();
             }
             body.Movement = set;
             animator.SetTrigger("Jump");

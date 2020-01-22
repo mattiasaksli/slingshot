@@ -71,4 +71,5 @@ public class PingPongPlatform : PlatformController
     {
         return Movement.normalized * Speed;
     }
+
 }
