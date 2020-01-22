@@ -29,7 +29,7 @@ namespace UnityEngine
 
         public AudioClipGroup AudioMove;
         public AudioClipGroup AudioStop;
-        private AudioSource audioSource;
+        protected AudioSource audioSource;
         public float Volume = 1;
         public float StopVolume = 1;
 
@@ -89,7 +89,7 @@ namespace UnityEngine
             pastMovement = Movement;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (Movement.magnitude != 0 && !audioSource.isPlaying)
             {

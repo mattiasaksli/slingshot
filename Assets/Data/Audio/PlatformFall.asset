@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f42c784bd34a4e2488de653c3f35e3f8, type: 3}
-  m_Name: SlingShotFling
+  m_Name: PlatformFall
   m_EditorClassIdentifier: 
-  VolumeMin: 0.364
-  VolumeMax: 0.387
-  PitchMin: 0.931
-  PitchMax: 1.059
-  Cooldown: 0
+  VolumeMin: 1
+  VolumeMax: 1
+  PitchMin: 0.88
+  PitchMax: 1.09
+  Cooldown: 0.1
   AudioClips:
-  - {fileID: 8300000, guid: d568d6c543ac90b4789c8191a691c3f4, type: 3}
+  - {fileID: 8300000, guid: 4af9164bbbf46a249833bf97104ff17e, type: 3}
