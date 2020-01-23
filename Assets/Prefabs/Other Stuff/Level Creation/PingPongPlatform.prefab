@@ -102,14 +102,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
+    oldSize: {x: 2.5, y: 2.5}
     newSize: {x: 3, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 2.5, y: 2.5}
   m_EdgeRadius: 0
 --- !u!114 &3952281652369621104
 MonoBehaviour:
@@ -142,6 +142,8 @@ MonoBehaviour:
   WaypointLine: {fileID: 0}
   AudioMove: {fileID: 11400000, guid: 02de9a084d559bd46813bd6021d59649, type: 2}
   AudioStop: {fileID: 11400000, guid: 6fe2a8a7e52f3bc46981df1b54ad2477, type: 2}
+  Volume: 1
+  StopVolume: 1
   MaxSpeed: 8
   Speed: 0
   Acceleration: 6
