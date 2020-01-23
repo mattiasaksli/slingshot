@@ -103,6 +103,7 @@ namespace UnityEngine
             }
             if (Movement.magnitude == 0 && pastMovement.magnitude != 0)
             {
+                audioSource.Stop();
                 audioSource.loop = false;
                 audioSource.volume = 0.5f * pastMovement.magnitude * 5 * Volume * StopVolume;
                 audioSource.clip = AudioStop.AudioClips[Random.Range(0, AudioStop.AudioClips.Count)];
