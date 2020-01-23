@@ -86,11 +86,6 @@ namespace UnityEngine
         {
             UpdateRaycastOrigins();
             ResetMovedByPlatform();
-            pastMovement = Movement;
-        }
-
-        protected virtual void Update()
-        {
             if (Movement.magnitude != 0 && !audioSource.isPlaying)
             {
                 if (!audioSource.isPlaying)
@@ -111,6 +106,11 @@ namespace UnityEngine
             }
             Vector2 inscreen = Camera.main.WorldToViewportPoint(transform.position);
             audioSource.mute = !(inscreen.x >= 0 && inscreen.x <= 1 && inscreen.y >= 0 && inscreen.y <= 1);
+            pastMovement = Movement;
+        }
+
+        protected virtual void Update()
+        {
         }
         public void Move(Vector3 velocity)
         {
