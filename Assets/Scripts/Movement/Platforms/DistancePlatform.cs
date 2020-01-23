@@ -13,10 +13,13 @@ public class DistancePlatform : PlatformController
     private float lastDirection = 0;
     private float RestTimer;
 
+    private Animator gemAnimator;
+
     public override void Start()
     {
         base.Start();
         waypointDist = (globalWaypoints[1] - globalWaypoints[0]);
+        gemAnimator = GetComponentInChildren<Animator>();
     }
     protected override void FixedUpdate()
     {
@@ -61,8 +64,10 @@ public class DistancePlatform : PlatformController
         PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
         if(player.orb != null)
         {
+            gemAnimator.SetBool("IsActive", true);
             return Mathf.Clamp((player.transform.position-player.orb.transform.position).magnitude/MaxDistance,0,1);
         }
+        gemAnimator.SetBool("IsActive", false);
         return 0;
     }
 

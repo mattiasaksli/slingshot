@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3251819959266992627}
   - component: {fileID: 22827172873050321}
+  - component: {fileID: 7210718339677878606}
   m_Layer: 0
   m_Name: DistancePlatformGem
   m_TagString: Untagged
@@ -75,12 +76,31 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5625, y: 0.5625}
+  m_Size: {x: 0.625, y: 0.625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7210718339677878606
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2927391786828939699}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6aaaf84b37f5e26438d9f1982d527d64, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6880314119187918388
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,8 +273,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.3492346, g: 0.5864298, b: 0.6792453, a: 1}
-      key1: {r: 0.3492346, g: 0.5864298, b: 0.6792453, a: 1}
+      key0: {r: 0.43529415, g: 0.25490198, b: 0.2901961, a: 1}
+      key1: {r: 0.4339623, g: 0.25587398, b: 0.28926274, a: 1}
       key2: {r: 0.18823531, g: 0.18431373, b: 0.27450982, a: 0}
       key3: {r: 0.29803923, g: 0.454902, b: 0.5294118, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
