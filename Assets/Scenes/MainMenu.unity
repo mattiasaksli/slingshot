@@ -9753,7 +9753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81283a90a06a4d6c8a779a8005142fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllowSceneActivation: 0
+  AllowSceneActivation: 1
   DebugMode: 0
   LoadBehavior:
     OnLoadScene:
@@ -9805,7 +9805,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Progressor: {fileID: 0}
-  SceneActivationDelay: 0.2
+  SceneActivationDelay: 1.1
   SceneBuildIndex: 0
   SceneName: 
   SelfDestructAfterSceneLoaded: 0
@@ -10656,9 +10656,9 @@ MonoBehaviour:
   CustomStartAnchoredPosition: {x: 0, y: 0, z: 0}
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
-  DisableCanvasWhenHidden: 1
-  DisableGameObjectWhenHidden: 1
-  DisableGraphicRaycasterWhenHidden: 1
+  DisableCanvasWhenHidden: 0
+  DisableGameObjectWhenHidden: 0
+  DisableGraphicRaycasterWhenHidden: 0
   HideBehavior:
     Animation:
       AnimationType: 2

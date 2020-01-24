@@ -8,6 +8,7 @@ public class SettingsScript : MonoBehaviour
     public AudioMixer audioMixer;
     public Resolution[] resolutions;
     public TMP_Dropdown resolutionDropdown;
+    public AudioSource sfx;
 
     private void Start()
     {
@@ -34,28 +35,35 @@ public class SettingsScript : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResIndex;
         resolutionDropdown.RefreshShownValue();
-
-
     }
 
     public void SetMasterVolume(float volume)
     {
-        audioMixer.SetFloat("MasterVolume", volume);
+        if (sfx.mute) { sfx.mute = false; }
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+        sfx.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Master")[0];
+        if (!sfx.isPlaying && Time.time > 1) { sfx.Play(); }    //Time.time > 1 because otherwise it will play the sfx at startup.
     }
 
     public void SetUISFXVolume(float volume)
     {
-        audioMixer.SetFloat("UISFXVolume", volume);
+        if (sfx.mute) { sfx.mute = false; }
+        audioMixer.SetFloat("UISFXVolume", Mathf.Log10(volume) * 20);
+        sfx.outputAudioMixerGroup = audioMixer.FindMatchingGroups("UI")[0];
+        if (!sfx.isPlaying && Time.time > 1) { sfx.Play(); }
     }
 
     public void SetGameSFXVolume(float volume)
     {
-        audioMixer.SetFloat("GameSFXVolume", volume);
+        if (sfx.mute) { sfx.mute = false; }
+        audioMixer.SetFloat("GameSFXVolume", Mathf.Log10(volume) * 20);
+        sfx.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Game")[0];
+        if (!sfx.isPlaying && Time.time > 1) { sfx.Play(); }
     }
 
     public void SetBGMVolume(float volume)
     {
-        audioMixer.SetFloat("BGMVolume", volume);
+        audioMixer.SetFloat("BGMVolume", Mathf.Log10(volume) * 20);
     }
 
     public void SetFullscreen(bool isFullscreen)

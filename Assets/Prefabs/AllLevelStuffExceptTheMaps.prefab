@@ -12870,9 +12870,9 @@ MonoBehaviour:
   CustomStartAnchoredPosition: {x: 0, y: 0, z: 0}
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
-  DisableCanvasWhenHidden: 1
-  DisableGameObjectWhenHidden: 1
-  DisableGraphicRaycasterWhenHidden: 1
+  DisableCanvasWhenHidden: 0
+  DisableGameObjectWhenHidden: 0
+  DisableGraphicRaycasterWhenHidden: 0
   HideBehavior:
     Animation:
       AnimationType: 2
@@ -13958,17 +13958,17 @@ PrefabInstance:
     - target: {fileID: 5317443032269518570, guid: 0cfeea8679a98194a807ff9af495064e,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5317443032269518570, guid: 0cfeea8679a98194a807ff9af495064e,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5317443032269518570, guid: 0cfeea8679a98194a807ff9af495064e,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5317443032269518570, guid: 0cfeea8679a98194a807ff9af495064e,
         type: 3}
@@ -13979,6 +13979,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317443032269518570, guid: 0cfeea8679a98194a807ff9af495064e,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7010836415001581890, guid: 0cfeea8679a98194a807ff9af495064e,
         type: 3}
