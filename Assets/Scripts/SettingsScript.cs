@@ -21,8 +21,6 @@ public class SettingsScript : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Reading start");
-
         #region Read from prefs
         float volume = PlayerPrefs.GetFloat("MasterVolume", 0);
         audioMixer.SetFloat("MasterVolume", volume);
@@ -44,13 +42,9 @@ public class SettingsScript : MonoBehaviour
         FullscreenToggle.isOn = Screen.fullScreen;
 
         int currentWidth = PlayerPrefs.GetInt("ResolutionW", 800);
-        Debug.Log(currentWidth);
         int currentHeight = PlayerPrefs.GetInt("ResolutionH", 600);
-        Debug.Log(currentHeight);
         int currentRefreshRate = PlayerPrefs.GetInt("ResolutionR", 59);
-        Debug.Log(currentRefreshRate);
         Screen.SetResolution(currentWidth, currentHeight, Screen.fullScreen, currentRefreshRate);
-        Debug.Log(Screen.width + " " + Screen.height);
 
         int currentResIndex = PlayerPrefs.GetInt("ResolutionDropdownIndex", -1);
         #endregion

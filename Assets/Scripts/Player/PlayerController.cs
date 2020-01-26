@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public List<State> states;
     [HideInInspector]
-    public Dictionary<string,State> statedict = new Dictionary<string, State>();
+    public Dictionary<string, State> statedict = new Dictionary<string, State>();
 
     [Space(10)]
     [Header("Player walljump attributes")]
