@@ -4545,6 +4545,11 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 0a786b2de0b324b48964c2e4ffde5fa9, type: 2}
   resolutionDropdown: {fileID: 7010836415539680652}
   sfx: {fileID: 5494863917212194917}
+  MasterSlider: {fileID: 2507931172454621218}
+  UISlider: {fileID: 2507931172833486800}
+  GameSlider: {fileID: 2507931172400046528}
+  BGMSlider: {fileID: 2507931173499738076}
+  FullscreenToggle: {fileID: 2507931172017723732}
 --- !u!82 &5494863917212194917
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9886,7 +9891,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 8
+  m_firstOverflowCharacterIndex: 9
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
