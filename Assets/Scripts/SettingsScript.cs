@@ -10,6 +10,9 @@ public class SettingsScript : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     public AudioSource sfx;
 
+    private Dictionary<int, int> actualResolutionIndex = new Dictionary<int, int>();
+    // there is a difference between the indexes of the resolutions array and the resolutions dropdown because of the refresh rates
+
     private void Start()
     {
         QualitySettings.vSyncCount = 0;
@@ -18,12 +21,19 @@ public class SettingsScript : MonoBehaviour
 
         int currentResIndex = 0;
         List<string> options = new List<string>();
+        int maxRefreshRate = 0;
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            if (maxRefreshRate < resolutions[i].refreshRate) maxRefreshRate = resolutions[i].refreshRate;
+        }
+
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
-            if (!options.Contains(option))
+            if (resolutions[i].refreshRate == maxRefreshRate)
             {
                 options.Add(option);
+                actualResolutionIndex.Add(options.Count - 1, i);
             }
 
             if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
@@ -78,7 +88,7 @@ public class SettingsScript : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution res = resolutions[resolutionIndex];
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+        Resolution res = resolutions[actualResolutionIndex[resolutionIndex]];
+        Screen.SetResolution(res.width, res.height, Screen.fullScreen, res.refreshRate);
     }
 }
