@@ -144,9 +144,9 @@ MonoBehaviour:
   AudioStop: {fileID: 11400000, guid: 6fe2a8a7e52f3bc46981df1b54ad2477, type: 2}
   Volume: 1
   StopVolume: 1
-  MaxSpeed: 8
+  MaxSpeed: 12
   Speed: 0
-  Acceleration: 6
+  Acceleration: 16
   Rest: 0.5
 --- !u!120 &6646212148833157262
 LineRenderer:
@@ -186,7 +186,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
