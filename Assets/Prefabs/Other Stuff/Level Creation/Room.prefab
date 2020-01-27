@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 4485259180028043072}
   - component: {fileID: 4485259180028043087}
   - component: {fileID: 670478554829431278}
+  - component: {fileID: 5711281299574522296}
   m_Layer: 0
   m_Name: Hazard
   m_TagString: Untagged
@@ -1129,6 +1130,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04654a6b9d900764ab5c717322f9b7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5711281299574522296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4485259180028043085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa588df71960c9446b1a1f0f735cbbf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpikeSprites: []
 --- !u!1 &4485259180471155205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,7 +1380,8 @@ GameObject:
   - component: {fileID: 7000791933195401125}
   - component: {fileID: 8472358078572548736}
   - component: {fileID: 2491037894915760322}
-  m_Layer: 0
+  - component: {fileID: 4849046506383368461}
+  m_Layer: 10
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1458,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1482,6 +1497,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04654a6b9d900764ab5c717322f9b7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4849046506383368461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331607710734581364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e055740e2119d48a06965eba07c1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7798982602939677286
