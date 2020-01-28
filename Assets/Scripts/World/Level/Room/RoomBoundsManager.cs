@@ -60,7 +60,6 @@ public class RoomBoundsManager : MonoBehaviour
                 if (RoomCollider.gameObject.activeSelf)
                 {
                     SetRoomActive(false);
-
                 }
             }
             else
@@ -102,6 +101,9 @@ public class RoomBoundsManager : MonoBehaviour
         if (active)
         {
             manager.StartRoom();
+        } else
+        {
+            manager.EndRoom();
         }
         //content.gameObject.SetActive(active);
     } 

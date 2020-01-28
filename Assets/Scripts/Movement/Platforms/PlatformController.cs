@@ -32,13 +32,20 @@ namespace UnityEngine
         protected AudioSource audioSource;
         public float Volume = 1;
         public float StopVolume = 1;
+        public bool roomActive = false;
+        protected RoomManager room;
+        protected RoomBoundsManager roombounds;
 
         protected virtual void Awake()
         {
             LevelEvents.OnPlayerRespawn += OnPlayerRespawn;
+            LevelEvents.OnRoomChange += OnRoomChange;
             if (transform.parent && transform.parent.name == "Content")
             {
-                transform.parent.parent.GetComponent<RoomManager>().OnRoomStart += OnPlayerRespawn;
+                room = transform.parent.parent.GetComponent<RoomManager>();
+                room.OnRoomStart += OnPlayerRespawn;
+
+                //transform.parent.parent.GetComponent<RoomManager>().OnRoomEnd += OnRoomExit;
             }
             startPos = transform.position;
         }
@@ -46,9 +53,12 @@ namespace UnityEngine
         protected virtual void OnDestroy()
         {
             LevelEvents.OnPlayerRespawn -= OnPlayerRespawn;
+            LevelEvents.OnRoomChange -= OnRoomChange;
             if (transform.parent && transform.parent.name == "Content")
             {
-                transform.parent.parent.GetComponent<RoomManager>().OnRoomStart -= OnPlayerRespawn;
+                room = transform.parent.parent.GetComponent<RoomManager>();
+                room.OnRoomStart -= OnPlayerRespawn;
+                //transform.parent.parent.GetComponent<RoomManager>().OnRoomEnd -= OnRoomExit;
             }
         }
 
@@ -56,11 +66,32 @@ namespace UnityEngine
         {
             transform.position = startPos;
             audioSource.Stop();
+            roomActive = true;
+        }
+
+        protected void OnRoomChange(RoomBoundsManager manager)
+        {
+            if (manager)
+            {
+                if (manager != roombounds)
+                {
+                    OnPlayerRespawn();
+                    roomActive = false;
+                    Debug.Log("InActive");
+                }
+                else
+                {
+                    roomActive = true;
+                    Debug.Log("Active");
+                }
+            }
         }
 
         public override void Start()
         {
             base.Start();
+            roombounds = transform.parent.parent.GetComponentInChildren<RoomBoundsManager>();
+            room = transform.parent.parent.GetComponent<RoomManager>();
             audioSource = GetComponent<AudioSource>();
             passengerFilter.layerMask = passengerMask;
             passengerFilter.useLayerMask = true;

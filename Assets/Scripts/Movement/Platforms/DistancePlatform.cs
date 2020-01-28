@@ -23,11 +23,14 @@ public class DistancePlatform : PlatformController
     }
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
+        if (roomActive)
+        {
+            base.FixedUpdate();
 
-        Movement = CalculatePlatformMovement();
+            Movement = CalculatePlatformMovement();
 
-        Move(Movement);
+            Move(Movement);
+        }
     }
 
     Vector3 CalculatePlatformMovement()

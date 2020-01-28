@@ -31,16 +31,19 @@ public class PingPongPlatform : PlatformController
     }
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
-
-        var dist = MaxSpeed - Speed;
-        if (Time.time > restTimer)
+        if (roomActive)
         {
-            Speed += Mathf.Min(dist, Mathf.Sign(dist) * Acceleration * Time.deltaTime);
-        }
-        Movement = CalculatePlatformMovement();
+            base.FixedUpdate();
 
-        Move(Movement);
+            var dist = MaxSpeed - Speed;
+            if (Time.time > restTimer)
+            {
+                Speed += Mathf.Min(dist, Mathf.Sign(dist) * Acceleration * Time.deltaTime);
+            }
+            Movement = CalculatePlatformMovement();
+
+            Move(Movement);
+        }
     }
     Vector3 CalculatePlatformMovement()
     {
