@@ -51,7 +51,11 @@ public class MainTilemap : MonoBehaviour
         Tilemap[] tilemaps = GetComponentsInChildren<Tilemap>();
         foreach (Tilemap tilemap in tilemaps)
         {
-            Layers.Add(tilemap.gameObject.name, tilemap);
+            if (!Layers.ContainsKey(tilemap.gameObject.name))
+            {
+                Layers.Add(tilemap.gameObject.name, tilemap);
+            }
+            tilemap.ClearAllTiles();
         }
         TilemapLayer[] tilemaplayers = Object.FindObjectsOfType<TilemapLayer>();
         foreach(TilemapLayer layer in tilemaplayers)

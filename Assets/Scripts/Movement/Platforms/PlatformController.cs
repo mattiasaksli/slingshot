@@ -134,7 +134,7 @@ namespace UnityEngine
                 audioSource.Play();
             }
             Vector2 inscreen = Camera.main.WorldToViewportPoint(transform.position);
-            audioSource.mute = roomActive;
+            audioSource.mute = !roomActive;
             pastMovement = Movement;
         }
 
