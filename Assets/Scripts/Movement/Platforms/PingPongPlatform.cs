@@ -31,9 +31,10 @@ public class PingPongPlatform : PlatformController
     }
     protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         if (roomActive)
         {
-            base.FixedUpdate();
+            
 
             var dist = MaxSpeed - Speed;
             if (Time.time > restTimer)

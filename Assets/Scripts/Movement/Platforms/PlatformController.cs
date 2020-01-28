@@ -66,7 +66,7 @@ namespace UnityEngine
         {
             transform.position = startPos;
             audioSource.Stop();
-            roomActive = true;
+            //roomActive = true;
         }
 
         protected void OnRoomChange(RoomBoundsManager manager)
