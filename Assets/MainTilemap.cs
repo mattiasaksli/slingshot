@@ -44,4 +44,20 @@ public class MainTilemap : MonoBehaviour
             Debug.Log("Your tilemap can not be merged with main tilemap, because it's name does not match with any available main tilemap layer. Did you forget to add the TilemapLayer component to your tilemap?");
         }
     }
+
+    public void Merge()
+    {
+        Instances = this;
+        Tilemap[] tilemaps = GetComponentsInChildren<Tilemap>();
+        foreach (Tilemap tilemap in tilemaps)
+        {
+            Layers.Add(tilemap.gameObject.name, tilemap);
+        }
+        TilemapLayer[] tilemaplayers = Object.FindObjectsOfType<TilemapLayer>();
+        foreach(TilemapLayer layer in tilemaplayers)
+        {
+            Debug.Log(layer.GetComponent<Tilemap>() + " " + layer.gameObject.name);
+            AddTilemapToLayer(layer.GetComponent<Tilemap>(), layer.gameObject.name);
+        }
+    }
 }

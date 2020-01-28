@@ -77,12 +77,10 @@ namespace UnityEngine
                 {
                     OnPlayerRespawn();
                     roomActive = false;
-                    Debug.Log("InActive");
                 }
                 else
                 {
                     roomActive = true;
-                    Debug.Log("Active");
                 }
             }
         }
@@ -136,7 +134,7 @@ namespace UnityEngine
                 audioSource.Play();
             }
             Vector2 inscreen = Camera.main.WorldToViewportPoint(transform.position);
-            audioSource.mute = !(inscreen.x >= 0 && inscreen.x <= 1 && inscreen.y >= 0 && inscreen.y <= 1);
+            audioSource.mute = roomActive;
             pastMovement = Movement;
         }
 

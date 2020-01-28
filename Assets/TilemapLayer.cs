@@ -9,7 +9,7 @@ public class TilemapLayer : MonoBehaviour
     private void Update()
     {
         if (MainTilemap.Instances) {
-            MainTilemap.Instances.AddTilemapToLayer(GetComponent<Tilemap>(), gameObject.name);
+            //MainTilemap.Instances.AddTilemapToLayer(GetComponent<Tilemap>(), gameObject.name);
             GameObject.Destroy(gameObject);
         }
     }
