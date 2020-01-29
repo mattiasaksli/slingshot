@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public float GravityPower = 40;
     public float DeathTime;
     public float MaxFallSpeed = 20;
+    public float CoyoteTime = 0.1f;
+    [HideInInspector]
+    public float CoyoteTimestamp = 0;
     public State state;
     [HideInInspector]
     public List<State> states;

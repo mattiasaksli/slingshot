@@ -10,11 +10,12 @@ public class StatePlayerMove : State
         PlayerController player = (PlayerController)controller;
         float input = Input.GetAxisRaw("Horizontal");
         player.body.TargetMovement.x = input * player.MovementSpeed;
-        if ((Input.GetKeyDown("space") || Input.GetKeyDown("w")) && player.IsGrounded)
+        if ((Input.GetKeyDown("space") || Input.GetKeyDown("w")) && (player.IsGrounded || player.CoyoteTimestamp > Time.time))
         {
             player.body.TargetMovement.y = player.JumpPower;
             player.body.Movement.y = player.JumpPower;
             player.IsJumping = true;
+            player.CoyoteTimestamp = Time.time;
             player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.5f, 3.2f, 0, -1);
             float walldist = 0.05f;
             Vector2 wallcheck = new Vector2(walldist, 0);
@@ -97,7 +98,7 @@ public class StatePlayerMove : State
 
         void RightHug()
         {
-            if (player.body.detection.freeRays.right > walljumpThreshold || player.body.detection.CastRay(Vector2.right,0.7f,0.2f))
+            if (player.body.detection.freeRays.right > walljumpThreshold || player.body.detection.CastRay(Vector2.right, 0.7f, 0.2f))
             {
                 player.Sprite.GetComponent<SquashStrech>().ApplyMorph(0.7f, 3.2f, -1, 0);
                 player.state = player.states[2];
@@ -167,6 +168,7 @@ public class StatePlayerMove : State
         if (player.IsGrounded)
         {
             player.IsOrbAvailable = true;
+            player.CoyoteTimestamp = Time.time + player.CoyoteTime;
         }
 
 
