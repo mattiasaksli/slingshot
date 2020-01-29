@@ -19,6 +19,8 @@ public class SettingsScript : MonoBehaviour
     private Dictionary<int, int> actualResolutionIndex = new Dictionary<int, int>();
     // there is a difference between the indexes of the resolutions array and the resolutions dropdown because of the refresh rates
 
+    private int maxRefreshRate = 0;
+
     private void Awake()
     {
         #region Read from prefs
@@ -54,25 +56,35 @@ public class SettingsScript : MonoBehaviour
         resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
-        int maxRefreshRate = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
             if (maxRefreshRate < resolutions[i].refreshRate) maxRefreshRate = resolutions[i].refreshRate;
         }
 
+        int max_i = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             if (resolutions[i].refreshRate == maxRefreshRate)
             {
-                options.Add(option);
-                actualResolutionIndex.Add(options.Count - 1, i);
+                if (!option.Equals("1920 x 1080"))
+                {
+                    options.Add(option);
+                    actualResolutionIndex.Add(options.Count - 1, i);
+                }
             }
 
             if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height && currentResIndex == -1)
             {
                 currentResIndex = i;
             }
+
+            max_i = i;
+        }
+
+        if (!options.Contains("1920 x 1080"))
+        {
+            options.Add("1920 x 1080");
         }
 
         resolutionDropdown.AddOptions(options);
@@ -123,7 +135,19 @@ public class SettingsScript : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution res = resolutions[actualResolutionIndex[resolutionIndex]];
+        Resolution res = new Resolution();
+        if (resolutionIndex == actualResolutionIndex.Count)
+        {
+            res = new Resolution();
+            res.width = 1920;
+            res.height = 1080;
+            res.refreshRate = maxRefreshRate;
+
+        }
+        else
+        {
+            res = resolutions[actualResolutionIndex[resolutionIndex]];
+        }
         Screen.SetResolution(res.width, res.height, Screen.fullScreen, res.refreshRate);
 
         PlayerPrefs.SetInt("ResolutionW", res.width);
