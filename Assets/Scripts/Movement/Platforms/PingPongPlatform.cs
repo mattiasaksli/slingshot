@@ -32,10 +32,24 @@ public class PingPongPlatform : PlatformController
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+        float minMovementAudioThreshold = 0.01f;
+        if (Movement.magnitude > minMovementAudioThreshold && !audioSource.loop)
+        {
+            audioSource.loop = true;
+            audioSource.volume = 0.5f * Volume;
+            audioSource.clip = AudioMove.AudioClips[Random.Range(0, AudioMove.AudioClips.Count)];
+            audioSource.Play();
+        }
+        if (Movement.magnitude < minMovementAudioThreshold && audioSource.loop)
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
+            audioSource.volume = 0.5f * Volume * StopVolume;
+            audioSource.clip = AudioStop.AudioClips[Random.Range(0, AudioStop.AudioClips.Count)];
+            audioSource.Play();
+        }
         if (roomActive)
         {
-            
-
             var dist = MaxSpeed - Speed;
             if (Time.time > restTimer)
             {
