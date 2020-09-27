@@ -23,8 +23,8 @@
       <Path>.idea</Path>
       <Path>.vs</Path>
       <Path>.vscode</Path>
+      <Path>Build</Path>
       <Path>Library</Path>
-      <Path>Logs</Path>
       <Path>Slishot</Path>
       <Path>Temp</Path>
       <Path>obj</Path>
